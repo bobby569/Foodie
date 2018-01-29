@@ -1,5 +1,9 @@
 ## Foodie
 
+### Docs
+
+[Here](https://github.com/bobby569/Foodie/tree/master/docs) is the link to the documentation folder
+
 ### Links
 
 * [Node & npm](https://nodejs.org/en/)
