@@ -1,0 +1,15 @@
+{
+  "private": {
+    "oauth": {
+      "google": {
+        "clientId":
+          "975281499325-jalnbb2tori4clccpfs0ptteko52d9n2.apps.googleusercontent.com",
+        "secret": "JyTj_hPMVQMSZhX36Ksek2Mt"
+      },
+      "facebook": {
+        "clientId": "1639022959524615",
+        "secret": "dc1982ede6cb7a2c2e92e7d558d9c4be"
+      }
+    }
+  }
+}
