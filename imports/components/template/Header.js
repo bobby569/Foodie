@@ -3,7 +3,6 @@ import Blaze from 'meteor/gadicc:blaze-react-component';
 import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
 import { Layout, Menu } from 'antd';
-import './Header.css';
 const { Header } = Layout;
 
 const styles = {
