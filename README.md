@@ -7,21 +7,27 @@
 ## Library Reference Links
 
 <details>
-<summary> Package Management</summary>
-* [Node & npm](https://nodejs.org/en/)
-* [yarn](https://yarnpkg.com/en/)
+<summary>Package Management</summary>
+<ul>
+<li>[Node & npm](https://nodejs.org/en/)</li>
+<li>[yarn](https://yarnpkg.com/en/)</li>
+</ul>
 </details>
 
 <details>
 <summary>Full Stack Library</summary>
-* [Meteor](https://www.meteor.com/)
-* [React](https://reactjs.org/)
+<ul>
+<li>[Meteor](https://www.meteor.com/)</li>
+<li>[React](https://reactjs.org/)</li>
+</ul>
 </details>
 
 <details>
 <summary>User Interface</summary>
-* [Material-UI](http://www.material-ui.com/#/)
-* [antd](https://ant.design/docs/react/introduce)
+<ul>
+<li>[Material-UI](http://www.material-ui.com/#/)</li>
+<li>[antd](https://ant.design/docs/react/introduce)</li>
+</ul>
 </details>
 
 ## Setup
