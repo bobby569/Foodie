@@ -19,3 +19,15 @@ shell-server@0.3.0            # Server-side component of the `meteor shell` comm
 
 autopublish@1.0.7             # Publish all data to the clients (for prototyping)
 insecure@1.0.7                # Allow all DB writes from clients (for prototyping)
+
+# Accounts
+accounts-password
+accounts-facebook
+accounts-google
+accounts-ui
+useraccounts:core
+
+# Server
+service-configuration
+
+gadicc:blaze-react-component  # Use Blaze templates inside of React
