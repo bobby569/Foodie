@@ -3,6 +3,7 @@ $tomato: #ff5733;
 $orange: #f9a657;
 $yellow: #ffeaa6;
 
+@import './force';
 @import './components/footer';
 @import './components/header';
 @import './components/layout';
