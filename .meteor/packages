@@ -31,3 +31,4 @@ useraccounts:core
 service-configuration
 
 gadicc:blaze-react-component  # Use Blaze templates inside of React
+fourseven:scss

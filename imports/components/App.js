@@ -10,18 +10,16 @@ import UserProfile from './UserProfile';
 export default class App extends Component {
 	render() {
 		return (
-			<div>
+			<BrowserRouter>
 				<Layout>
-					<BrowserRouter>
-						<Switch>
-							<Route path="/profile" component={UserProfile} />
-							<Route path="/recipe" component={Recipe} />
-							<Route path="/search" component={Search} />
-							<Route path="/" component={Home} />
-						</Switch>
-					</BrowserRouter>
+					<Switch>
+						<Route path="/profile" component={UserProfile} />
+						<Route path="/search" component={Search} />
+						<Route path="/recipe" component={Recipe} />
+						<Route path="/" component={Home} />
+					</Switch>
 				</Layout>
-			</div>
+			</BrowserRouter>
 		);
 	}
 }

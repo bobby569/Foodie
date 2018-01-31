@@ -7,7 +7,7 @@ import App from '../imports/components/App';
 import '../imports/startup/accounts-config.js';
 
 Meteor.startup(() => {
-  Tracker.autorun(() => {
-    ReactDOM.render(<App />, document.getElementById('app'));
-  });
+	Tracker.autorun(() => {
+		ReactDOM.render(<App />, document.getElementById('app'));
+	});
 });
