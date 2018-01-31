@@ -1,1 +1,9 @@
 // Enforcement for the class defined by other library
+.ant-menu-horizontal {
+	border: none !important;
+}
+
+.ant-menu.ant-menu-dark .ant-menu-item-selected,
+.ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
+	background-color: $red;
+}
