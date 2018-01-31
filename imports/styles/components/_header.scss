@@ -1,15 +1,25 @@
 .header {
 	position: fixed;
 	width: 100%;
+	background-color: $tomato !important;
 }
 
 .menu {
-	line-height: 64px !important;
 	float: right;
+	line-height: 64px !important;
+	background-color: $tomato !important;
 }
 
 .login-form {
 	label {
 		display: inherit;
 	}
+}
+
+.logo {
+	float: left;
+	text-align: left;
+	font-family: 'Marck Script', cursive;
+	color: white;
+	font-size: 40px;
 }
