@@ -7,3 +7,9 @@
 	line-height: 64px !important;
 	float: right;
 }
+
+.login-form {
+	label {
+		display: inherit;
+	}
+}
