@@ -5,23 +5,21 @@ import Layout from './template/Layout';
 import Home from './Home';
 import Recipe from './Recipe';
 import Search from './Search';
-import UserProfile from './UserProfile';
+import Profile from './Profile';
 
 export default class App extends Component {
 	render() {
 		return (
-			<div>
+			<BrowserRouter>
 				<Layout>
-					<BrowserRouter>
-						<Switch>
-							<Route path="/profile" component={UserProfile} />
-							<Route path="/recipe" component={Recipe} />
-							<Route path="/search" component={Search} />
-							<Route path="/" component={Home} />
-						</Switch>
-					</BrowserRouter>
+					<Switch>
+						<Route path="/profile" component={Profile} />
+						<Route path="/search" component={Search} />
+						<Route path="/recipe" component={Recipe} />
+						<Route path="/" component={Home} />
+					</Switch>
 				</Layout>
-			</div>
+			</BrowserRouter>
 		);
 	}
 }

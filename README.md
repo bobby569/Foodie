@@ -9,24 +9,25 @@
 <details>
 <summary>Package Management</summary>
 <ul>
-<li>[Node & npm](https://nodejs.org/en/)</li>
-<li>[yarn](https://yarnpkg.com/en/)</li>
+<li><a href="https://nodejs.org/en/">Node & npm</a></li>
+<li><a href="https://yarnpkg.com/en/">yarn</a></li>
 </ul>
 </details>
 
 <details>
 <summary>Full Stack Library</summary>
 <ul>
-<li>[Meteor](https://www.meteor.com/)</li>
-<li>[React](https://reactjs.org/)</li>
+<li><a href="https://www.meteor.com/">Meteor</a></li>
+<li><a href="https://reactjs.org/">React</a></li>
 </ul>
 </details>
 
 <details>
 <summary>User Interface</summary>
 <ul>
-<li>[Material-UI](http://www.material-ui.com/#/)</li>
-<li>[antd](https://ant.design/docs/react/introduce)</li>
+<li><a href="http://sass-lang.com/">SCSS</a></li>
+<li><a href="http://www.material-ui.com/#/">Material-UI</a></li>
+<li><a href="https://ant.design/docs/react/introduce">antd</a></li>
 </ul>
 </details>
 
