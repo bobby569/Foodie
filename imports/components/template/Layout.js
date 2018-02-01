@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Header from './Header';
 import Footer from './Footer';
-import { Layout, Breadcrumb } from 'antd';
+import { Layout, Breadcrumb, BackTop } from 'antd';
 const { Content } = Layout;
 
 class FoodieLayout extends Component {
@@ -13,6 +13,7 @@ class FoodieLayout extends Component {
 				<Content className="content">
 					<div className="content__div">{this.props.children}</div>
 				</Content>
+				<BackTop />
 				<Footer />
 			</Layout>
 		);
@@ -20,7 +21,7 @@ class FoodieLayout extends Component {
 }
 
 FoodieLayout.propTypes = {
-	children: PropTypes.element
+	children: PropTypes.element.isRequired
 };
 
 export default FoodieLayout;

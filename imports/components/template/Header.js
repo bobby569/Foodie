@@ -10,7 +10,9 @@ class FoodieHeader extends Component {
 	render() {
 		return (
 			<Header className="header">
-				<div className="logo"> Foodie </div>
+				<Link to="/">
+					<div className="logo">Foodie</div>
+				</Link>
 				{Meteor.userId() ? (
 					<Menu
 						theme="dark"
@@ -18,9 +20,6 @@ class FoodieHeader extends Component {
 						className="menu"
 						defaultSelectedKeys={['home']}
 					>
-						<Menu.Item key="home">
-							<Link to="/">Home</Link>
-						</Menu.Item>
 						<Menu.Item key="profile">
 							<Link to="/profile">Profile</Link>
 						</Menu.Item>
