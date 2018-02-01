@@ -16,10 +16,16 @@
 	}
 }
 
+.login-button {
+	background-color: $tomato !important;
+}
+
 .logo {
 	float: left;
 	text-align: left;
-	font-family: 'Marck Script', cursive;
 	color: white;
-	font-size: 40px;
+	font: {
+		family: 'Marck Script', cursive;
+		size: 40px;
+	}
 }
