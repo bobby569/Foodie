@@ -41,7 +41,7 @@ Run the following command first
 $ meteor npm i -g yarn
 ```
 
-Then install the package. **Make Sure you do this every time you pull from the master**
+Then install the package. **Make Sure do this every time pulling from the master**
 
 ```
 $ meteor npm install
@@ -56,5 +56,11 @@ $ meteor yarn install
 ## Run the app
 
 ```
-$ meteor run
+$ meteor npm start
+```
+
+or
+
+```
+$ meteor yarn start
 ```
