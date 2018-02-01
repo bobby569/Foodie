@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { Button, Table } from 'antd';
+import { Button } from 'antd';
 import ErrorBlock from './ErrorBlock';
+import RecipeTable from './RecipeTable';
 import SearchBar from './SearchBar';
 
 class LibrarySearch extends Component {
@@ -14,13 +15,10 @@ class LibrarySearch extends Component {
 			result: null,
 			searchTerm: ''
 		};
-
-		this.onSearchChange = this.onSearchChange.bind(this);
-		this.onSearchSubmit = this.onSearchSubmit.bind(this);
 	}
 
 	componentDidMount() {
-		this.fetchSearchTopStories(this.state.searchTerm);
+		this.getRecipe(this.state.searchTerm);
 	}
 
 	setSearchTopStories(result) {
@@ -30,22 +28,18 @@ class LibrarySearch extends Component {
 		this.setState({ result: { hits: updatedHits, page } });
 	}
 
-	fetchSearchTopStories(searchTerm, page = 0) {
-		const url = '';
+	getRecipe(searchTerm, page = 0) {
+		// url for testing
+		const url = `https://hn.algolia.com/api/v1/search?query=${searchTerm}&page=${page}`;
 		axios
 			.get(url)
 			.then(res => this.setSearchTopStories(res.data))
 			.catch(err => this.setState({ err }));
 	}
 
-	onSearchChange(e) {
-		this.setState({ searchTerm: e.target.value });
-	}
-
-	onSearchSubmit(e) {
-		e.preventDefault();
-		const { searchTerm } = this.state;
-		this.fetchSearchTopStories(searchTerm);
+	onSearchSubmit(searchTerm) {
+		this.setState({ searchTerm });
+		this.getRecipe(searchTerm);
 	}
 
 	render() {
@@ -54,13 +48,11 @@ class LibrarySearch extends Component {
 
 		return (
 			<div>
-				<SearchBar />
-				{err ? <ErrorBlock /> : result && <Table />}
+				<SearchBar onSearch={this.onSearchSubmit.bind(this)} />
+				{err ? <ErrorBlock /> : result && <RecipeTable data={result.hits} />}
 				{!err && (
 					<div className="div-center">
-						<Button onClick={() => this.fetchSearchTopStories(searchTerm, page + 1)}>
-							More
-						</Button>
+						<Button onClick={() => this.getRecipe(searchTerm, page + 1)}>More</Button>
 					</div>
 				)}
 			</div>

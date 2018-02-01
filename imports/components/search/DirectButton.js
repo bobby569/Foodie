@@ -42,7 +42,7 @@ class DirectButton extends Component {
 }
 
 DirectButton.propTypes = {
-	name: PropTypes.string
+	name: PropTypes.string.isRequired
 };
 
 export default DirectButton;

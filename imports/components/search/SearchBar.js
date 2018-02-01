@@ -7,10 +7,18 @@ class SearchBar extends Component {
 	render() {
 		return (
 			<div className="search">
-				<Search placeholder="Search" onSearch={val => console.log(val)} enterButton />
+				<Search
+					placeholder="Search support by Hackernew"
+					onSearch={val => this.props.onSearch(val)}
+					enterButton
+				/>
 			</div>
 		);
 	}
 }
+
+SearchBar.propTypes = {
+	onSearch: PropTypes.func.isRequired
+};
 
 export default SearchBar;
