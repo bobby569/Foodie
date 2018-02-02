@@ -7,17 +7,24 @@
 		"test:pkg": "meteor test --driver-package"
 	},
 	"dependencies": {
+		"@babel/runtime": "^7.0.0-beta.39",
 		"antd": "^3.1.6",
 		"axios": "^0.17.1",
 		"babel-runtime": "^6.26.0",
 		"bcrypt": "^1.0.3",
+		"dropbox": "^0.10.3",
+		"gm": "^1.23.1",
 		"indexof": "0.0.1",
 		"lodash": "^4.17.4",
 		"material-ui": "^0.20.0",
 		"meteor-node-stubs": "^0.3.2",
 		"prop-types": "^15.6.0",
 		"react": "^16.2.0",
+		"react-addons-pure-render-mixin": "^15.6.2",
+		"react-bootstrap": "^0.32.1",
 		"react-dom": "^16.2.0",
+		"react-dropzone": "^4.2.7",
+		"react-meteor-data": "^0.2.11",
 		"react-router-dom": "^4.2.2",
 		"simpl-schema": "^1.4.1"
 	}
