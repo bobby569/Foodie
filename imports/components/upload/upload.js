@@ -1,4 +1,4 @@
-var createThumb = function(fileObj, readStream, writeStream) {
+const createThumb = (fileObj, readStream, writeStream) => {
 	gm(readStream, fileObj.name())
 		.resize('256', '256')
 		.stream()
@@ -24,19 +24,19 @@ if (Meteor.isServer) {
 	// Allow rules for security. Should look familiar!
 	// Without these, no file writes would be allowed
 	Avatars.allow({
-		insert: function() {
+		insert() {
 			// add custom authentication code here
 			return true;
 		},
-		update: function() {
+		update() {
 			// add custom authentication code here
 			return true;
 		},
-		remove: function() {
+		remove() {
 			// add custom authentication code here
 			return true;
 		},
-		download: function(userId, fileObj) {
+		download(userId, fileObj) {
 			return true;
 		}
 	});

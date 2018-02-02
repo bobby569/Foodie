@@ -6,16 +6,14 @@ import Home from './Home';
 import Recipe from './Recipe';
 import Search from './Search';
 import Profile from './Profile';
-import { createContainer } from 'react-meteor-data';
-import TrackerReact from 'meteor/ultimatejs:tracker-react';
 
-export default class App extends TrackerReact(Component) {
+export default class App extends Component {
 	render() {
 		return (
 			<BrowserRouter>
 				<Layout>
 					<Switch>
-						<Route exact path="/profile" component={Profile} />} />
+						<Route exact path="/profile" component={Profile} />
 						<Route exact path="/search" component={Search} />
 						<Route exact path="/recipe" component={Recipe} />
 						<Route exact path="/" component={Home} />
@@ -25,12 +23,3 @@ export default class App extends TrackerReact(Component) {
 		);
 	}
 }
-
-// export default createContainer(route => {
-// let user = Meteor.user();
-// if (user) {
-// 	return {
-// 		user: user
-// 	};
-// }
-// });

@@ -1,17 +1,18 @@
 import { Meteor } from 'meteor/meteor';
-import '../imports/startup/service-config.js';
-import '../imports/components/upload/upload.js';
-import '../imports/collections/index.js';
-// import '../imports/startup/accounts-config.js';
+import '../imports/startup/service-config';
+import '../imports/components/upload/upload';
+import '../imports/collections';
 
 Meteor.startup(() => {
 	/**
-   * Set up account services
-   */
-	var facebookConfig = Meteor.settings.private.oauth.facebook;
-	var googleConfig = Meteor.settings.private.oauth.google;
+	 * Set up account services
+	 */
+	const { oauth } = Meteor.settings.private;
+	const facebookConfig = oauth.facebook;
+	const googleConfig = oauth.google;
 
 	console.log('---------- Account Service Configuration ----------');
+
 	if (facebookConfig) {
 		console.log('Got settings for facebook', facebookConfig);
 		configureFacebook(facebookConfig);

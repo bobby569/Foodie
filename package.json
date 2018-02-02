@@ -3,8 +3,7 @@
 	"private": true,
 	"scripts": {
 		"start": "meteor run --settings private/settings.json",
-		"test:full": "meteor test --full-app",
-		"test:pkg": "meteor test --driver-package"
+		"test": "meteor test --driver-package=practicalmeteor:mocha"
 	},
 	"dependencies": {
 		"@babel/runtime": "^7.0.0-beta.39",
@@ -12,7 +11,7 @@
 		"axios": "^0.17.1",
 		"babel-runtime": "^6.26.0",
 		"bcrypt": "^1.0.3",
-		"dropbox": "^0.10.3",
+		"dropbox": "3.0.4",
 		"gm": "^1.23.1",
 		"indexof": "0.0.1",
 		"lodash": "^4.17.4",
@@ -27,5 +26,10 @@
 		"react-meteor-data": "^0.2.11",
 		"react-router-dom": "^4.2.2",
 		"simpl-schema": "^1.4.1"
+	},
+	"devDependencies": {
+		"chai": "^4.1.2",
+		"mocha": "^5.0.0",
+		"react-test-renderer": "^16.2.0"
 	}
 }
