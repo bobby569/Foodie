@@ -13,7 +13,7 @@ export default class App extends Component {
 			<BrowserRouter>
 				<Layout>
 					<Switch>
-						<Route path="/profile" component={Profile} />
+						<Route path="/profile" component={Profile}/>
 						<Route path="/search" component={Search} />
 						<Route path="/recipe" component={Recipe} />
 						<Route path="/" component={Home} />
