@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import '../imports/startup/service-config.js';
 import '../imports/components/upload/upload.js';
+import '../imports/collections/index.js';
 // import '../imports/startup/accounts-config.js';
 
 Meteor.startup(() => {
