@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { Image } from 'react-bootstrap';
 import Dropzone from 'react-dropzone';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import { createContainer } from 'react-meteor-data';
-import { message } from 'antd';
+import { message, Card } from 'antd';
 
 class Profile extends TrackerReact(Component) {
 	handleUpload(files) {
@@ -23,16 +24,36 @@ class Profile extends TrackerReact(Component) {
 	}
 
 	render() {
-		const {user} = this.props;
+		const { user } = this.props;
 		if (!user) return null;
 
-		return(
+		return (
 			<Dropzone onDrop={this.handleUpload.bind(this)} className="avatar">
 				{user.profile && (
-					<img className="avatar avatar-uploader" src={user.profile.avatar} alt="avatar" />
+					<img
+						className="avatar avatar-uploader"
+						src={user.profile.avatar}
+						alt="avatar"
+					/>
 				)}
 			</Dropzone>
-		)
+		);
+	}
+
+	render() {
+		return (
+			<div>
+				{this.renderImagePreview()}
+				<Card
+					title="Email"
+					class="email"
+					bordered={false}
+					style={{ width: 300 }}
+				>
+					<p>Card content</p>
+				</Card>
+			</div>
+		);
 	}
 }
 
