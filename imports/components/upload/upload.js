@@ -19,6 +19,7 @@ Avatars = new FS.Collection('avatars', {
 		}
 	}
 });
+console.log(Avatars);
 
 if (Meteor.isServer) {
 	// Allow rules for security. Should look familiar!
