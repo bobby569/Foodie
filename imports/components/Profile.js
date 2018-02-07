@@ -124,7 +124,7 @@ class Profile extends TrackerReact(Component) {
 						title="Email"
 						className="email"
 						bordered={false}
-						style={{ width: 200, marginTop: 10 }}
+						style={{ marginTop: 10 }}
 					>
 						<p>{email}</p>
 					</Card>
