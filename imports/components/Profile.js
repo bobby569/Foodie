@@ -156,8 +156,7 @@ class Profile extends TrackerReact(Component) {
 				</Card>
 				<Card className="ingredients">
 					<p>
-						Add a few ingredients to your list! (You can click to remove
-						ingredients)
+						Add a few ingredients to your list! (You can click to remove ingredients)
 					</p>
 					<div className="modalTagsContainer">{this.renderTags()}</div>
 					<FormControl
