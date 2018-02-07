@@ -56,33 +56,41 @@
 	width: 100%;
 }
 
-.modalTagsContainer span {
-	position: relative;
-	display: inline-block;
+.modalTagsContainer {
+	span {
+		position: relative;
+		display: inline-block;
 
-	border-radius: 25px;
+		border-radius: 25px;
 
-	padding: 3px 10px 3px 10px;
-	margin: 2px 4px 2px 4px;
+		padding: 3px 10px 3px 10px;
+		margin: 2px 4px 2px 4px;
 
-	color: white;
-	background: $tomato;
-	font-size: 14px;
+		color: white;
+		background: $tomato;
+		font-size: 14px;
 
-	cursor: pointer;
-	transition: 0.25s ease-out;
+		cursor: pointer;
+		transition: 0.25s ease-out;
+	}
 }
 
-.modalTagsContainer span:hover {
-	position: relative;
+.modalTagsContainer {
+	span {
+		&:hover {
+			position: relative;
 
-	transform: scale(1.08);
+			transform: scale(1.08);
+		}
+	}
 }
 
 .form-control {
 	display: inline-block !important;
 }
 
-.ingredients p {
-	margin-left: 8px;
+.ingredients {
+	p {
+		margin-left: 8px;
+	}
 }

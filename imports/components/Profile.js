@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormControl, Button } from 'react-bootstrap';
+import { FormControl, Button, Modal } from 'react-bootstrap';
 import Dropzone from 'react-dropzone';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import { createContainer } from 'react-meteor-data';
@@ -10,7 +10,8 @@ class Profile extends TrackerReact(Component) {
 	constructor(props) {
 		super(props);
 		this.state = {
-			tags: []
+			tags: [],
+			showModal: false
 		};
 	}
 
@@ -88,8 +89,6 @@ class Profile extends TrackerReact(Component) {
 
 	//save tags to the database
 	handleSaveTag(obj) {
-		console.log('save');
-		console.log(Meteor.userId());
 		Meteor.users.update(Meteor.userId(), {
 			$set: {
 				'profile.ingredients': this.state.tags
@@ -97,7 +96,17 @@ class Profile extends TrackerReact(Component) {
 		});
 	}
 
-	deleteUser() {}
+	deleteUser() {
+		//Meteor.users.remove({ _id: Meteor.userId() });
+	}
+
+	close() {
+		this.setState({ showModal: false });
+	}
+
+	open() {
+		this.setState({ showModal: true });
+	}
 
 	render() {
 		let user = this.props.user;
@@ -119,13 +128,31 @@ class Profile extends TrackerReact(Component) {
 					>
 						<p>{email}</p>
 					</Card>
-					<Button
-						bsStyle="danger"
-						className="delete"
-						onClick={this.deleteUser.bind(this)}
-					>
-						Delete Account
-					</Button>
+					<div className="delete-class">
+						<Button
+							className="delete"
+							type="submit"
+							bsStyle="danger"
+							onClick={this.open.bind(this)}
+						>
+							Delete Account
+						</Button>
+					</div>
+					<div className="static-modal">
+						<Modal show={this.state.showModal} onHide={this.close.bind(this)}>
+							static-modal
+							<Modal.Header>
+								<Modal.Title>Warning</Modal.Title>
+							</Modal.Header>
+							<Modal.Body>Are you sure you want to delete?</Modal.Body>
+							<Modal.Footer>
+								<Button onClick={this.close.bind(this)}>Close</Button>
+								<Button bsStyle="danger" onClick={this.deleteUser.bind(this)}>
+									Delete
+								</Button>
+							</Modal.Footer>
+						</Modal>
+					</div>
 				</Card>
 				<Card className="ingredients">
 					<p>
