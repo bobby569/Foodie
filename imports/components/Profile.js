@@ -1,17 +1,35 @@
 import React, { Component } from 'react';
-import { FormControl, Button, Modal } from 'react-bootstrap';
+import { FormControl, Button } from 'react-bootstrap';
 import Dropzone from 'react-dropzone';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import { createContainer } from 'react-meteor-data';
-import { message, Card } from 'antd';
+import { message, Card, Modal } from 'antd';
 import ReactDOM from 'react-dom';
+
+const confirm = Modal.confirm;
+
+function showConfirm() {
+	confirm({
+		title: 'Do you want to delete this account?',
+		content:
+			'When clicked the OK button, you will be redirected to the home page',
+		onOk() {
+			return new Promise((resolve, reject) => {
+				console.log('delete');
+				Meteor.users.remove({ _id: Meteor.userId() });
+				setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+			}).catch(() => console.log('Oops errors!'));
+			window.location.replace('/');
+		},
+		onCancel() {}
+	});
+}
 
 class Profile extends TrackerReact(Component) {
 	constructor(props) {
 		super(props);
 		this.state = {
-			tags: [],
-			showModal: false
+			tags: []
 		};
 	}
 
@@ -79,10 +97,6 @@ class Profile extends TrackerReact(Component) {
 		const tagValue = $(e.target).text();
 		const tagIndex = this.state.tags.indexOf(tagValue);
 
-		// do nothing if tag doesn't exist or if there is only one tag left ???
-		// if (tagIndex === -1 || this.state.tags.length === 1)
-		//   return;
-
 		this.state.tags.splice(tagIndex, 1);
 		this.forceUpdate();
 	}
@@ -94,18 +108,6 @@ class Profile extends TrackerReact(Component) {
 				'profile.ingredients': this.state.tags
 			}
 		});
-	}
-
-	deleteUser() {
-		//Meteor.users.remove({ _id: Meteor.userId() });
-	}
-
-	close() {
-		this.setState({ showModal: false });
-	}
-
-	open() {
-		this.setState({ showModal: true });
 	}
 
 	render() {
@@ -133,25 +135,10 @@ class Profile extends TrackerReact(Component) {
 							className="delete"
 							type="submit"
 							bsStyle="danger"
-							onClick={this.open.bind(this)}
+							onClick={showConfirm}
 						>
 							Delete Account
 						</Button>
-					</div>
-					<div className="static-modal">
-						<Modal show={this.state.showModal} onHide={this.close.bind(this)}>
-							static-modal
-							<Modal.Header>
-								<Modal.Title>Warning</Modal.Title>
-							</Modal.Header>
-							<Modal.Body>Are you sure you want to delete?</Modal.Body>
-							<Modal.Footer>
-								<Button onClick={this.close.bind(this)}>Close</Button>
-								<Button bsStyle="danger" onClick={this.deleteUser.bind(this)}>
-									Delete
-								</Button>
-							</Modal.Footer>
-						</Modal>
 					</div>
 				</Card>
 				<Card className="ingredients">
