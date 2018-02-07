@@ -1,6 +1,7 @@
 .profile {
 	width: 30%;
 	float: left;
+	text-align: center;
 }
 
 .ingredients {
@@ -12,12 +13,21 @@
 .avatar {
 	width: 150px;
 	height: 150px;
-
+	display: inline-block;
 	border-radius: 5px;
 	background-color: rgb(230, 230, 230);
 }
 
 .addtag {
+	width: 150px;
+	height: 40px;
+	background-color: $tomato;
+	border: none;
+	color: white;
+	margin: 10px 0px;
+}
+
+.savetag {
 	width: 150px;
 	height: 40px;
 	background-color: $tomato;

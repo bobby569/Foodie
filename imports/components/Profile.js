@@ -64,8 +64,6 @@ class Profile extends TrackerReact(Component) {
 
 		// check if input is empty or if tag already exists in the list
 		let tempArr = this.state.tags.map(tag => tag.toLowerCase());
-		// if (!tagField || tempArr.indexOf(tagField.toLowerCase()) != -1)
-		// 	return
 
 		this.state.tags.push(tagField);
 		this.forceUpdate();
@@ -88,14 +86,27 @@ class Profile extends TrackerReact(Component) {
 		this.forceUpdate();
 	}
 
+	//save tags to the database
+	handleSaveTag(obj) {
+		console.log('save');
+		console.log(Meteor.userId());
+		Meteor.users.update(Meteor.userId(), {
+			$set: {
+				'profile.ingredients': this.state.tags
+			}
+		});
+	}
+
+	deleteUser() {}
+
 	render() {
 		let user = this.props.user;
 		if (!user) {
 			return <div>Loading</div>;
 		}
 		let email = user.emails[0].address;
-		console.log(email);
-
+		let ingredients = user.profile.ingredients;
+		this.state.tags = ingredients;
 		return (
 			<div>
 				<Card className="profile">
@@ -108,6 +119,13 @@ class Profile extends TrackerReact(Component) {
 					>
 						<p>{email}</p>
 					</Card>
+					<Button
+						bsStyle="danger"
+						className="delete"
+						onClick={this.deleteUser.bind(this)}
+					>
+						Delete Account
+					</Button>
 				</Card>
 				<Card className="ingredients">
 					<p>
@@ -124,6 +142,9 @@ class Profile extends TrackerReact(Component) {
 					/>
 					<Button className="addtag" onClick={this.handleAddTag.bind(this)}>
 						Add
+					</Button>
+					<Button className="savetag" onClick={this.handleSaveTag.bind(this)}>
+						Save
 					</Button>
 				</Card>
 			</div>
