@@ -6,13 +6,25 @@ const ProfileSchema = new SimpleSchema({
 		type: Array,
 		defaultValue: []
 	},
+	'ingredients.$': {
+		type: String,
+		optional: true
+	},
 	savedRecipes: {
 		type: Array,
 		defaultValue: []
 	},
+	'savedRecipes.$': {
+		type: String,
+		optional: true
+	},
 	likedRecipes: {
 		type: Array,
 		defaultValue: []
+	},
+	'likedRecipes.$': {
+		type: String,
+		optional: true
 	},
 	avatar: {
 		type: String,
@@ -62,6 +74,9 @@ Meteor.users.attachSchema(UserSchema);
 
 Meteor.users.allow({
 	update: (userId, doc) => {
+		return userId === doc._id;
+	},
+	remove: (userId, doc) => {
 		return userId === doc._id;
 	}
 });
