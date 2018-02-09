@@ -17,6 +17,7 @@
 	display: inline-block;
 	border-radius: 5px;
 	background-color: rgb(230, 230, 230);
+	cursor: pointer;
 }
 
 .addtag {
@@ -93,4 +94,8 @@
 	p {
 		margin-left: 8px;
 	}
+}
+
+.btn {
+	cursor: pointer;
 }
