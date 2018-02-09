@@ -25,11 +25,7 @@
 		"react-dropzone": "^4.2.7",
 		"react-meteor-data": "^0.2.11",
 		"react-router-dom": "^4.2.2",
-<<<<<<< HEAD
 		"simpl-schema": "^1.4.1"
-=======
-		"simpl-schema": "1.4.1"
->>>>>>> 85cc6ec... add detail recipe code template
 	},
 	"devDependencies": {
 		"chai": "^4.1.2",
