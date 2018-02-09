@@ -1,23 +1,21 @@
 import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 
-const recipeSchema = new SimpleSchema({
+const RecipeSchema = new SimpleSchema({
 	viewCounts: {
 		type: Number,
-		defaultValue: 0,
-		optional: true
+		defaultValue: 0
 	},
 	likeCounts: {
 		type: Number,
-		defaultValue: 0,
-		optional: true
+		defaultValue: 0
 	},
 	api_id: {
-		type: Number,
-		optional: false
+		type: Number
 	}
 });
 
 Recipes = new Mongo.Collection('recipes');
 
-Recipes.schema = recipeSchema;
+Recipes.schema = RecipeSchema;
+Recipes.attachSchema(RecipeSchema);

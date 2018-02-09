@@ -42,7 +42,7 @@ class Profile extends TrackerReact(Component) {
 		const file = files[0];
 		file.owner = Meteor.userId();
 		Avatars.insert(file, (err, fileObj) => {
-			if (err) return message.error('Please upload image file only');
+			if (err) return message.error(err);
 
 			setTimeout(() => {
 				Meteor.users.update(
@@ -144,7 +144,7 @@ class Profile extends TrackerReact(Component) {
 						title="Email"
 						className="email"
 						bordered={false}
-						style={{ width: 200, marginTop: 10 }}
+						style={{ marginTop: 10 }}
 					>
 						<p>{email}</p>
 					</Card>
