@@ -3,7 +3,7 @@ import { FormControl, Button } from 'react-bootstrap';
 import Dropzone from 'react-dropzone';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import { createContainer } from 'react-meteor-data';
-import { message, Card, Modal, Alert } from 'antd';
+import { message, Card, Modal } from 'antd';
 import ReactDOM from 'react-dom';
 
 const confirm = Modal.confirm;
@@ -19,7 +19,6 @@ function showConfirm() {
 				Meteor.users.remove({ _id: Meteor.userId() });
 				setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
 			}).catch(() => console.log('Oops errors!'));
-			window.location.replace('/');
 		},
 		onCancel() {}
 	});
@@ -29,8 +28,7 @@ class Profile extends TrackerReact(Component) {
 	constructor(props) {
 		super(props);
 		this.state = {
-			tags: [],
-			tagFieldIsNull: false
+			tags: []
 		};
 	}
 
@@ -86,18 +84,8 @@ class Profile extends TrackerReact(Component) {
 		const tagField = ReactDOM.findDOMNode(this.refs.tagField).value.trim();
 
 		if (tagField === '') {
-			console.log('error');
-			this.state.tagFieldIsNull = true;
-			const element = ReactDOM.findDOMNode(this.refs.ingredients);
-			const alert = new Alert({
-				message: 'Error',
-				type: 'error',
-				showIcon: true
-			});
-			console.log(alert);
-			element.appendChild(alert);
-		}
-		if (!this.state.tagFieldIsNull) {
+			message.error("Ingredient field can't be null!");
+		} else {
 			// check if input is empty or if tag already exists in the list
 			let tempArr = this.state.tags.map(tag => tag.toLowerCase());
 
@@ -126,6 +114,7 @@ class Profile extends TrackerReact(Component) {
 				'profile.ingredients': this.state.tags
 			}
 		});
+		message.success('Saved!');
 	}
 
 	render() {

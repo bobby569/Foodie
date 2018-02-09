@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Layout from './template/Layout';
 import Home from './Home';
@@ -12,12 +12,18 @@ export default class App extends Component {
 		return (
 			<BrowserRouter>
 				<Layout>
-					<Switch>
-						<Route exact path="/profile" component={Profile} />
-						<Route exact path="/search" component={Search} />
-						<Route exact path="/recipe" component={Recipe} />
-						<Route exact path="/" component={Home} />
-					</Switch>
+					{Meteor.userId() ? (
+						<Switch>
+							<Route exact path="/profile" component={Profile} />
+							<Route exact path="/search" component={Search} />
+							<Route exact path="/recipe" component={Recipe} />
+						</Switch>
+					) : (
+						<Switch>
+							<Route exact path="/" component={Home} />
+							<Redirect to="/" />
+						</Switch>
+					)}
 				</Layout>
 			</BrowserRouter>
 		);
