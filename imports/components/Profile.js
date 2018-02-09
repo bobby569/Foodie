@@ -15,7 +15,6 @@ function showConfirm() {
 			'When clicked the OK button, you will be redirected to the home page',
 		onOk() {
 			return new Promise((resolve, reject) => {
-				console.log('delete');
 				Meteor.users.remove({ _id: Meteor.userId() });
 				setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
 			}).catch(() => console.log('Oops errors!'));
