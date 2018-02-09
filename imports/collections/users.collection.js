@@ -59,3 +59,9 @@ const UserSchema = new SimpleSchema({
 
 Meteor.users.schema = UserSchema;
 Meteor.users.attachSchema(UserSchema);
+
+Meteor.users.allow({
+	update: (userId, doc) => {
+		return userId === doc._id;
+	}
+});
