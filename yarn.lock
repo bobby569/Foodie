@@ -2137,11 +2137,7 @@ signal-exit@^3.0.0:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
 
-<<<<<<< HEAD
 simpl-schema@^1.4.1:
-=======
-simpl-schema@1.4.1:
->>>>>>> 85cc6ec... add detail recipe code template
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/simpl-schema/-/simpl-schema-1.4.1.tgz#40e143556076f7a6337dc1b3d5c26fb61dec905b"
   dependencies:

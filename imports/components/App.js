@@ -12,12 +12,11 @@ export default class App extends Component {
 		return (
 			<BrowserRouter>
 				<Layout>
-<<<<<<< HEAD
 					{Meteor.userId() ? (
 						<Switch>
 							<Route exact path="/profile" component={Profile} />
 							<Route exact path="/search" component={Search} />
-							<Route exact path="/recipe" component={Recipe} />
+							<Route exact path="/recipe/:id" component={Recipe} />
 							<Redirect to="/search" />
 						</Switch>
 					) : (
@@ -26,14 +25,6 @@ export default class App extends Component {
 							<Redirect to="/" />
 						</Switch>
 					)}
-=======
-					<Switch>
-						<Route exact path="/profile" component={Profile} />
-						<Route exact path="/search" component={Search} />
-						<Route exact path="/recipe/:id" component={Recipe} />
-						<Route exact path="/" component={Home} />
-					</Switch>
->>>>>>> 85cc6ec... add detail recipe code template
 				</Layout>
 			</BrowserRouter>
 		);
