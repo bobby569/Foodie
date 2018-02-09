@@ -14,8 +14,10 @@ Avatars = new FS.Collection('avatars', {
 		new FS.Store.FileSystem('avatars')
 	],
 	filter: {
+		maxSize: 1048576, // in bytes
 		allow: {
-			contentTypes: ['image/*'] //allow only images in this FS.Collection
+			contentTypes: ['image/*'], //allow only images in this FS.Collection
+			extensions: ['png', 'PNG', 'jpg', 'JPG', 'jpeg', 'JPEG']
 		}
 	}
 });
@@ -24,17 +26,14 @@ if (Meteor.isServer) {
 	// Allow rules for security. Should look familiar!
 	// Without these, no file writes would be allowed
 	Avatars.allow({
-		insert() {
-			// add custom authentication code here
-			return true;
+		insert(userId) {
+			return !!userId;
 		},
-		update() {
-			// add custom authentication code here
-			return true;
+		update(userId, doc) {
+			return !!userId;
 		},
-		remove() {
-			// add custom authentication code here
-			return true;
+		remove(userId, doc) {
+			return userId === doc.owner;
 		},
 		download(userId, fileObj) {
 			return true;
