@@ -3,7 +3,7 @@ import { FormControl, Button } from 'react-bootstrap';
 import Dropzone from 'react-dropzone';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import { createContainer } from 'react-meteor-data';
-import { message, Card, Modal } from 'antd';
+import { message, Card, Modal, Alert } from 'antd';
 import ReactDOM from 'react-dom';
 
 const confirm = Modal.confirm;
@@ -29,9 +29,14 @@ class Profile extends TrackerReact(Component) {
 	constructor(props) {
 		super(props);
 		this.state = {
-			tags: []
+			tags: [],
+			tagFieldIsNull: false
 		};
 	}
+
+	componentDidMount() {}
+
+	componentWillUnMount() {}
 
 	handleUpload(files) {
 		const file = files[0];
@@ -78,17 +83,30 @@ class Profile extends TrackerReact(Component) {
 
 	handleAddTag(e) {
 		e.preventDefault();
-
 		const tagField = ReactDOM.findDOMNode(this.refs.tagField).value.trim();
 
-		// check if input is empty or if tag already exists in the list
-		let tempArr = this.state.tags.map(tag => tag.toLowerCase());
+		if (tagField === '') {
+			console.log('error');
+			this.state.tagFieldIsNull = true;
+			const element = ReactDOM.findDOMNode(this.refs.ingredients);
+			const alert = new Alert({
+				message: 'Error',
+				type: 'error',
+				showIcon: true
+			});
+			console.log(alert);
+			element.appendChild(alert);
+		}
+		if (!this.state.tagFieldIsNull) {
+			// check if input is empty or if tag already exists in the list
+			let tempArr = this.state.tags.map(tag => tag.toLowerCase());
 
-		this.state.tags.push(tagField);
-		this.forceUpdate();
+			this.state.tags.push(tagField);
+			this.forceUpdate();
 
-		ReactDOM.findDOMNode(this.refs.tagField).value = '';
-		ReactDOM.findDOMNode(this.refs.tagField).focus();
+			ReactDOM.findDOMNode(this.refs.tagField).value = '';
+			ReactDOM.findDOMNode(this.refs.tagField).focus();
+		}
 	}
 
 	handleRemoveTag(e) {
@@ -141,7 +159,7 @@ class Profile extends TrackerReact(Component) {
 						</Button>
 					</div>
 				</Card>
-				<Card className="ingredients">
+				<Card className="ingredients" ref="ingredients">
 					<p>
 						Add a few ingredients to your list! (You can click to remove
 						ingredients)
