@@ -1,63 +1,60 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
-import { FormControl, Button } from 'react-bootstrap';
 import { createContainer } from 'react-meteor-data';
-import { message, Card, Icon } from 'antd';
-
+import { message, Card } from 'antd';
 import Avatar from './profile/Avatar';
 import EmailAction from './profile/EmailAction';
+import AddTags from './profile/AddTags';
 import TagGroup from './profile/TagGroup';
-// API used to detect whether input in food
+
+// API used to detect whether input is food
 const WORD_API = 'https://www.wordsapi.com/docs';
 
 class Profile extends TrackerReact(Component) {
 	constructor(props) {
 		super(props);
 		this.state = {
-			tags: []
+			tags: [],
+			inputValue: ''
 		};
 
-		this.handleAddTag = this.handleAddTag.bind(this);
-		this.handleRemoveTag = this.handleRemoveTag.bind(this);
-		this.handleSaveTag = this.handleSaveTag.bind(this);
+		this.handleEnter = this.handleEnter.bind(this);
+		this.handleAdd = this.handleAdd.bind(this);
+		this.handleRemove = this.handleRemove.bind(this);
+		this.handleSave = this.handleSave.bind(this);
 	}
 
-	handleAddTag(e) {
-		e.preventDefault();
-		const tagField = ReactDOM.findDOMNode(this.refs.tagField).value.trim();
+	handleEnter(e) {
+		this.setState({ inputValue: e.target.value });
+	}
 
-		if (tagField === '') {
+	handleAdd() {
+		let { tags, inputValue } = this.state;
+		const val = inputValue.trim().toLowerCase();
+		if (val === '') {
 			return message.error("Ingredient field can't be null!");
 		}
-		// check if input is empty or if tag already exists in the list
-		let tempArr = this.state.tags.map(tag => tag.toLowerCase());
-
-		this.state.tags.push(tagField);
-		this.forceUpdate();
-
-		ReactDOM.findDOMNode(this.refs.tagField).value = '';
-		ReactDOM.findDOMNode(this.refs.tagField).focus();
+		if (tags.includes(val)) {
+			return message.error('Ingredient already in the list!');
+		}
+		tags = [...tags, val];
+		this.setState({ inputValue: '', tags });
 	}
 
-	handleRemoveTag(e) {
-		// e.preventDefault();
-
-		const tagValue = $(e.target).text();
-		const tagIndex = this.state.tags.indexOf(tagValue);
-
-		this.state.tags.splice(tagIndex, 1);
-		this.forceUpdate();
+	handleRemove(tag) {
+		const { tags } = this.state;
+		const newTags = tags.filter(item => item !== tag);
+		this.setState({ tags: newTags });
 	}
 
 	//save tags to the database
-	handleSaveTag(obj) {
+	handleSave() {
 		Meteor.users.update(Meteor.userId(), {
 			$set: {
 				'profile.ingredients': this.state.tags
 			}
 		});
-		message.success('Saved!');
+		message.success('Saved successfully!');
 	}
 
 	render() {
@@ -65,30 +62,23 @@ class Profile extends TrackerReact(Component) {
 		if (!user) return <h2>Loading</h2>;
 
 		const email = user.emails[0].address;
-		const { ingredients } = user.profile;
-		this.state.tags = ingredients;
+		const { tags, inputValue } = this.state;
+		// TODO: tags should use be obtained directly from db instead of component state
 		return (
 			<div>
 				<Card className="profile">
 					<Avatar user={user} />
 					<EmailAction email={email} />
 				</Card>
-				<Card className="ingredients" ref="ingredients">
+				<Card className="ingredients">
 					<h5>Start adding ingredients to your list!</h5>
-					<FormControl
-						className="input"
-						id="tag-input"
-						type="text"
-						placeholder="Enter tags here"
-						ref="tagField"
+					<TagGroup tags={tags} onDismiss={tag => this.handleRemove(tag)} />
+					<AddTags
+						value={inputValue}
+						onEnter={this.handleEnter}
+						onAdd={this.handleAdd}
+						onSave={this.handleSave}
 					/>
-					<Button className="tag addtag" onClick={this.handleAddTag}>
-						Add
-					</Button>
-					<Button className="tag savetag" onClick={this.handleSaveTag}>
-						Save
-					</Button>
-					<TagGroup tags={this.state.tags} onRemove={this.handleRemoveTag} />
 				</Card>
 			</div>
 		);

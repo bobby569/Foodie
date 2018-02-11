@@ -4,11 +4,11 @@ import { Icon } from 'antd';
 
 class TagGroup extends Component {
 	render() {
-		const { tags, onRemove } = this.props;
+		const { tags, onDismiss } = this.props;
 		return (
 			<div className="modalTagsContainer">
 				{tags.map(tag => (
-					<span onClick={onRemove} key={tag}>
+					<span key={tag} onClick={() => onDismiss(tag)}>
 						{tag} <Icon type="close" />
 					</span>
 				))}
@@ -19,7 +19,7 @@ class TagGroup extends Component {
 
 TagGroup.propTypes = {
 	tags: PropTypes.array.isRequired,
-	onRemove: PropTypes.func.isRequired
+	onDismiss: PropTypes.func.isRequired
 };
 
 export default TagGroup;
