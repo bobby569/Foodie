@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Tag } from 'antd';
+import { Tag, Divider, List, Button, Icon } from 'antd';
 
 export default class Class extends Component {
 	constructor(props) {
@@ -30,13 +30,14 @@ export default class Class extends Component {
 		let { recipe } = this.state.data['hits'][0];
 		let {
 			label,
-			ingredients,
+			ingredientLines,
 			url,
 			image,
 			calories,
 			healthLabels,
 			dietLabels,
-			source
+			source,
+			totalNutrients
 		} = recipe;
 		//calorie
 		let calorie = Math.round(calories);
@@ -44,21 +45,63 @@ export default class Class extends Component {
 		let hlabels = healthLabels.map(item => <Tag color="volcano">{item}</Tag>);
 		//dietLabels
 		let dlabels = dietLabels.map(item => <Tag color="orange">{item}</Tag>);
+		//ingredients
+		const data = ingredientLines;
+		//nutrients
+		let { CA, FE, K, MG, NA, VITC } = totalNutrients;
+		const nutrientsdata = [CA, FE, K, MG, NA, VITC];
 		//{this.props.match.params.id}
 
 		return (
 			<div>
 				<div className="upper">
 					{label}
+					<img className="image" src={image} alt="Image" />
 					<div className="source">By {source}</div>
 					<div className="labels">
 						{hlabels}
 						{dlabels}
 						<Tag color="gold">{calorie} calories</Tag>
 					</div>
-					<img className="image" src={image} alt="Image" />
 				</div>
-				<div className="lower" />
+				<Divider>More about the recipe</Divider>
+				<div className="lower">
+					<List
+						className="ingredients"
+						size="small"
+						header={<h6>Ingredients</h6>}
+						bordered
+						dataSource={data}
+						renderItem={item => <List.Item>{item}</List.Item>}
+					/>
+					<List
+						className="nutrients"
+						size="small"
+						header={<h6>Nutrients</h6>}
+						bordered
+						dataSource={nutrientsdata}
+						renderItem={item => (
+							<List.Item>
+								<List.Item.Meta title={item['label']} />
+								<div className="quantity">
+									{Math.round(item['quantity'])}
+									{item['unit']}
+								</div>
+							</List.Item>
+						)}
+					/>
+					<div className="url">
+						<Button
+							type="primary"
+							className="directions"
+							size="large"
+							target="_blank"
+							href={url}
+						>
+							Directions<Icon type="right" />
+						</Button>
+					</div>
+				</div>
 			</div>
 		);
 	}
