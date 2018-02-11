@@ -20,16 +20,16 @@ class DirectButton extends Component {
 			<div className="div-center">
 				<Button.Group>
 					<Button
-						type="primary"
 						name="lib"
+						type="primary"
 						ghost={name !== 'lib'}
 						onClick={this.renderPage}
 					>
 						<Icon type="bulb" />Recipe Library
 					</Button>
 					<Button
-						type="primary"
 						name="diy"
+						type="primary"
 						ghost={name !== 'diy'}
 						onClick={this.renderPage}
 					>

@@ -9,6 +9,10 @@
 	text-align: center;
 	width: 70%;
 	height: 100%;
+
+	p {
+		margin-left: 8px;
+	}
 }
 
 .avatar {
@@ -20,21 +24,19 @@
 	cursor: pointer;
 }
 
-.addtag {
+.tag {
 	width: 150px;
 	height: 40px;
 	background-color: $tomato;
 	border: none;
 	color: white;
+}
+
+.addtag {
 	margin: 10px 10px;
 }
 
 .savetag {
-	width: 150px;
-	height: 40px;
-	background-color: $tomato;
-	border: none;
-	color: white;
 	margin: 10px 0px;
 }
 
@@ -50,22 +52,22 @@
 	align-content: center;
 	justify-content: center;
 
-	padding-top: 4px;
-	padding-bottom: 4px;
 	margin: 20px;
+	padding: {
+		top: 4px;
+		bottom: 4px;
+	}
 
 	width: 100%;
-}
 
-.modalTagsContainer {
 	span {
 		position: relative;
 		display: inline-block;
 
 		border-radius: 25px;
 
-		padding: 3px 10px 3px 10px;
-		margin: 2px 4px 2px 4px;
+		padding: 3px 10px;
+		margin: 2px 4px;
 
 		color: white;
 		background: $tomato;
@@ -73,11 +75,7 @@
 
 		cursor: pointer;
 		transition: 0.25s ease-out;
-	}
-}
 
-.modalTagsContainer {
-	span {
 		&:hover {
 			position: relative;
 
@@ -88,12 +86,6 @@
 
 .form-control {
 	display: inline-block !important;
-}
-
-.ingredients {
-	p {
-		margin-left: 8px;
-	}
 }
 
 .btn {

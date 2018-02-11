@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { Button } from 'antd';
-import ErrorBlock from './ErrorBlock';
+import ErrorBlock from '../util/ErrorBlock';
 import RecipeTable from './RecipeTable';
 import SearchBar from './SearchBar';
+import { Button } from 'antd';
+
+const API_BASE = '';
 
 class LibrarySearch extends Component {
 	constructor(props) {
@@ -21,11 +23,11 @@ class LibrarySearch extends Component {
 		this.getRecipe(this.state.searchTerm);
 	}
 
-	setSearchTopStories(result) {
+	setRecipe(result) {
 		const { hits, page } = result;
 		const oldHits = page !== 0 ? this.state.result.hits : [];
-		const updatedHits = [...oldHits, ...hits];
-		this.setState({ result: { hits: updatedHits, page } });
+		const newHits = [...oldHits, ...hits];
+		this.setState({ result: { hits: newHits, page } });
 	}
 
 	getRecipe(searchTerm, page = 0) {
@@ -33,7 +35,7 @@ class LibrarySearch extends Component {
 		const url = `https://hn.algolia.com/api/v1/search?query=${searchTerm}&page=${page}`;
 		axios
 			.get(url)
-			.then(res => this.setSearchTopStories(res.data))
+			.then(({ data }) => this.setRecipe(data))
 			.catch(err => this.setState({ err }));
 	}
 
@@ -52,7 +54,9 @@ class LibrarySearch extends Component {
 				{err ? <ErrorBlock /> : result && <RecipeTable data={result.hits} />}
 				{!err && (
 					<div className="div-center">
-						<Button onClick={() => this.getRecipe(searchTerm, page + 1)}>More</Button>
+						<Button onClick={() => this.getRecipe(searchTerm, page + 1)}>
+							More
+						</Button>
 					</div>
 				)}
 			</div>

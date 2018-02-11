@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { FormControl, Button } from 'react-bootstrap';
 import Dropzone from 'react-dropzone';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import { createContainer } from 'react-meteor-data';
 import { message, Card, Modal } from 'antd';
-import ReactDOM from 'react-dom';
-
-const confirm = Modal.confirm;
+const { confirm } = Modal;
 
 function showConfirm() {
 	confirm({
@@ -145,7 +144,8 @@ class Profile extends TrackerReact(Component) {
 				</Card>
 				<Card className="ingredients" ref="ingredients">
 					<p>
-						Add a few ingredients to your list! (You can click to remove ingredients)
+						Add a few ingredients to your list! (You can click to remove
+						ingredients)
 					</p>
 					<div className="modalTagsContainer">{this.renderTags()}</div>
 					<FormControl
@@ -155,10 +155,13 @@ class Profile extends TrackerReact(Component) {
 						placeholder="Enter tags here"
 						ref="tagField"
 					/>
-					<Button className="addtag" onClick={this.handleAddTag.bind(this)}>
+					<Button className="tag addtag" onClick={this.handleAddTag.bind(this)}>
 						Add
 					</Button>
-					<Button className="savetag" onClick={this.handleSaveTag.bind(this)}>
+					<Button
+						className="tag savetag"
+						onClick={this.handleSaveTag.bind(this)}
+					>
 						Save
 					</Button>
 				</Card>
