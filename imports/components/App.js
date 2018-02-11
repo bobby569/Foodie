@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import Layout from './template/Layout';
 import Home from './Home';
 import Recipe from './Recipe';

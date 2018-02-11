@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
-import ErrorBlock from './ErrorBlock';
+import ErrorBlock from '../util/ErrorBlock';
 
 export default class DIYSearch extends Component {
 	render() {

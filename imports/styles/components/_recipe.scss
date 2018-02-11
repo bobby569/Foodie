@@ -9,9 +9,11 @@
 }
 
 .upper {
-	font-family: 'Mukta Mahee', sans-serif;
-	font-size: 35px;
-	font-weight: bold;
+	font: {
+		family: 'Mukta Mahee', sans-serif;
+		weight: bold;
+		size: 35px;
+	}
 	height: 150px;
 }
 
@@ -28,8 +30,10 @@
 }
 
 .source {
-	font-family: 'Mukta Mahee', sans-serif;
-	font-size: 15px;
+	font {
+		family: 'Mukta Mahee', sans-serif;
+		size: 15px;
+	}
 	color: grey;
 	padding-left: 30px;
 	display: inline-block;
