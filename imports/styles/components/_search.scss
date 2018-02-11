@@ -14,3 +14,12 @@
 	padding: 10px;
 	text-align: center;
 }
+
+.ant-btn-primary {
+	background-color: $tomato !important;
+	border-color: $tomato !important;
+}
+
+.ant-btn-background-ghost {
+	color: $tomato !important;
+}
