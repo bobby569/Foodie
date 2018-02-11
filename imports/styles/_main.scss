@@ -6,7 +6,6 @@ $yellow: #ffeaa6;
 input {
 	padding: 10px;
 	border-radius: 5px;
-	// outline: none;
 	margin-right: 10px;
 	border-bottom: 1 solid #dddddd;
 }
@@ -15,6 +14,7 @@ input {
 @import './components/footer';
 @import './components/header';
 @import './components/layout';
+@import './components/profile';
+@import './components/recipe';
 @import './components/search';
 @import './components/table';
-@import './components/profile';
