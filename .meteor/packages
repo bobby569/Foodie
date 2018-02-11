@@ -31,7 +31,7 @@ aldeed:collection2@3.0.0
 
 gadicc:blaze-react-component  # Use Blaze templates inside of React
 fourseven:scss
-practicalmeteor:mocha
+meteortesting:mocha
 practicalmeteor:faker
 
 cfs:standard-packages
