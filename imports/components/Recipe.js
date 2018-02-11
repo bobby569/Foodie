@@ -27,25 +27,23 @@ export default class Class extends Component {
 
 	render() {
 		if (!this.state.data) return <div>Loading</div>;
-		let recipe = this.state.data['hits'][0]['recipe'];
-		//label
-		let label = recipe['label'];
-		//ingredients
-		let ingredients = recipe['ingredientLines'];
-		//url for directions
-		let directionUrl = recipe['url'];
-		//picture
-		let image = recipe['image'];
+		let { recipe } = this.state.data['hits'][0];
+		let {
+			label,
+			ingredients,
+			url,
+			image,
+			calories,
+			healthLabels,
+			dietLabels,
+			source
+		} = recipe;
 		//calorie
-		let calorie = Math.round(recipe['calories']);
+		let calorie = Math.round(calories);
 		//healthLabels
-		let healthLabels = recipe['healthLabels'];
 		let hlabels = healthLabels.map(item => <Tag color="volcano">{item}</Tag>);
 		//dietLabels
-		let dietLabels = recipe['dietLabels'];
 		let dlabels = dietLabels.map(item => <Tag color="orange">{item}</Tag>);
-		//source
-		let source = recipe['source'];
 		//{this.props.match.params.id}
 
 		return (

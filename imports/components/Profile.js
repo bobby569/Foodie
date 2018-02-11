@@ -31,10 +31,6 @@ class Profile extends TrackerReact(Component) {
 		};
 	}
 
-	componentDidMount() {}
-
-	componentWillUnMount() {}
-
 	handleUpload(files) {
 		const file = files[0];
 		file.owner = Meteor.userId();
