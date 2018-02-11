@@ -1,0 +1,54 @@
+.image {
+	width: 150px;
+	height: 150px;
+	display: inline-block;
+	border-radius: 5px;
+	background-color: rgb(230, 230, 230);
+	cursor: pointer;
+	float: right;
+}
+
+.upper {
+	font-family: 'Mukta Mahee', sans-serif;
+	font-size: 35px;
+	font-weight: bold;
+	height: 150px;
+}
+
+.ingredients {
+	width: 50%;
+	display: inline-block;
+	text-align: left;
+	float: left;
+}
+
+.nutrients {
+	width: 50%;
+	display: inline-block;
+}
+
+.source {
+	font-family: 'Mukta Mahee', sans-serif;
+	font-size: 15px;
+	color: grey;
+	padding-left: 30px;
+	display: inline-block;
+}
+
+.labels {
+	width: 80%;
+	display: inline-block;
+}
+
+.quantity {
+	text-align: right;
+}
+
+.url {
+	text-align: center;
+	padding: 10px;
+}
+.directions {
+	background: tomato !important;
+	border: none !important;
+}
