@@ -25,14 +25,14 @@ const columns = [
 class RecipeTable extends Component {
 	render() {
 		const { data } = this.props;
-		const dataSource = data.filter(item => item.title);
-		// console.log(dataSource);
+		console.log(data);
+		return null;
 		return (
 			<div className="table">
 				<Table
 					columns={columns}
-					dataSource={dataSource}
-					rowKey={record => record.objectID}
+					dataSource={data}
+					rowKey={record => record.id}
 					pagination={false}
 					bordered
 				/>
@@ -40,5 +40,9 @@ class RecipeTable extends Component {
 		);
 	}
 }
+
+RecipeTable.propTypes = {
+	data: PropTypes.array.isRequired
+};
 
 export default RecipeTable;
