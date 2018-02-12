@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import axios from 'axios';
+import { Button } from 'antd';
+import { API, URI_LEN } from '../util/constant';
 import ErrorBlock from '../util/ErrorBlock';
+import FilterGroup from './FilterGroup';
 import RecipeTable from './RecipeTable';
 import SearchBar from './SearchBar';
-import { Button } from 'antd';
-
-const API_BASE = '';
 
 class LibrarySearch extends Component {
 	constructor(props) {
@@ -14,28 +15,30 @@ class LibrarySearch extends Component {
 
 		this.state = {
 			err: null,
-			result: null,
-			searchTerm: ''
+			index: 0,
+			recipes: [],
+			searchTerm: '',
+			diet: '',
+			health: ''
 		};
 	}
 
-	componentDidMount() {
-		this.getRecipe(this.state.searchTerm);
+	setRecipe(hits) {
+		const { recipes, index } = this.state;
+		let newRecipe = hits.map(item => item.recipe);
+		_.each(newRecipe, item => _.extend(item, { id: item.uri.substr(URI_LEN) }));
+		this.setState({ recipes: [...recipes, ...newRecipe], index: index + 5 });
 	}
 
-	setRecipe(result) {
-		const { hits, page } = result;
-		const oldHits = page !== 0 ? this.state.result.hits : [];
-		const newHits = [...oldHits, ...hits];
-		this.setState({ result: { hits: newHits, page } });
-	}
-
-	getRecipe(searchTerm, page = 0) {
-		// url for testing
-		const url = `https://hn.algolia.com/api/v1/search?query=${searchTerm}&page=${page}`;
+	getRecipe(searchTerm, index = 0) {
+		const { diet, health } = this.state;
+		let url = `${API}&q=${searchTerm}`;
+		if (diet.length > 5) url += `&diet=${diet}`;
+		if (health.length > 5) url += `&health=${health}`;
+		url += `&from=${index}&to=${index + 5}`;
 		axios
 			.get(url)
-			.then(({ data }) => this.setRecipe(data))
+			.then(res => this.setRecipe(res.data.hits))
 			.catch(err => this.setState({ err }));
 	}
 
@@ -45,16 +48,19 @@ class LibrarySearch extends Component {
 	}
 
 	render() {
-		const { err, result, searchTerm } = this.state;
-		const page = result ? result.page : 0;
+		const { err, index, recipes, searchTerm } = this.state;
 
 		return (
 			<div>
 				<SearchBar onSearch={this.onSearchSubmit.bind(this)} />
-				{err ? <ErrorBlock /> : result && <RecipeTable data={result.hits} />}
+				<FilterGroup
+					onDietChange={diet => this.setState({ diet })}
+					onHealthChange={health => this.setState({ health })}
+				/>
+				{err ? <ErrorBlock /> : <RecipeTable data={recipes} />}
 				{!err && (
 					<div className="div-center">
-						<Button onClick={() => this.getRecipe(searchTerm, page + 1)}>
+						<Button onClick={() => this.getRecipe(searchTerm, index + 5)}>
 							More
 						</Button>
 					</div>
