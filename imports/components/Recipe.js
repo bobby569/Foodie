@@ -61,7 +61,7 @@ export default class Class extends TrackerReact(Component) {
 		return (
 			<div>
 				<div className="upper">
-					{label}
+					<div className="label">{label}</div>
 					<img className="image" src={image} alt="Image" />
 					<div className="source">By {source}</div>
 					<div className="labels">

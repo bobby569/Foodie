@@ -9,12 +9,18 @@
 }
 
 .upper {
+	height: 150px;
 	font: {
 		family: 'Mukta Mahee', sans-serif;
 		weight: bold;
+	}
+}
+
+.label {
+	font: {
 		size: 35px;
 	}
-	height: 150px;
+	display: inline-block;
 }
 
 .ingredients {
