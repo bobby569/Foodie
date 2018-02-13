@@ -9,7 +9,7 @@ class FilterGroup extends Component {
 
 		return (
 			<div className="search-filter">
-				<Row gutter={24}>
+				<Row type="flex" justify="center">
 					<Col span={12}>
 						<Select
 							className="search-select"

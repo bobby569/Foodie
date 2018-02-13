@@ -1,6 +1,4 @@
-const API_URL = 'https://api.edamam.com/search';
-const API_ID = '06054e01';
-const API_KEY = '8ac8228d49c7f57077d45d99b1ac781f';
-export const API = `${API_URL}?app_id=${API_ID}&app_key=${API_KEY}`;
+const { url, id, key } = Meteor.settings.public.edamam;
+export const API = `${url}?app_id=${id}&app_key=${key}`;
 export const URI_BASE = `http://www.edamam.com/ontologies/edamam.owl#recipe_`;
 export const URI_LEN = URI_BASE.length;
