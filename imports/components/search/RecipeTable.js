@@ -1,38 +1,55 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Table } from 'antd';
+import { Table, Tag } from 'antd';
 
 const columns = [
 	{
-		title: 'Title',
-		dataIndex: 'title',
-		key: 'title',
-		render: text => <Link to="/">{text}</Link>
+		title: 'Dish Name',
+		dataIndex: 'label',
+		key: 'label',
+		render: (text, record) => <Link to={`/recipe/${record.id}`}>{text}</Link>
 	},
 	{
-		title: 'Author',
-		dataIndex: 'author',
-		key: 'author'
+		title: 'Calories',
+		dataIndex: 'calories',
+		key: 'calories',
+		render: text => ~~text
 	},
 	{
-		title: 'Points',
-		dataIndex: 'points',
-		key: 'points'
+		title: 'Health',
+		dataIndex: 'healthLabels',
+		key: 'healthLabels',
+		render: text =>
+			text.map(item => (
+				<Tag key={item} color="green">
+					{item}
+				</Tag>
+			))
+	},
+	{
+		title: 'Diet',
+		dataIndex: 'dietLabels',
+		key: 'dietLabels',
+		render: text =>
+			text.map(item => (
+				<Tag key={item} color="green">
+					{item}
+				</Tag>
+			))
 	}
 ];
 
 class RecipeTable extends Component {
 	render() {
 		const { data } = this.props;
-		const dataSource = data.filter(item => item.title);
-		// console.log(dataSource);
+		console.log(data);
 		return (
 			<div className="table">
 				<Table
 					columns={columns}
-					dataSource={dataSource}
-					rowKey={record => record.objectID}
+					dataSource={data}
+					rowKey={record => record.id}
 					pagination={false}
 					bordered
 				/>
@@ -40,5 +57,9 @@ class RecipeTable extends Component {
 		);
 	}
 }
+
+RecipeTable.propTypes = {
+	data: PropTypes.array.isRequired
+};
 
 export default RecipeTable;
