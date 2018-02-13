@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Tag, Divider, List, Button, Icon } from 'antd';
+import TrackerReact from 'meteor/ultimatejs:tracker-react';
 
-export default class Class extends Component {
+export default class Class extends TrackerReact(Component) {
 	constructor(props) {
 		super(props);
 
@@ -14,20 +15,24 @@ export default class Class extends Component {
 
 	componentDidMount() {
 		const { id } = this.props.match.params;
-		this.setState({ id });
+		//this.setState({ id });
+		console.log(id);
 		axios
 			.get(
-				'https://api.edamam.com/search?q=chicken&app_id=06054e01&app_key=%208ac8228d49c7f57077d45d99b1ac781f&from=0&to=2'
+				`https://api.edamam.com/search?app_id=06054e01&app_key=8ac8228d49c7f57077d45d99b1ac781f&
+				r=http://www.edamam.com/ontologies/edamam.owl%23recipe_${id}&from=0&to=1`
 			)
 			.then(({ data }) => {
-				this.setState({ data });
-				console.log(data['hits'][0]['recipe']);
+				this.state.data = data[0];
+				// console.log(this.state.data);
+				this.forceUpdate();
 			});
 	}
 
 	render() {
 		if (!this.state.data) return <div>Loading</div>;
-		let { recipe } = this.state.data['hits'][0];
+		let recipe = this.state.data;
+		console.log(recipe);
 		let {
 			label,
 			ingredientLines,

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import { createContainer } from 'react-meteor-data';
-import { message, Card } from 'antd';
+import { message, Card, Modal } from 'antd';
 import Avatar from './profile/Avatar';
 import EmailAction from './profile/EmailAction';
 import AddTags from './profile/AddTags';
