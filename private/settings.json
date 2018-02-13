@@ -10,10 +10,13 @@
 				"clientId": "1639022959524615",
 				"secret": "dc1982ede6cb7a2c2e92e7d558d9c4be"
 			}
-		},
-		"api": {
+		}
+	},
+	"public": {
+		"edamam": {
 			"id": "06054e01",
-			"key": "8ac8228d49c7f57077d45d99b1ac781f"
+			"key": "8ac8228d49c7f57077d45d99b1ac781f",
+			"url": "https://api.edamam.com/search"
 		}
 	}
 }

@@ -10,21 +10,21 @@ export default class App extends Component {
 	render() {
 		return (
 			<BrowserRouter>
-				<Layout>
-					{Meteor.userId() ? (
+				{Meteor.userId() ? (
+					<Layout>
 						<Switch>
 							<Route exact path="/profile" component={Profile} />
 							<Route exact path="/search" component={Search} />
 							<Route exact path="/recipe/:id" component={Recipe} />
 							<Redirect to="/search" />
 						</Switch>
-					) : (
-						<Switch>
-							<Route exact path="/" component={Home} />
-							<Redirect to="/" />
-						</Switch>
-					)}
-				</Layout>
+					</Layout>
+				) : (
+					<Switch>
+						<Route exact path="/" component={Home} />
+						<Redirect to="/" />
+					</Switch>
+				)}
 			</BrowserRouter>
 		);
 	}
