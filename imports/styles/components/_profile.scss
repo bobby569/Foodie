@@ -1,3 +1,17 @@
+.btn {
+	cursor: pointer;
+}
+
+.email {
+	margin-top: 10px;
+}
+
+.input {
+	width: 500px;
+	margin: 10px;
+	text-align: center;
+}
+
 .profile {
 	width: 30%;
 	float: left;
@@ -7,8 +21,13 @@
 .ingredients {
 	float: right;
 	text-align: center;
-	width: 70%;
+	width: 100%;
 	height: 100%;
+	margin: auto;
+
+	h5 {
+		margin-left: 8px;
+	}
 }
 
 .avatar {
@@ -20,28 +39,20 @@
 	cursor: pointer;
 }
 
-.addtag {
+.tag {
 	width: 150px;
 	height: 40px;
 	background-color: $tomato;
 	border: none;
 	color: white;
+}
+
+.addtag {
 	margin: 10px 10px;
 }
 
 .savetag {
-	width: 150px;
-	height: 40px;
-	background-color: $tomato;
-	border: none;
-	color: white;
 	margin: 10px 0px;
-}
-
-.input {
-	width: 500px;
-	margin: 10px;
-	text-align: center;
 }
 
 .modalTagsContainer {
@@ -50,22 +61,21 @@
 	align-content: center;
 	justify-content: center;
 
-	padding-top: 4px;
-	padding-bottom: 4px;
-	margin: 20px;
-
 	width: 100%;
-}
+	margin: 20px;
+	padding: {
+		top: 4px;
+		bottom: 4px;
+	}
 
-.modalTagsContainer {
 	span {
 		position: relative;
 		display: inline-block;
 
 		border-radius: 25px;
 
-		padding: 3px 10px 3px 10px;
-		margin: 2px 4px 2px 4px;
+		padding: 3px 10px;
+		margin: 2px 4px;
 
 		color: white;
 		background: $tomato;
@@ -73,11 +83,7 @@
 
 		cursor: pointer;
 		transition: 0.25s ease-out;
-	}
-}
 
-.modalTagsContainer {
-	span {
 		&:hover {
 			position: relative;
 
@@ -88,14 +94,4 @@
 
 .form-control {
 	display: inline-block !important;
-}
-
-.ingredients {
-	p {
-		margin-left: 8px;
-	}
-}
-
-.btn {
-	cursor: pointer;
 }

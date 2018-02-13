@@ -10,7 +10,25 @@
 
 .search {
 	width: 35%;
-	margin: 10px auto 10px auto;
+	margin: 10px auto;
 	padding: 10px;
 	text-align: center;
+}
+
+.search-filter {
+	width: 40%;
+	margin: auto;
+}
+
+.search-select {
+	width: 200px;
+}
+
+.ant-btn-primary {
+	background-color: $tomato !important;
+	border-color: $tomato !important;
+}
+
+.ant-btn-background-ghost {
+	color: $tomato !important;
 }

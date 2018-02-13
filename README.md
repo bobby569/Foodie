@@ -27,7 +27,8 @@
 <ul>
 <li><a href="http://sass-lang.com/">SCSS</a></li>
 <li><a href="http://www.material-ui.com/#/">Material-UI</a></li>
-<li><a href="https://ant.design/docs/react/introduce">antd</a></li>
+<li><a href="https://ant.design/docs/react/introduce">Ant Design</a></li>
+<li><a href="https://react-bootstrap.github.io/">React-Bootstrap</a></li>
 </ul>
 </details>
 
@@ -38,29 +39,41 @@
 Run the following command first
 
 ```
-$ meteor npm i -g yarn
+$ npm i -g yarn
 ```
 
-Then install the package. **Make Sure do this every time pulling from the master**
+Then install the package. **Make Sure do this after git pull master**
 
 ```
-$ meteor npm install
+$ npm i
 ```
 
 or
 
 ```
-$ meteor yarn install
+$ yarn install
 ```
 
 ## Run the app
 
 ```
-$ meteor npm start
+$ npm start
 ```
 
 or
 
 ```
-$ meteor yarn start
+$ yarn start
+```
+
+## Run the test
+
+```
+$ npm run test
+```
+
+or
+
+```
+$ yarn test
 ```

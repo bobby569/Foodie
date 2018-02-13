@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { FormControl, Button } from 'react-bootstrap';
-import Dropzone from 'react-dropzone';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import { createContainer } from 'react-meteor-data';
-import { message, Card, Modal } from 'antd';
-import ReactDOM from 'react-dom';
+import { message, Card } from 'antd';
+import Avatar from './profile/Avatar';
+import EmailAction from './profile/EmailAction';
+import AddTags from './profile/AddTags';
+import TagGroup from './profile/TagGroup';
+
+// API used to detect whether input is food
+const WORD_API = 'https://www.wordsapi.com/docs';
 
 const confirm = Modal.confirm;
 
@@ -27,141 +31,71 @@ class Profile extends TrackerReact(Component) {
 	constructor(props) {
 		super(props);
 		this.state = {
-			tags: []
+			tags: [],
+			inputValue: ''
 		};
+
+		this.handleEnter = this.handleEnter.bind(this);
+		this.handleAdd = this.handleAdd.bind(this);
+		this.handleRemove = this.handleRemove.bind(this);
+		this.handleSave = this.handleSave.bind(this);
 	}
 
-	handleUpload(files) {
-		const file = files[0];
-		file.owner = Meteor.userId();
-		Avatars.insert(file, (err, fileObj) => {
-			if (err) return message.error(err);
-
-			setTimeout(() => {
-				Meteor.users.update(
-					{ _id: Meteor.userId() },
-					{
-						$set: { 'profile.avatar': `/cfs/files/avatars/${fileObj._id}` }
-					}
-				);
-			}, 1000);
-		});
+	handleEnter(e) {
+		this.setState({ inputValue: e.target.value });
 	}
 
-	renderImagePreview() {
-		const { user } = this.props;
-		if (!user) return null;
-
-		return (
-			<Dropzone onDrop={this.handleUpload.bind(this)} className="avatar">
-				{user.profile && (
-					<img
-						className="avatar avatar-uploader"
-						src={user.profile.avatar}
-						alt="avatar"
-					/>
-				)}
-			</Dropzone>
-		);
-	}
-
-	//tags
-	renderTags() {
-		return this.state.tags.map(tag => (
-			<span onClick={this.handleRemoveTag.bind(this)} key={tag}>
-				{tag}
-			</span>
-		));
-	}
-
-	handleAddTag(e) {
-		e.preventDefault();
-		const tagField = ReactDOM.findDOMNode(this.refs.tagField).value.trim();
-
-		if (tagField === '') {
-			message.error("Ingredient field can't be null!");
-		} else {
-			// check if input is empty or if tag already exists in the list
-			let tempArr = this.state.tags.map(tag => tag.toLowerCase());
-
-			this.state.tags.push(tagField);
-			this.forceUpdate();
-
-			ReactDOM.findDOMNode(this.refs.tagField).value = '';
-			ReactDOM.findDOMNode(this.refs.tagField).focus();
+	handleAdd() {
+		let { tags, inputValue } = this.state;
+		const val = inputValue.trim().toLowerCase();
+		if (val === '') {
+			return message.error("Ingredient field can't be null!");
 		}
+		if (tags.includes(val)) {
+			return message.error('Ingredient already in the list!');
+		}
+		tags = [...tags, val];
+		this.setState({ inputValue: '', tags });
 	}
 
-	handleRemoveTag(e) {
-		e.preventDefault();
-
-		const tagValue = $(e.target).text();
-		const tagIndex = this.state.tags.indexOf(tagValue);
-
-		this.state.tags.splice(tagIndex, 1);
-		this.forceUpdate();
+	handleRemove(tag) {
+		const { tags } = this.state;
+		const newTags = tags.filter(item => item !== tag);
+		this.setState({ tags: newTags });
 	}
 
 	//save tags to the database
-	handleSaveTag(obj) {
+	handleSave() {
 		Meteor.users.update(Meteor.userId(), {
 			$set: {
 				'profile.ingredients': this.state.tags
 			}
 		});
-		message.success('Saved!');
+		message.success('Saved successfully!');
 	}
 
 	render() {
-		let user = this.props.user;
-		if (!user) {
-			return <div>Loading</div>;
-		}
-		let email = user.emails[0].address;
-		let ingredients = user.profile.ingredients;
-		this.state.tags = ingredients;
+		const { user } = this.props;
+		if (!user) return <h2>Loading</h2>;
+
+		const email = user.emails[0].address;
+		const { tags, inputValue } = this.state;
+		// TODO: tags should use be obtained directly from db instead of component state
 		return (
 			<div>
 				<Card className="profile">
-					{this.renderImagePreview()}
-					<Card
-						title="Email"
-						className="email"
-						bordered={false}
-						style={{ marginTop: 10 }}
-					>
-						<p>{email}</p>
-					</Card>
-					<div className="delete-class">
-						<Button
-							className="delete"
-							type="submit"
-							bsStyle="danger"
-							onClick={showConfirm}
-						>
-							Delete Account
-						</Button>
-					</div>
+					<Avatar user={user} />
+					<EmailAction email={email} />
 				</Card>
-				<Card className="ingredients" ref="ingredients">
-					<p>
-						Add a few ingredients to your list! (You can click to remove
-						ingredients)
-					</p>
-					<div className="modalTagsContainer">{this.renderTags()}</div>
-					<FormControl
-						className="input"
-						id="tag-input"
-						type="text"
-						placeholder="Enter tags here"
-						ref="tagField"
+				<Card className="ingredients">
+					<h5>Start adding ingredients to your list!</h5>
+					<TagGroup tags={tags} onDismiss={tag => this.handleRemove(tag)} />
+					<AddTags
+						value={inputValue}
+						onEnter={this.handleEnter}
+						onAdd={this.handleAdd}
+						onSave={this.handleSave}
 					/>
-					<Button className="addtag" onClick={this.handleAddTag.bind(this)}>
-						Add
-					</Button>
-					<Button className="savetag" onClick={this.handleSaveTag.bind(this)}>
-						Save
-					</Button>
 				</Card>
 			</div>
 		);
