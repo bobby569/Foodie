@@ -33,6 +33,7 @@ export default class Class extends TrackerReact(Component) {
 		if (!this.state.data) return <div>Loading</div>;
 		let recipe = this.state.data;
 		console.log(recipe);
+
 		let {
 			label,
 			ingredientLines,
@@ -85,15 +86,18 @@ export default class Class extends TrackerReact(Component) {
 						header={<h6>Nutrients</h6>}
 						bordered
 						dataSource={nutrientsdata}
-						renderItem={item => (
-							<List.Item>
-								<List.Item.Meta title={item['label']} />
-								<div className="quantity">
-									{Math.round(item['quantity'])}
-									{item['unit']}
-								</div>
-							</List.Item>
-						)}
+						renderItem={item =>
+							item ? (
+								<List.Item>
+									<List.Item.Meta title={item['label']} />
+									<div className="quantity">
+										{Math.round(item['quantity'])}
+										{item['unit']}
+									</div>
+								</List.Item>
+							) : (
+								<div />
+							)}
 					/>
 					<div className="url">
 						<Button
