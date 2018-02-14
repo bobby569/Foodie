@@ -1,3 +1,4 @@
+import { Session } from 'meteor/session';
 import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import { createContainer } from 'react-meteor-data';
@@ -14,7 +15,7 @@ class Profile extends TrackerReact(Component) {
 	constructor(props) {
 		super(props);
 		this.state = {
-			tags: [],
+			tags: null,
 			inputValue: ''
 		};
 
@@ -26,6 +27,10 @@ class Profile extends TrackerReact(Component) {
 
 	handleEnter(e) {
 		this.setState({ inputValue: e.target.value });
+	}
+
+	handleIngredients(user) {
+		if (!this.state.tags) this.state.tags = user.profile.ingredients;
 	}
 
 	handleAdd() {
@@ -60,6 +65,7 @@ class Profile extends TrackerReact(Component) {
 	render() {
 		const { user } = this.props;
 		if (!user) return <h2>Loading</h2>;
+		else this.handleIngredients(user);
 
 		const email = user.emails[0].address;
 		const { tags, inputValue } = this.state;
@@ -72,7 +78,11 @@ class Profile extends TrackerReact(Component) {
 				</Card>
 				<Card className="ingredients">
 					<h5>Start adding ingredients to your list!</h5>
-					<TagGroup tags={tags} onDismiss={tag => this.handleRemove(tag)} />
+					{tags ? (
+						<TagGroup tags={tags} onDismiss={tag => this.handleRemove(tag)} />
+					) : (
+						<p>Loading</p>
+					)}
 					<AddTags
 						value={inputValue}
 						onEnter={this.handleEnter}
