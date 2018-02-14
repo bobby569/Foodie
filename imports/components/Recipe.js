@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Tag, Divider, List, Button, Icon } from 'antd';
+import { Tag, Divider, List, Button, Icon, Row, Col } from 'antd';
 
 export default class Class extends Component {
 	constructor(props) {
@@ -53,10 +53,10 @@ export default class Class extends Component {
 		//{this.props.match.params.id}
 
 		return (
-			<div>
+			<div className="recipe-details">
 				<div className="upper">
 					{label}
-					<img className="image" src={image} alt="Image" />
+					<img src={image} alt="Image" />
 					<div className="source">By {source}</div>
 					<div className="labels">
 						{hlabels}
@@ -66,30 +66,36 @@ export default class Class extends Component {
 				</div>
 				<Divider>More about the recipe</Divider>
 				<div className="lower">
-					<List
-						className="ingredients"
-						size="small"
-						header={<h6>Ingredients</h6>}
-						bordered
-						dataSource={data}
-						renderItem={item => <List.Item>{item}</List.Item>}
-					/>
-					<List
-						className="nutrients"
-						size="small"
-						header={<h6>Nutrients</h6>}
-						bordered
-						dataSource={nutrientsdata}
-						renderItem={item => (
-							<List.Item>
-								<List.Item.Meta title={item['label']} />
-								<div className="quantity">
-									{Math.round(item['quantity'])}
-									{item['unit']}
-								</div>
-							</List.Item>
-						)}
-					/>
+					<Row gutter={{ xs: 10, lg: 5 }}>
+						<Col lg={{ span: 12 }}>
+							<List
+								className="ingredients"
+								size="small"
+								header={<h6>Ingredients</h6>}
+								bordered
+								dataSource={data}
+								renderItem={item => <List.Item>{item}</List.Item>}
+							/>
+						</Col>
+						<Col lg={{ span: 12 }}>
+							<List
+								className="nutrients"
+								size="small"
+								header={<h6>Nutrients</h6>}
+								bordered
+								dataSource={nutrientsdata}
+								renderItem={item => (
+									<List.Item>
+										<List.Item.Meta title={item['label']} />
+										<div className="quantity">
+											{Math.round(item['quantity'])}
+											{item['unit']}
+										</div>
+									</List.Item>
+								)}
+							/>
+						</Col>
+					</Row>
 					<div className="url">
 						<Button
 							type="primary"

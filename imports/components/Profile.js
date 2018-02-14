@@ -2,7 +2,7 @@ import { Session } from 'meteor/session';
 import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import { createContainer } from 'react-meteor-data';
-import { message, Card } from 'antd';
+import { message, Card, Row, Col } from 'antd';
 import Avatar from './profile/Avatar';
 import EmailAction from './profile/EmailAction';
 import AddTags from './profile/AddTags';
@@ -71,25 +71,34 @@ class Profile extends TrackerReact(Component) {
 		const { tags, inputValue } = this.state;
 		// TODO: tags should use be obtained directly from db instead of component state
 		return (
-			<div>
-				<Card className="profile">
-					<Avatar user={user} />
-					<EmailAction email={email} />
-				</Card>
-				<Card className="ingredients">
-					<h5>Start adding ingredients to your list!</h5>
-					{tags ? (
-						<TagGroup tags={tags} onDismiss={tag => this.handleRemove(tag)} />
-					) : (
-						<p>Loading</p>
-					)}
-					<AddTags
-						value={inputValue}
-						onEnter={this.handleEnter}
-						onAdd={this.handleAdd}
-						onSave={this.handleSave}
-					/>
-				</Card>
+			<div className="user-profile">
+				<Row gutter={{ xs: 10, lg: 5 }}>
+					<Col xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 6 }}>
+						<Card className="profile">
+							<Avatar user={user} />
+							<EmailAction email={email} />
+						</Card>
+					</Col>
+					<Col xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 18 }}>
+						<Card className="ingredients">
+							<h5>Start adding ingredients to your list!</h5>
+							{tags ? (
+								<TagGroup
+									tags={tags}
+									onDismiss={tag => this.handleRemove(tag)}
+								/>
+							) : (
+								<p>Loading</p>
+							)}
+							<AddTags
+								value={inputValue}
+								onEnter={this.handleEnter}
+								onAdd={this.handleAdd}
+								onSave={this.handleSave}
+							/>
+						</Card>
+					</Col>
+				</Row>
 			</div>
 		);
 	}
