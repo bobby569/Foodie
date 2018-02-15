@@ -30,7 +30,7 @@ class Profile extends TrackerReact(Component) {
 	}
 
 	handleIngredients(user) {
-		if (!this.state.tags) this.state.tags = user.profile.ingredients;
+		if (!this.state.tags) this.setState({ tags: user.profile.ingredients });
 	}
 
 	handleAdd() {
