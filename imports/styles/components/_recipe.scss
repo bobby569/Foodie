@@ -1,64 +1,56 @@
-.image {
-	width: 150px;
-	height: 150px;
-	display: inline-block;
-	border-radius: 5px;
-	background-color: rgb(230, 230, 230);
-	cursor: pointer;
-	float: right;
-}
+.recipe-details {
+	.upper {
+		img {
+			width: 150px;
+			height: 150px;
+			display: inline-block;
+			border-radius: 5px;
+			background-color: rgb(230, 230, 230);
+			cursor: pointer;
+			float: right;
+		}
 
-.upper {
-	height: 150px;
-	font: {
-		family: 'Mukta Mahee', sans-serif;
-		weight: bold;
+		.source {
+			font {
+				family: 'Mukta Mahee', sans-serif;
+				size: 15px;
+			}
+			color: grey;
+			padding-left: 30px;
+			display: inline-block;
+		}
+
+		.labels {
+			width: 80%;
+			display: inline-block;
+		}
+
+		font: {
+			family: 'Mukta Mahee', sans-serif;
+			weight: bold;
+			size: 35px;
+		}
+		min-height: 150px;
 	}
-}
 
-.label {
-	font: {
-		size: 35px;
+	.lower {
+		.ingredients {
+			text-align: left;
+		}
+
+		.nutrients {
+			.quantity {
+				text-align: right;
+			}
+		}
 	}
-	display: inline-block;
-}
 
-.ingredients {
-	width: 50%;
-	display: inline-block;
-	text-align: left;
-	float: left;
-}
-
-.nutrients {
-	width: 50%;
-	display: inline-block;
-}
-
-.source {
-	font {
-		family: 'Mukta Mahee', sans-serif;
-		size: 15px;
+	.url {
+		text-align: center;
+		padding: 10px;
 	}
-	color: grey;
-	padding-left: 30px;
-	display: inline-block;
-}
-
-.labels {
-	width: 80%;
-	display: inline-block;
-}
-
-.quantity {
-	text-align: right;
-}
-
-.url {
-	text-align: center;
-	padding: 10px;
-}
-.directions {
-	background: tomato !important;
-	border: none !important;
+	.directions {
+		background: tomato !important;
+		border: none !important;
+	}
 }

@@ -5,7 +5,6 @@ import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 import App from '../imports/components/App';
 import '../imports/components/upload/upload.js';
-// import '../imports/startup/accounts-config.js';
 import '../imports/collections/index.js';
 
 Meteor.startup(() => {
