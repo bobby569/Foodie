@@ -16,19 +16,13 @@ export default class Class extends TrackerReact(Component) {
 
 	componentDidMount() {
 		const { id } = this.props.match.params;
-		//this.setState({ id });
-		console.log(id);
 		let url = `${API}&r=${URI_BASE}${id}&from=0&to=1`;
-		console.log(url);
 		axios
 			.get(
-				// `https://api.edamam.com/search?app_id=06054e01&app_key=8ac8228d49c7f57077d45d99b1ac781f&
-				// r=http://www.edamam.com/ontologies/edamam.owl%23recipe_${id}&from=0&to=1`
-				`${API}&r=${URI_BASE}${id}&from=0&to=1`
+				url
 			)
 			.then(({ data }) => {
 				this.state.data = data[0];
-				// console.log(this.state.data);
 				this.forceUpdate();
 			});
 	}
