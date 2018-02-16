@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Tag, Divider, List, Button, Icon, Row, Col } from 'antd';
+import TrackerReact from 'meteor/ultimatejs:tracker-react';
+import { API, URI_BASE } from './util/constant.js';
 
-export default class Class extends Component {
+export default class Class extends TrackerReact(Component) {
 	constructor(props) {
 		super(props);
 
@@ -14,20 +16,22 @@ export default class Class extends Component {
 
 	componentDidMount() {
 		const { id } = this.props.match.params;
-		this.setState({ id });
+		let url = `${API}&r=${URI_BASE}${id}&from=0&to=1`;
 		axios
 			.get(
-				'https://api.edamam.com/search?q=chicken&app_id=06054e01&app_key=%208ac8228d49c7f57077d45d99b1ac781f&from=0&to=2'
+				url
 			)
 			.then(({ data }) => {
-				this.setState({ data });
-				console.log(data['hits'][0]['recipe']);
+				this.state.data = data[0];
+				this.forceUpdate();
 			});
 	}
 
 	render() {
 		if (!this.state.data) return <div>Loading</div>;
-		let { recipe } = this.state.data['hits'][0];
+		let recipe = this.state.data;
+		console.log(recipe);
+
 		let {
 			label,
 			ingredientLines,
@@ -55,10 +59,10 @@ export default class Class extends Component {
 		return (
 			<div className="recipe-details">
 				<div className="upper">
-					{label}
+					<div className="label">{label}</div>
 					<img src={image} alt="Image" />
 					<div className="source">By {source}</div>
-					<div className="labels">
+					<div className="tags">
 						{hlabels}
 						{dlabels}
 						<Tag color="gold">{calorie} calories</Tag>
@@ -84,15 +88,18 @@ export default class Class extends Component {
 								header={<h6>Nutrients</h6>}
 								bordered
 								dataSource={nutrientsdata}
-								renderItem={item => (
-									<List.Item>
-										<List.Item.Meta title={item['label']} />
-										<div className="quantity">
-											{Math.round(item['quantity'])}
-											{item['unit']}
-										</div>
-									</List.Item>
-								)}
+								renderItem={item =>
+									item ? (
+										<List.Item>
+											<List.Item.Meta title={item['label']} />
+											<div className="quantity">
+												{Math.round(item['quantity'])}
+												{item['unit']}
+											</div>
+										</List.Item>
+									) : (
+										<div />
+									)}
 							/>
 						</Col>
 					</Row>

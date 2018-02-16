@@ -20,17 +20,20 @@
 			display: inline-block;
 		}
 
-		.labels {
-			width: 80%;
+		.label {
 			display: inline-block;
+			font-size: 35px !important;
 		}
 
 		font: {
 			family: 'Mukta Mahee', sans-serif;
 			weight: bold;
-			size: 35px;
 		}
 		min-height: 150px;
+
+		.tags {
+			margin-top: 10px;
+		}
 	}
 
 	.lower {
