@@ -1,14 +1,27 @@
+// Color
 $red: #d0492d;
 $tomato: #ff5733;
 $orange: #f9a657;
 $yellow: #ffeaa6;
 
-input {
-	padding: 10px;
-	border-radius: 5px;
-	margin-right: 10px;
-	border-bottom: 1 solid #dddddd;
-}
+// Media queries breakpoints
+// Extra small screen / phone
+$screen-xs: 480px;
+
+// Small screen / tablet
+$screen-sm: 576px;
+
+// Medium screen / desktop
+$screen-md: 768px;
+
+// Large screen / wide desktop
+$screen-lg: 992px;
+
+// Extra large screen / full hd
+$screen-xl: 1200px;
+
+// Extra extra large screen / large descktop
+$screen-xxl: 1600px;
 
 @import './force';
 @import './components/footer';
@@ -18,3 +31,4 @@ input {
 @import './components/recipe';
 @import './components/search';
 @import './components/table';
+@import './components/home';

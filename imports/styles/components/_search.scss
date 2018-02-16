@@ -18,8 +18,18 @@
 .search-filter {
 	width: 40%;
 	margin: auto;
+	text-align: center;
 }
 
 .search-select {
 	width: 200px;
+}
+
+.ant-btn-primary {
+	background-color: $tomato !important;
+	border-color: $tomato !important;
+}
+
+.ant-btn-background-ghost {
+	color: $tomato !important;
 }
