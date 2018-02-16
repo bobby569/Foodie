@@ -11,23 +11,6 @@ import TagGroup from './profile/TagGroup';
 // API used to detect whether input is food
 const WORD_API = 'https://www.wordsapi.com/docs';
 
-const confirm = Modal.confirm;
-
-function showConfirm() {
-	confirm({
-		title: 'Do you want to delete this account?',
-		content:
-			'When clicked the OK button, you will be redirected to the home page',
-		onOk() {
-			return new Promise((resolve, reject) => {
-				Meteor.users.remove({ _id: Meteor.userId() });
-				setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-			}).catch(() => console.log('Oops errors!'));
-		},
-		onCancel() {}
-	});
-}
-
 class Profile extends TrackerReact(Component) {
 	constructor(props) {
 		super(props);

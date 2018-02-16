@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Tag, Divider, List, Button, Icon, Row, Col } from 'antd';
+import TrackerReact from 'meteor/ultimatejs:tracker-react';
+import { API, URI_BASE } from './util/constant.js';
 
 export default class Class extends TrackerReact(Component) {
 	constructor(props) {
@@ -16,10 +18,13 @@ export default class Class extends TrackerReact(Component) {
 		const { id } = this.props.match.params;
 		//this.setState({ id });
 		console.log(id);
+		let url = `${API}&r=${URI_BASE}${id}&from=0&to=1`;
+		console.log(url);
 		axios
 			.get(
-				`https://api.edamam.com/search?app_id=06054e01&app_key=8ac8228d49c7f57077d45d99b1ac781f&
-				r=http://www.edamam.com/ontologies/edamam.owl%23recipe_${id}&from=0&to=1`
+				// `https://api.edamam.com/search?app_id=06054e01&app_key=8ac8228d49c7f57077d45d99b1ac781f&
+				// r=http://www.edamam.com/ontologies/edamam.owl%23recipe_${id}&from=0&to=1`
+				`${API}&r=${URI_BASE}${id}&from=0&to=1`
 			)
 			.then(({ data }) => {
 				this.state.data = data[0];
@@ -60,10 +65,10 @@ export default class Class extends TrackerReact(Component) {
 		return (
 			<div className="recipe-details">
 				<div className="upper">
-					{label}
+					<div className="label">{label}</div>
 					<img src={image} alt="Image" />
 					<div className="source">By {source}</div>
-					<div className="labels">
+					<div className="tags">
 						{hlabels}
 						{dlabels}
 						<Tag color="gold">{calorie} calories</Tag>
@@ -89,15 +94,18 @@ export default class Class extends TrackerReact(Component) {
 								header={<h6>Nutrients</h6>}
 								bordered
 								dataSource={nutrientsdata}
-								renderItem={item => (
-									<List.Item>
-										<List.Item.Meta title={item['label']} />
-										<div className="quantity">
-											{Math.round(item['quantity'])}
-											{item['unit']}
-										</div>
-									</List.Item>
-								)}
+								renderItem={item =>
+									item ? (
+										<List.Item>
+											<List.Item.Meta title={item['label']} />
+											<div className="quantity">
+												{Math.round(item['quantity'])}
+												{item['unit']}
+											</div>
+										</List.Item>
+									) : (
+										<div />
+									)}
 							/>
 						</Col>
 					</Row>
