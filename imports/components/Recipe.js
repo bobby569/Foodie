@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Tag, Divider, List, Button, Icon, Row, Col } from 'antd';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
-import { API, URI_BASE } from './util/constant.js';
+import { API, URI_BASE_RETR } from './util/constant.js';
 
 export default class Class extends TrackerReact(Component) {
 	constructor(props) {
@@ -16,15 +16,12 @@ export default class Class extends TrackerReact(Component) {
 
 	componentDidMount() {
 		const { id } = this.props.match.params;
-		let url = `${API}&r=${URI_BASE}${id}&from=0&to=1`;
-		axios
-			.get(
-				url
-			)
-			.then(({ data }) => {
-				this.state.data = data[0];
-				this.forceUpdate();
-			});
+		let url = `${API}&r=${URI_BASE_RETR}${id}`;
+
+		axios.get(url).then(({ data }) => {
+			this.state.data = data[0];
+			this.forceUpdate();
+		});
 	}
 
 	render() {
