@@ -38,3 +38,4 @@ cfs:standard-packages
 cfs:filesystem
 cfs:graphicsmagick
 ultimatejs:tracker-react
+practicalmeteor:chai

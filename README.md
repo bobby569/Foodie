@@ -77,3 +77,9 @@ or
 ```
 $ yarn test
 ```
+
+## Run test with jest
+
+```
+$ yarn test:jest
+```
