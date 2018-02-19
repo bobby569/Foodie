@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DirectButton Renders correctly 1`] = `
+<div
+  className="div-center"
+>
+  <div
+    className="ant-btn-group"
+  >
+    <button
+      className="ant-btn ant-btn-primary"
+      name="lib"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="anticon anticon-bulb"
+      />
+      <span>
+        Recipe Library
+      </span>
+    </button>
+    <button
+      className="ant-btn ant-btn-primary ant-btn-background-ghost"
+      name="diy"
+      onClick={[Function]}
+      type="button"
+    >
+      <span>
+        By My Recipe
+      </span>
+      <i
+        className="anticon anticon-user"
+      />
+    </button>
+  </div>
+</div>
+`;
+
+exports[`DirectButton Renders correctly 2`] = `
+<div
+  className="div-center"
+>
+  <div
+    className="ant-btn-group"
+  >
+    <button
+      className="ant-btn ant-btn-primary ant-btn-background-ghost"
+      name="lib"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="anticon anticon-bulb"
+      />
+      <span>
+        Recipe Library
+      </span>
+    </button>
+    <button
+      className="ant-btn ant-btn-primary"
+      name="diy"
+      onClick={[Function]}
+      type="button"
+    >
+      <span>
+        By My Recipe
+      </span>
+      <i
+        className="anticon anticon-user"
+      />
+    </button>
+  </div>
+</div>
+`;

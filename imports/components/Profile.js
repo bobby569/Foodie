@@ -1,4 +1,3 @@
-import { Session } from 'meteor/session';
 import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import { createContainer } from 'react-meteor-data';
