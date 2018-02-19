@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilterGroup Renders correctly 1`] = `
+<div
+  className="search-filter"
+>
+  <div
+    className="ant-row-flex ant-row-flex-center"
+    style={undefined}
+  >
+    <div
+      className="ant-col-12"
+    >
+      <div
+        className="search-select ant-select ant-select-enabled"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onContextMenu={undefined}
+        onFocus={[Function]}
+        onMouseDown={[Function]}
+        onMouseEnter={undefined}
+        onMouseLeave={undefined}
+        onTouchStart={[Function]}
+        style={undefined}
+      >
+        <div
+          aria-autocomplete="list"
+          aria-expanded={false}
+          aria-haspopup="true"
+          className="ant-select-selection
+            ant-select-selection--single"
+          onKeyDown={[Function]}
+          role="combobox"
+          tabIndex={0}
+        >
+          <div
+            className="ant-select-selection__rendered"
+          >
+            <div
+              className="ant-select-selection-selected-value"
+              style={
+                Object {
+                  "display": "block",
+                  "opacity": 1,
+                }
+              }
+              title="Choose Diet"
+            >
+              Choose Diet
+            </div>
+          </div>
+          <span
+            className="ant-select-arrow"
+            onClick={[Function]}
+            style={
+              Object {
+                "WebkitUserSelect": "none",
+                "userSelect": "none",
+              }
+            }
+            unselectable="unselectable"
+          >
+            <b />
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ant-col-12"
+    >
+      <div
+        className="search-select ant-select ant-select-enabled"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onContextMenu={undefined}
+        onFocus={[Function]}
+        onMouseDown={[Function]}
+        onMouseEnter={undefined}
+        onMouseLeave={undefined}
+        onTouchStart={[Function]}
+        style={undefined}
+      >
+        <div
+          aria-autocomplete="list"
+          aria-expanded={false}
+          aria-haspopup="true"
+          className="ant-select-selection
+            ant-select-selection--single"
+          onKeyDown={[Function]}
+          role="combobox"
+          tabIndex={0}
+        >
+          <div
+            className="ant-select-selection__rendered"
+          >
+            <div
+              className="ant-select-selection-selected-value"
+              style={
+                Object {
+                  "display": "block",
+                  "opacity": 1,
+                }
+              }
+              title="Choose Health"
+            >
+              Choose Health
+            </div>
+          </div>
+          <span
+            className="ant-select-arrow"
+            onClick={[Function]}
+            style={
+              Object {
+                "WebkitUserSelect": "none",
+                "userSelect": "none",
+              }
+            }
+            unselectable="unselectable"
+          >
+            <b />
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

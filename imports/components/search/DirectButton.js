@@ -42,7 +42,8 @@ class DirectButton extends Component {
 }
 
 DirectButton.propTypes = {
-	name: PropTypes.string.isRequired
+	name: PropTypes.string.isRequired,
+	renderPage: PropTypes.func.isRequired
 };
 
 export default DirectButton;
