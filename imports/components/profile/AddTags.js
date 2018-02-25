@@ -4,7 +4,7 @@ import { FormControl, Button } from 'react-bootstrap';
 
 class AddTags extends Component {
 	render() {
-		const { value, onEnter, onAdd, onSave } = this.props;
+		const { value, onEnter, onAdd } = this.props;
 		return (
 			<div>
 				<FormControl
@@ -14,11 +14,8 @@ class AddTags extends Component {
 					value={value}
 					onChange={onEnter}
 				/>
-				<Button className="tag addtag" onClick={onAdd}>
+				<Button className="tag" onClick={onAdd}>
 					Add
-				</Button>
-				<Button className="tag savetag" onClick={onSave}>
-					Save
 				</Button>
 			</div>
 		);
@@ -28,8 +25,7 @@ class AddTags extends Component {
 AddTags.propTypes = {
 	value: PropTypes.string.isRequired,
 	onEnter: PropTypes.func.isRequired,
-	onAdd: PropTypes.func.isRequired,
-	onSave: PropTypes.func.isRequired
+	onAdd: PropTypes.func.isRequired
 };
 
 export default AddTags;

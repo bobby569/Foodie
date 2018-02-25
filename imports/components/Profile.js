@@ -21,54 +21,51 @@ class Profile extends TrackerReact(Component) {
 		this.handleEnter = this.handleEnter.bind(this);
 		this.handleAdd = this.handleAdd.bind(this);
 		this.handleRemove = this.handleRemove.bind(this);
-		this.handleSave = this.handleSave.bind(this);
+	}
+
+	componentWillReceiveProps(nextProps) {
+		this.setState({ tags: nextProps.user.profile.ingredients });
 	}
 
 	handleEnter(e) {
 		this.setState({ inputValue: e.target.value });
 	}
 
-	handleIngredients(user) {
-		if (!this.state.tags) this.setState({ tags: user.profile.ingredients });
-	}
-
 	handleAdd() {
 		let { tags, inputValue } = this.state;
 		const val = inputValue.trim().toLowerCase();
-		if (val === '') {
-			return message.error("Ingredient field can't be null!");
-		}
-		if (tags.includes(val)) {
-			return message.error('Ingredient already in the list!');
-		}
-		tags = [...tags, val];
+		if (val === '') return message.error("Ingredient can't be empty!");
+		if (tags.includes(val)) return message.error('Ingredient already exist!');
+
+		tags.push(val);
 		this.setState({ inputValue: '', tags });
+
+		Meteor.users.update(Meteor.userId(), {
+			$set: {
+				'profile.ingredients': tags
+			}
+		});
 	}
 
 	handleRemove(tag) {
 		const { tags } = this.state;
 		const newTags = tags.filter(item => item !== tag);
 		this.setState({ tags: newTags });
-	}
 
-	//save tags to the database
-	handleSave() {
 		Meteor.users.update(Meteor.userId(), {
 			$set: {
-				'profile.ingredients': this.state.tags
+				'profile.ingredients': newTags
 			}
 		});
-		message.success('Saved successfully!');
 	}
 
 	render() {
 		const { user } = this.props;
 		if (!user) return <h2>Loading</h2>;
-		else this.handleIngredients(user);
 
 		const email = user.emails[0].address;
 		const { tags, inputValue } = this.state;
-		// TODO: tags should use be obtained directly from db instead of component state
+
 		return (
 			<div className="user-profile">
 				<Row gutter={{ xs: 10, lg: 5 }}>
@@ -93,7 +90,6 @@ class Profile extends TrackerReact(Component) {
 								value={inputValue}
 								onEnter={this.handleEnter}
 								onAdd={this.handleAdd}
-								onSave={this.handleSave}
 							/>
 						</Card>
 					</Col>

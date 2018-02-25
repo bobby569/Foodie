@@ -9,7 +9,7 @@ class SearchBar extends Component {
 			<div className="search">
 				<Search
 					placeholder="Search support by Edamam"
-					onSearch={val => this.props.onSearch(val)}
+					onSearch={val => this.props.onSearch(val.trim())}
 					enterButton
 				/>
 			</div>
