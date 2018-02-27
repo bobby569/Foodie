@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import axios from 'axios';
-import { Divider, List, Button, Icon, Row, Col } from 'antd';
+import { Divider, Row } from 'antd';
 import { API, URI_BASE_RETR } from './util/constant.js';
 import HeadLine from './recipe/HeadLine';
+import Ingredient from './recipe/Ingredient';
+import Nutrient from './recipe/Nutrient';
+import Direction from './recipe/Direction';
 
-export default class Class extends TrackerReact(Component) {
+class Recipe extends TrackerReact(Component) {
 	constructor(props) {
 		super(props);
 
@@ -29,6 +32,8 @@ export default class Class extends TrackerReact(Component) {
 		const { data } = this.state;
 		if (!data) return <div>Loading</div>;
 
+		const rowSize = { xs: 10, lg: 5 };
+		const colSize = { span: 12 };
 		const { ingredientLines, url, totalNutrients } = data;
 		const { CA, FE, K, MG, NA, VITC } = totalNutrients;
 		const nutrientsdata = [CA, FE, K, MG, NA, VITC];
@@ -38,51 +43,15 @@ export default class Class extends TrackerReact(Component) {
 				<HeadLine data={data} />
 				<Divider>More about the recipe</Divider>
 				<div className="lower">
-					<Row gutter={{ xs: 10, lg: 5 }}>
-						<Col lg={{ span: 12 }}>
-							<List
-								className="ingredients"
-								size="small"
-								header={<h6>Ingredients</h6>}
-								bordered
-								dataSource={ingredientLines}
-								renderItem={item => <List.Item>{item}</List.Item>}
-							/>
-						</Col>
-						<Col lg={{ span: 12 }}>
-							<List
-								className="nutrients"
-								size="small"
-								header={<h6>Nutrients</h6>}
-								bordered
-								dataSource={nutrientsdata}
-								renderItem={item =>
-									item && (
-										<List.Item>
-											<List.Item.Meta title={item['label']} />
-											<div className="quantity">
-												{Math.round(item['quantity'])}
-												{item['unit']}
-											</div>
-										</List.Item>
-									)
-								}
-							/>
-						</Col>
+					<Row gutter={rowSize}>
+						<Ingredient ingredient={ingredientLines} size={colSize} />
+						<Nutrient nutrient={nutrientsdata} size={colSize} />
 					</Row>
-					<div className="url">
-						<Button
-							type="primary"
-							className="directions"
-							size="large"
-							target="_blank"
-							href={url}
-						>
-							See Detail<Icon type="right" />
-						</Button>
-					</div>
+					<Direction url={url} />
 				</div>
 			</div>
 		);
 	}
 }
+
+export default Recipe;

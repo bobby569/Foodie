@@ -29,7 +29,7 @@ class HeadLine extends Component {
 							{item}
 						</Tag>
 					))}
-					<Tag color="gold">{Math.round(calories)} calories</Tag>
+					<Tag color="gold">{~~calories} calories</Tag>
 				</div>
 			</div>
 		);

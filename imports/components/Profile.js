@@ -66,6 +66,8 @@ class Profile extends TrackerReact(Component) {
 		const email = user.emails[0].address;
 		const { tags, inputValue } = this.state;
 
+		// TODO: tags empty
+
 		return (
 			<div className="user-profile">
 				<Row gutter={{ xs: 10, lg: 5 }}>
