@@ -36,7 +36,7 @@ class Recipe extends TrackerReact(Component) {
 		const colSize = { span: 12 };
 		const { ingredientLines, url, totalNutrients } = data;
 		const { CA, FE, K, MG, NA, VITC } = totalNutrients;
-		const nutrientsdata = [CA, FE, K, MG, NA, VITC];
+		const nutrientsdata = [CA, FE, K, MG, NA, VITC].filter(item => item);
 
 		return (
 			<div className="recipe-details">
