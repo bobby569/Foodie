@@ -20,10 +20,9 @@ class Recipe extends TrackerReact(Component) {
 
 	componentDidMount() {
 		const { id } = this.props.match.params;
-		const url = `${API}&r=${URI_BASE_RETR}${id}`;
-
-		axios.get(url).then(({ data }) => {
-			this.setState({ data: data[0] });
+		Meteor.callPromise('recipes.detailData', id).then(res => {
+			const api_data = JSON.parse(res.api_data);
+			this.setState({ data: api_data });
 			this.forceUpdate();
 		});
 	}

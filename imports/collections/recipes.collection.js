@@ -4,14 +4,17 @@ import SimpleSchema from 'simpl-schema';
 const RecipeSchema = new SimpleSchema({
 	viewCounts: {
 		type: Number,
-		defaultValue: 0
+		defaultValue: 1
 	},
 	likeCounts: {
 		type: Number,
 		defaultValue: 0
 	},
 	api_id: {
-		type: Number
+		type: String
+	},
+	api_data: {
+		type: String
 	}
 });
 
