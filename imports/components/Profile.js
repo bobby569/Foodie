@@ -66,7 +66,7 @@ class Profile extends TrackerReact(Component) {
 		const email = user.emails[0].address;
 		const { tags, inputValue } = this.state;
 
-		// TODO: tags empty
+		// TODO: tags does not display correctly if switching from other page
 
 		return (
 			<div className="user-profile">
@@ -85,9 +85,7 @@ class Profile extends TrackerReact(Component) {
 									tags={tags}
 									onDismiss={tag => this.handleRemove(tag)}
 								/>
-							) : (
-								<p>Loading</p>
-							)}
+							) : null}
 							<AddTags
 								value={inputValue}
 								onEnter={this.handleEnter}
