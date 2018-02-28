@@ -32,5 +32,29 @@ Meteor.methods({
 
 			return Recipes.findOne({ api_id });
 		}
+	},
+	'recipes.addLike': id => {
+		check(id, String);
+
+		Recipes.update(
+			{ _id: id },
+			{
+				$inc: {
+					likeCounts: 1
+				}
+			}
+		);
+	},
+	'recipes.cancealLike': id => {
+		check(id, String);
+
+		Recipes.update(
+			{ _id: id },
+			{
+				$inc: {
+					likeCounts: -1
+				}
+			}
+		);
 	}
 });

@@ -1,5 +1,7 @@
 {
 	"private": {
+		"MAIL_URL":
+			"smtps://guochengwei170%40gmail.com:Wgc646696!@smtp.gmail.com:465",
 		"oauth": {
 			"google": {
 				"clientId":
@@ -13,6 +15,12 @@
 		}
 	},
 	"public": {
+		"site": {
+			"name": "Foodie",
+			"contactEmail": "guochengwei170@gmail.com",
+			"domain": "http://localhost:3000",
+			"address": "West Lafayette, IN"
+		},
 		"edamam": {
 			"id": "06054e01",
 			"key": "8ac8228d49c7f57077d45d99b1ac781f",
