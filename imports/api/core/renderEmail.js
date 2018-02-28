@@ -4,7 +4,7 @@ import { check } from 'meteor/check';
 import { Email } from 'meteor/email';
 import { SSR } from 'meteor/meteorhacks:ssr';
 
-var ECEmail = {
+let ECEmail = {
 	renderTemplate: (header, tplt) => {
 		// Load the base email tamplate file
 		SSR.compileTemplate(
@@ -12,12 +12,13 @@ var ECEmail = {
 			Assets.getText('emailTemplates/_base.html')
 		);
 		// Render the template into this _base html
-		var res = SSR.render('baseEmail', {
+		const site = Meteor.settings.public.site;
+		let res = SSR.render('baseEmail', {
 			company: {
-				name: `${Meteor.settings.public.site.name}`,
-				address: `${Meteor.settings.public.site.address}`,
-				domain: `${Meteor.settings.public.site.domain}`,
-				unsubUrl: `${Meteor.settings.public.site.domain}/email/unsubscribe`
+				name: site.name,
+				address: site.address,
+				domain: site.domain,
+				unsubUrl: `${site.domain}/email/unsubscribe`
 			},
 			header: header,
 			content: tplt
@@ -28,7 +29,7 @@ var ECEmail = {
 		to,
 		from,
 		cc,
-		replayTo,
+		replyTo,
 		subject,
 		templateType,
 		templateHeader,
@@ -38,24 +39,24 @@ var ECEmail = {
 		check(to, String);
 		check(from, String);
 		check(cc, String);
-		check(replayTo, String);
+		check(replyTo, String);
 		check(subject, String);
 		check(templateType, String);
 		check(templateHeader, String);
 		check(templateData, Object);
 
 		// Check if the templateType exists, which is if the related html exists
-		var filePath = `emailTemplates/${templateType}.html`;
+		let filePath = `emailTemplates/${templateType}.html`;
 
 		// templateType cannot be null
 		if (templateType) {
 			// Load the html template file
-			SSR.compileTemplate(`${templateType}`, Assets.getText(filePath));
+			SSR.compileTemplate(templateType, Assets.getText(filePath));
 			// Render data into the template
-			var tplt = SSR.render(`${templateType}`, templateData);
+			let tplt = SSR.render(templateType, templateData);
 
 			// Render final email based on _base.html
-			var finalEmail = ECEmail.renderTemplate(tplt, templateHeader);
+			let finalEmail = ECEmail.renderTemplate(tplt, templateHeader);
 
 			Meteor.defer(() => {
 				// Send the email
@@ -66,8 +67,9 @@ var ECEmail = {
 							? from
 							: Meteor.settings.public.Company.contactEmail,
 					cc: cc && cc.length > 0 ? cc : null,
-					replayTo: replayTo && replayTo.length > 0 ? replayTo : null,
-					subject: subject && subject.length > 0 ? subject : 'Easy Case',
+					replyTo: replyTo && replyTo.length > 0 ? replyTo : null,
+					subject:
+						subject && subject.length > 0 ? subject : 'Never stop eating!',
 					html: finalEmail
 				});
 			});
