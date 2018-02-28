@@ -11,14 +11,14 @@
 	background-color: $tomato !important;
 }
 
-.login-form {
+.accounts-dialog {
+	margin-top: 40px;
 	label {
 		display: inherit;
 	}
-}
-
-.accounts-dialog {
-	margin-top: 40px;
+	input {
+		width: 100%;
+	}
 }
 
 .login-button {
