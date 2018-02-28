@@ -1,10 +1,14 @@
 # Foodie
 
-## Documentation Links
+#### Documentation Links
 
 [Here](https://github.com/bobby569/Foodie/tree/master/docs) is the link to the documentation folder
 
-## Library Reference Links
+#### Sprint 1 Code
+
+[Here](https://github.com/bobby569/Foodie/tree/sprint1) is the code by sprint 1
+
+### Library Reference Links
 
 <details>
 <summary>Package Management</summary>
@@ -26,15 +30,14 @@
 <summary>User Interface</summary>
 <ul>
 <li><a href="http://sass-lang.com/">SCSS</a></li>
-<li><a href="http://www.material-ui.com/#/">Material-UI</a></li>
 <li><a href="https://ant.design/docs/react/introduce">Ant Design</a></li>
 <li><a href="https://react-bootstrap.github.io/">React-Bootstrap</a></li>
 </ul>
 </details>
 
-## Setup
+### Setup
 
-### If you are using yarn
+#### If you are using yarn
 
 Run the following command first
 
@@ -54,7 +57,7 @@ or
 $ yarn install
 ```
 
-## Run the app
+### Run the app
 
 ```
 $ npm start
@@ -66,7 +69,7 @@ or
 $ yarn start
 ```
 
-## Run the test
+### Run the test
 
 ```
 $ npm run test
@@ -78,7 +81,7 @@ or
 $ yarn test
 ```
 
-## Run test with jest
+### Run test with jest
 
 ```
 $ yarn test:jest
