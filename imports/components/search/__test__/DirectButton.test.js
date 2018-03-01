@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
-import DirectButton from '../components/search/DirectButton';
+import DirectButton from '../DirectButton';
 
 const renderPage = jest.fn();
 

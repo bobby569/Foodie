@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Footer Footer should render 1`] = `
-<div
-  className="footer ant-layout-footer"
->
-  Foodie © 2018 Created by Foodie Team
-</div>
-`;

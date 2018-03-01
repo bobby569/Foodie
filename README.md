@@ -49,11 +49,7 @@ Then install the package. **Make Sure do this after git pull master**
 
 ```
 $ npm i
-```
 
-or
-
-```
 $ yarn install
 ```
 
@@ -61,11 +57,7 @@ $ yarn install
 
 ```
 $ npm start
-```
 
-or
-
-```
 $ yarn start
 ```
 
@@ -73,16 +65,14 @@ $ yarn start
 
 ```
 $ npm run test
-```
 
-or
-
-```
 $ yarn test
 ```
 
 ### Run test with jest
 
 ```
-$ yarn test:jest
+$ yarn jest
 ```
+
+A _coverage_ folder should be generated after running the command above. Please look at the `coverage/index.html` for details.

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
-import SearchBar from '../components/search/SearchBar';
+import SearchBar from '../SearchBar';
 
 const onSearch = jest.fn();
 
