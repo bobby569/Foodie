@@ -5,7 +5,9 @@
 		"start": "meteor run --settings private/settings.json",
 		"test":
 			"TEST_BROWSER_DRIVER=chrome meteor test --once --driver-package meteortesting:mocha --settings private/settings.json",
-		"jest": "jest --coverage"
+		"jest": "jest",
+		"jest:cover": "jest --coverage",
+		"jest:watch": "jest --watch"
 	},
 	"dependencies": {
 		"@babel/runtime": "7.0.0-beta.40",
@@ -47,7 +49,7 @@
 	},
 	"jest": {
 		"coverageReporters": ["html", "text"],
-		"setupTestFrameworkScriptFile": "<rootDir>/imports/test/config_test.js",
+		"setupTestFrameworkScriptFile": "<rootDir>/test/config_test.js",
 		"moduleNameMapper": {
 			"^meteor/(.*)": "<rootDir>/.meteorMocks/index.js"
 		},

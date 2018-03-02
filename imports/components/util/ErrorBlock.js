@@ -1,13 +1,13 @@
 import React from 'react';
 import { Icon, List } from 'antd';
 
-const data = [
+export const data = [
 	{
 		err: 'Network Error',
 		msg: 'Please check your network!'
 	},
 	{
-		err: "You didn't login",
+		err: 'You did not login',
 		msg: 'Please login!'
 	}
 ];

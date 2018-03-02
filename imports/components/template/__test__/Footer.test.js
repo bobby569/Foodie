@@ -15,6 +15,6 @@ describe('Footer', () => {
 	it('Footer has correct content', () => {
 		const expectContent = 'Foodie © 2018 Created by Foodie Team';
 		const realOutput = footer.find('.footer').html();
-		expect(realOutput.indexOf(expectContent) > -1).toBe(true);
+		expect(realOutput.includes(expectContent)).toBe(true);
 	});
 });

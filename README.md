@@ -71,8 +71,10 @@ $ yarn test
 
 ### Run test with jest
 
-```
-$ yarn jest
+```bash
+$ yarn jest # Run pure jest without any tag
+$ yarn jest:cover # Run jest with generated coverage reports
+$ yarn jest:watch # Run jest in watch mode
 ```
 
-A _coverage_ folder should be generated after running the command above. Please look at the `coverage/index.html` for details.
+A _coverage_ folder should be generated after running the second command above. Please check `coverage/index.html` for details.
