@@ -18,6 +18,6 @@ describe('Constant should be correct', () => {
 	});
 
 	it('Test URI_LEN', () => {
-		expect(URI_LEN == 51).toBe(true);
+		expect(URI_LEN === 51).toBe(true);
 	});
 });

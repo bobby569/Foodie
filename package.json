@@ -49,7 +49,7 @@
 	},
 	"jest": {
 		"coverageReporters": ["html", "text"],
-		"setupTestFrameworkScriptFile": "<rootDir>/test/config_test.js",
+		"setupTestFrameworkScriptFile": "<rootDir>/imports/test/config_test.js",
 		"moduleNameMapper": {
 			"^meteor/(.*)": "<rootDir>/.meteorMocks/index.js"
 		},
