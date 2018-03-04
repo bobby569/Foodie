@@ -21,6 +21,7 @@ class Recipe extends TrackerReact(Component) {
 	componentDidMount() {
 		const { id } = this.props.match.params;
 		Meteor.callPromise('recipes.detailData', id).then(res => {
+			console.log(res);
 			const api_data = JSON.parse(res.api_data);
 			this.setState({ data: api_data });
 			this.forceUpdate();
