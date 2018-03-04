@@ -30,26 +30,46 @@ Meteor.methods({
 			return Recipes.findOne({ api_id });
 		}
 	},
-	'recipes.addLike': id => {
-		check(id, String);
+	'recipes.addLike': (userId, api_id) => {
+		check(api_id, String);
+		check(userId, String);
 
 		Recipes.update(
-			{ _id: id },
+			{ api_id },
 			{
 				$inc: {
 					likeCounts: 1
 				}
 			}
 		);
+
+		Meteor.users.update(
+			{ _id: userId },
+			{
+				$addToSet: {
+					'profile.likedRecipes': api_id
+				}
+			}
+		);
 	},
-	'recipes.cancealLike': id => {
-		check(id, String);
+	'recipes.cancealLike': (userId, api_id) => {
+		check(api_id, String);
+		check(userId, String);
 
 		Recipes.update(
-			{ _id: id },
+			{ api_id },
 			{
 				$inc: {
 					likeCounts: -1
+				}
+			}
+		);
+
+		Meteor.users.update(
+			{ _id: userId },
+			{
+				$pull: {
+					'profile.likedRecipes': api_id
 				}
 			}
 		);
