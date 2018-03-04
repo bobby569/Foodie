@@ -37,7 +37,7 @@ Meteor.methods({
 		check(id, String);
 
 		Recipes.update(
-			{ _id: id },
+			{ api_id: id },
 			{
 				$inc: {
 					likeCounts: 1
@@ -49,7 +49,7 @@ Meteor.methods({
 		check(id, String);
 
 		Recipes.update(
-			{ _id: id },
+			{ api_id: id },
 			{
 				$inc: {
 					likeCounts: -1

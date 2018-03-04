@@ -9,12 +9,33 @@ class HeadLine extends Component {
 			if (err) {
 				message.error(err);
 			} else {
-				message.success('Recipe saved successfully');
+				message.success('Recipe saved successfully!');
 			}
 		});
 	}
 
-	likeRecipe() {}
+	likeRecipe() {
+		const recipeId = this.props.id;
+		Meteor.call('recipes.addLike', recipeId, (err, res) => {
+			console.log(res);
+			if (err) {
+				message.error(err);
+			} else {
+				message.success('Liked!');
+			}
+		});
+	}
+
+	cancelLike() {
+		const recipeId = this.props.id;
+		Meteor.call('recipes.cancelLike', recipeId, (err, res) => {
+			if (err) {
+				message.error(err);
+			} else {
+				message.success('Unliked!');
+			}
+		});
+	}
 
 	render() {
 		const {
@@ -45,7 +66,13 @@ class HeadLine extends Component {
 					<Tag color="gold">{~~calories} calories</Tag>
 				</div>
 				<div className="likes">
-					<Icon type="heart-o" className="heart" />
+					<Button
+						className="like"
+						onClick={this.likeRecipe.bind(this)}
+						ghost={true}
+					>
+						<Icon type="heart-o" className="heart" />
+					</Button>
 					<Button
 						className="save"
 						onClick={this.saveRecipe.bind(this)}
