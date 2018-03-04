@@ -26,8 +26,8 @@ class FoodieHeader extends Component {
 						<Menu.Item key="search">
 							<Link to="/search">Search</Link>
 						</Menu.Item>
-						<Menu.Item key="recipe">
-							<Link to="/recipe">Recipe</Link>
+						<Menu.Item key="saved">
+							<Link to="/saved">Saved Recipes</Link>
 						</Menu.Item>
 						<Menu.Item key="logout">
 							<Blaze template="loginButtons" align="right" />

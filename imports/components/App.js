@@ -5,6 +5,7 @@ import Home from './Home';
 import Recipe from './Recipe';
 import Search from './Search';
 import Profile from './Profile';
+import Saved from './Saved';
 
 export default class App extends Component {
 	render() {
@@ -16,6 +17,7 @@ export default class App extends Component {
 							<Route exact path="/profile" component={Profile} />
 							<Route exact path="/search" component={Search} />
 							<Route exact path="/recipe/:id" component={Recipe} />
+							<Route exact path="/saved" component={Saved} />
 							<Redirect to="/search" />
 						</Switch>
 					</Layout>
