@@ -1,9 +1,17 @@
 import { Meteor } from 'meteor/meteor';
 import '../imports/startup/service-config';
 import '../imports/components/upload/upload';
+import '../imports/startup/server';
 import '../imports/collections';
+import '../imports/api';
 
 Meteor.startup(() => {
+	/**
+	 * Set up Email in dev mode
+	 */
+	if (Meteor.isDevelopment)
+		process.env.MAIL_URL = Meteor.settings.private.MAIL_URL;
+
 	/**
 	 * Set up account services
 	 */

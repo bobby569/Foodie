@@ -1,14 +1,14 @@
 import React from 'react';
 import { Icon, List } from 'antd';
 
-const data = [
+export const data = [
 	{
 		err: 'Network Error',
-		todo: 'Please check your network!'
+		msg: 'Please check your network!'
 	},
 	{
-		err: "You didn't login",
-		todo: 'Please login!'
+		err: 'You did not login',
+		msg: 'Please login!'
 	}
 ];
 
@@ -24,7 +24,7 @@ export default () => (
 			dataSource={data}
 			renderItem={item => (
 				<List.Item>
-					{item.err} | {item.todo}
+					{item.err} | {item.msg}
 				</List.Item>
 			)}
 		/>

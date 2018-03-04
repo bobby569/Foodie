@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
-import RecipeTable from '../components/search/RecipeTable';
+import RecipeTable from '../RecipeTable';
 
 describe('RecipeTable', () => {
 	const data = [];

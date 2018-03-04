@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
-import FilterGroup from '../components/search/FilterGroup';
+import FilterGroup from '../FilterGroup';
 
 const onDietChange = jest.fn();
 const onHealthChange = jest.fn();

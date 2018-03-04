@@ -15,11 +15,13 @@
 }
 
 .info h3 {
+	font: {
+		family: 'Comic Sans MS', cursive, sans-serif;
+		weight: bold;
+		size: 65px;
+	}
 	opacity: 1;
-	font-family: 'Comic Sans MS', cursive, sans-serif;
 	line-height: 1em;
-	font-weight: bold;
-	font-size: 65px;
 	color: $red;
 	position: absolute;
 	float: left;

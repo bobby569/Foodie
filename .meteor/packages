@@ -39,3 +39,6 @@ cfs:filesystem
 cfs:graphicsmagick
 ultimatejs:tracker-react
 practicalmeteor:chai
+http
+deanius:promise
+meteorhacks:ssr

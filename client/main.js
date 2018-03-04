@@ -4,8 +4,9 @@ import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 import App from '../imports/components/App';
-import '../imports/components/upload/upload.js';
-import '../imports/collections/index.js';
+import '../imports/components/upload/upload';
+import '../imports/collections';
+import '../imports/startup/client';
 
 Meteor.startup(() => {
 	Tracker.autorun(() => {

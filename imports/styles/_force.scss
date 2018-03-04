@@ -1,4 +1,13 @@
 // Enforcement for the class defined by other library
+.ant-btn-primary {
+	background-color: $tomato !important;
+	border-color: $tomato !important;
+}
+
+.ant-btn-background-ghost {
+	color: $tomato !important;
+}
+
 .ant-menu-horizontal {
 	border: none !important;
 }
