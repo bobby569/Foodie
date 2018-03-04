@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Tag } from 'antd';
+import { Tag, Icon } from 'antd';
 
 class HeadLine extends Component {
 	render() {
@@ -30,6 +30,12 @@ class HeadLine extends Component {
 						</Tag>
 					))}
 					<Tag color="gold">{~~calories} calories</Tag>
+				</div>
+				<div className="likes">
+					<Icon type="heart-o" className="heart" />
+					<Icon type="save" className="save" />
+					<Icon type="eye" className="view" />
+					100 views
 				</div>
 			</div>
 		);

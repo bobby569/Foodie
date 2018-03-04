@@ -34,6 +34,21 @@
 		.tags {
 			margin-top: 10px;
 		}
+
+		.likes {
+			margin: 10px 0px;
+			font-size: 20px;
+			i {
+				margin-right: 10px;
+			}
+
+			.heart {
+				color: red;
+			}
+			.save {
+				color: orange;
+			}
+		}
 	}
 
 	.lower {
