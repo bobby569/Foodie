@@ -9,17 +9,14 @@ Meteor.methods({
 		const res = Recipes.find({ api_id }).fetch();
 		if (res.length === 0) {
 			const url = `${API}&r=${URI_BASE_RETR}${api_id}`;
-			HTTP.get(url, (err, res) => {
-				if (!err) {
-					const tmp = JSON.stringify(res.data[0]);
-					Recipes.insert({
-						api_id,
-						api_data: tmp
-					});
-
-					return Recipes.findOne({ api_id });
-				}
+			const res = HTTP.get(url);
+			const tmp = JSON.stringify(res.data[0]);
+			Recipes.insert({
+				api_id,
+				api_data: tmp
 			});
+
+			return Recipes.findOne({ api_id });
 		} else {
 			Recipes.update(
 				{ api_id },
@@ -33,26 +30,46 @@ Meteor.methods({
 			return Recipes.findOne({ api_id });
 		}
 	},
-	'recipes.addLike': id => {
-		check(id, String);
+	'recipes.addLike': (userId, api_id) => {
+		check(api_id, String);
+		check(userId, String);
 
 		Recipes.update(
-			{ _id: id },
+			{ api_id },
 			{
 				$inc: {
 					likeCounts: 1
 				}
 			}
 		);
+
+		Meteor.users.update(
+			{ _id: userId },
+			{
+				$addToSet: {
+					'profile.likedRecipes': api_id
+				}
+			}
+		);
 	},
-	'recipes.cancealLike': id => {
-		check(id, String);
+	'recipes.cancealLike': (userId, api_id) => {
+		check(api_id, String);
+		check(userId, String);
 
 		Recipes.update(
-			{ _id: id },
+			{ api_id },
 			{
 				$inc: {
 					likeCounts: -1
+				}
+			}
+		);
+
+		Meteor.users.update(
+			{ _id: userId },
+			{
+				$pull: {
+					'profile.likedRecipes': api_id
 				}
 			}
 		);
