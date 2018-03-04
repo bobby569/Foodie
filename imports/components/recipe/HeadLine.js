@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Tag, Icon } from 'antd';
+import { Tag, Icon, Button, message } from 'antd';
 
 class HeadLine extends Component {
+	saveRecipe() {
+		const recipeId = this.props.id;
+		Meteor.call('users.saveRecipe', Meteor.userId(), recipeId, (err, res) => {
+			if (err) {
+				message.error(err);
+			} else {
+				message.success('Recipe saved successfully');
+			}
+		});
+	}
+
+	likeRecipe() {}
+
 	render() {
 		const {
 			label,
@@ -33,9 +46,15 @@ class HeadLine extends Component {
 				</div>
 				<div className="likes">
 					<Icon type="heart-o" className="heart" />
-					<Icon type="save" className="save" />
+					<Button
+						className="save"
+						onClick={this.saveRecipe.bind(this)}
+						ghost={true}
+					>
+						<Icon type="save" />
+					</Button>
 					<Icon type="eye" className="view" />
-					100 views
+					{this.props.views} views
 				</div>
 			</div>
 		);
@@ -43,7 +62,9 @@ class HeadLine extends Component {
 }
 
 HeadLine.propTypes = {
-	data: PropTypes.object.isRequired
+	data: PropTypes.object.isRequired,
+	id: PropTypes.string.isRequired,
+	views: PropTypes.number.isRequired
 };
 
 export default HeadLine;

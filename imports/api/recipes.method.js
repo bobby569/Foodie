@@ -45,7 +45,7 @@ Meteor.methods({
 			}
 		);
 	},
-	'recipes.cancealLike': id => {
+	'recipes.cancelLike': id => {
 		check(id, String);
 
 		Recipes.update(
