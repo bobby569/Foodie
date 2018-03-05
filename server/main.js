@@ -6,16 +6,14 @@ import '../imports/collections';
 import '../imports/api';
 
 Meteor.startup(() => {
+	const { oauth, MAIL_URL } = Meteor.settings.private;
 	/**
 	 * Set up Email in dev mode
 	 */
-	if (Meteor.isDevelopment)
-		process.env.MAIL_URL = Meteor.settings.private.MAIL_URL;
-
+	if (Meteor.isDevelopment) process.env.MAIL_URL = MAIL_URL;
 	/**
 	 * Set up account services
 	 */
-	const { oauth } = Meteor.settings.private;
 	const facebookConfig = oauth.facebook;
 	const googleConfig = oauth.google;
 

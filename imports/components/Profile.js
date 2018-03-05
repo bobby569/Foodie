@@ -7,9 +7,6 @@ import EmailAction from './profile/EmailAction';
 import AddTags from './profile/AddTags';
 import TagGroup from './profile/TagGroup';
 
-// API used to detect whether input is food
-const WORD_API = 'https://www.wordsapi.com/docs';
-
 class Profile extends TrackerReact(Component) {
 	constructor(props) {
 		super(props);
@@ -21,6 +18,12 @@ class Profile extends TrackerReact(Component) {
 		this.handleEnter = this.handleEnter.bind(this);
 		this.handleAdd = this.handleAdd.bind(this);
 		this.handleRemove = this.handleRemove.bind(this);
+	}
+
+	componentDidMount() {
+		const { user } = this.props;
+		if (!user) return;
+		this.setState({ tags: user.profile.ingredients });
 	}
 
 	componentWillReceiveProps(nextProps) {

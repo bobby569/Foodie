@@ -4,13 +4,13 @@ Accounts.config({
 });
 
 // Email settings
-const site = Meteor.settings.public.site;
-Accounts.emailTemplates.siteName = site.name;
-Accounts.emailTemplates.from = `${site.name} <${site.contactEmail}>`;
+const { name, contactEmail } = Meteor.settings.public.site;
+Accounts.emailTemplates.siteName = name;
+Accounts.emailTemplates.from = `${name} <${contactEmail}>`;
 
 Accounts.emailTemplates.enrollAccount = {
 	subject(user) {
-		return `Welcome to ${site.name}`;
+		return `Welcome to ${name}`;
 	},
 	html(user, url) {
 		var ECEmail = require('../api/core/renderEmail');
@@ -20,7 +20,7 @@ Accounts.emailTemplates.enrollAccount = {
             <p>To activate your account, follow this link: ${url}</p>
 		`;
 
-		const header = `Welcome to ${site.name}`;
+		const header = `Welcome to ${name}`;
 		return ECEmail.renderTemplate(header, tplt);
 	}
 };
