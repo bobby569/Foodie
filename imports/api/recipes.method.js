@@ -52,7 +52,7 @@ Meteor.methods({
 			}
 		);
 	},
-	'recipes.cancealLike': (userId, api_id) => {
+	'recipes.cancelLike': (userId, api_id) => {
 		check(api_id, String);
 		check(userId, String);
 

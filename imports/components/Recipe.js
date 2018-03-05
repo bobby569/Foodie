@@ -14,21 +14,23 @@ class Recipe extends TrackerReact(Component) {
 
 		this.state = {
 			id: 0,
-			data: null
+			data: null,
+			views: 0
 		};
 	}
 
 	componentDidMount() {
 		const { id } = this.props.match.params;
+		this.setState({ id });
 		Meteor.callPromise('recipes.detailData', id).then(res => {
 			const api_data = JSON.parse(res.api_data);
-			this.setState({ data: api_data });
+			this.setState({ data: api_data, views: res.viewCounts });
 			this.forceUpdate();
 		});
 	}
 
 	render() {
-		const { data } = this.state;
+		const { data, id, views } = this.state;
 		if (!data) return <div>Loading</div>;
 
 		const rowSize = { xs: 10, lg: 5 };
@@ -39,7 +41,7 @@ class Recipe extends TrackerReact(Component) {
 
 		return (
 			<div className="recipe-details">
-				<HeadLine data={data} />
+				<HeadLine data={data} id={id} views={views} />
 				<Divider>More about the recipe</Divider>
 				<div className="lower">
 					<Row gutter={rowSize}>
