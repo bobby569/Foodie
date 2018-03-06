@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Table, Tag } from 'antd';
 
-const style = { fontSize: 9 };
+const style = { fontSize: 10 };
 
 export const columns = [
 	{
