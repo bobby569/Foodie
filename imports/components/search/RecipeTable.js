@@ -3,12 +3,16 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Table, Tag } from 'antd';
 
-const columns = [
+const style = { fontSize: 9 };
+
+export const columns = [
 	{
 		title: 'Dish Name',
 		dataIndex: 'label',
 		key: 'label',
-		render: (text, record) => <Link to={`/recipe/${record.id}`}>{text}</Link>
+		render: (text, record) => (
+			<Link to={`/recipe/${record.api_id}`}>{text}</Link>
+		)
 	},
 	{
 		title: 'Calories',
@@ -23,7 +27,7 @@ const columns = [
 		key: 'healthLabels',
 		render: text =>
 			text.map(item => (
-				<Tag key={item} color="green">
+				<Tag style={style} key={item} color="green">
 					{item}
 				</Tag>
 			))
@@ -34,7 +38,7 @@ const columns = [
 		key: 'dietLabels',
 		render: text =>
 			text.map(item => (
-				<Tag key={item} color="green">
+				<Tag style={style} key={item} color="green">
 					{item}
 				</Tag>
 			))
@@ -43,13 +47,14 @@ const columns = [
 
 class RecipeTable extends Component {
 	render() {
-		const { data } = this.props;
+		const { data, customColumns } = this.props;
+
 		return (
 			<div className="table">
 				<Table
-					columns={columns}
+					columns={customColumns || columns}
 					dataSource={data}
-					rowKey={record => record.id}
+					rowKey={record => record.api_id}
 					pagination={false}
 					bordered
 				/>
@@ -59,7 +64,8 @@ class RecipeTable extends Component {
 }
 
 RecipeTable.propTypes = {
-	data: PropTypes.array.isRequired
+	data: PropTypes.array.isRequired,
+	customColumns: PropTypes.array
 };
 
 export default RecipeTable;

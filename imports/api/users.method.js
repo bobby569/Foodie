@@ -19,7 +19,8 @@ Meteor.methods({
 		const saved = user.profile.savedRecipes;
 		return saved.map(api_id => {
 			const recipe = Recipes.findOne({ api_id });
-			return JSON.parse(recipe.api_data);
+			const { viewCounts, likeCounts } = recipe;
+			return { ...JSON.parse(recipe.api_data), viewCounts, likeCounts };
 		});
 	}
 });

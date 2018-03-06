@@ -34,7 +34,9 @@ class DIYSearch extends Component {
 	setRecipe(hits) {
 		const { recipes, index } = this.state;
 		let newRecipe = hits.map(item => item.recipe);
-		_.each(newRecipe, item => _.extend(item, { id: item.uri.substr(URI_LEN) }));
+		_.each(newRecipe, item =>
+			_.extend(item, { api_id: item.uri.substr(URI_LEN) })
+		);
 		this.setState({
 			recipes: Array.from(new Set([...recipes, ...newRecipe])),
 			index: index + 5
