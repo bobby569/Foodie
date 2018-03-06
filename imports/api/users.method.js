@@ -22,6 +22,10 @@ Meteor.methods({
 		const recipeArr = [];
 		saved.forEach(api_id => {
 			let recipe = Recipes.findOne({ api_id });
+			if (!recipe) {
+				// something went wrong
+				return null;
+			}
 			let api_data = JSON.parse(recipe.api_data);
 			recipeArr.push(api_data);
 		});
