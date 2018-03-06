@@ -7,6 +7,7 @@ import HeadLine from './recipe/HeadLine';
 import Ingredient from './recipe/Ingredient';
 import Nutrient from './recipe/Nutrient';
 import Direction from './recipe/Direction';
+import Blaze from 'meteor/gadicc:blaze-react-component';
 
 class Recipe extends TrackerReact(Component) {
 	constructor(props) {
@@ -15,7 +16,8 @@ class Recipe extends TrackerReact(Component) {
 		this.state = {
 			id: 0,
 			data: null,
-			views: 0
+			views: 0,
+			doc_id: null
 		};
 	}
 
@@ -24,13 +26,13 @@ class Recipe extends TrackerReact(Component) {
 		this.setState({ id });
 		Meteor.callPromise('recipes.detailData', id).then(res => {
 			const api_data = JSON.parse(res.api_data);
-			this.setState({ data: api_data, views: res.viewCounts });
+			this.setState({ data: api_data, views: res.viewCounts, doc_id: res._id });
 			this.forceUpdate();
 		});
 	}
 
 	render() {
-		const { data, id, views } = this.state;
+		const { data, id, views, doc_id } = this.state;
 		if (!data) return <div>Loading</div>;
 
 		const rowSize = { xs: 10, lg: 5 };
@@ -49,6 +51,9 @@ class Recipe extends TrackerReact(Component) {
 						<Nutrient nutrient={nutrientsdata} size={colSize} />
 					</Row>
 					<Direction url={url} />
+					<div className="comment-section">
+						<Blaze template="commentsBox" id={doc_id} />
+					</div>
 				</div>
 			</div>
 		);

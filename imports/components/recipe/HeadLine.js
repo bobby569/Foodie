@@ -15,8 +15,9 @@ class HeadLine extends Component {
 	}
 
 	likeRecipe() {
+		const userId = Meteor.userId();
 		const recipeId = this.props.id;
-		Meteor.call('recipes.addLike', recipeId, (err, res) => {
+		Meteor.call('recipes.addLike', userId, recipeId, (err, res) => {
 			console.log(res);
 			if (err) {
 				message.error(err);
@@ -27,8 +28,9 @@ class HeadLine extends Component {
 	}
 
 	cancelLike() {
+		const userId = Meteor.userId();
 		const recipeId = this.props.id;
-		Meteor.call('recipes.cancelLike', recipeId, (err, res) => {
+		Meteor.call('recipes.cancelLike', userId, recipeId, (err, res) => {
 			if (err) {
 				message.error(err);
 			} else {

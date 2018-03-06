@@ -9,6 +9,9 @@ import '../imports/collections';
 import '../imports/startup/client';
 
 Meteor.startup(() => {
+	Comments.ui.config({
+		template: 'bootstrap' // or ionic, semantic-ui
+	});
 	Tracker.autorun(() => {
 		ReactDOM.render(<App />, document.getElementById('app'));
 	});
