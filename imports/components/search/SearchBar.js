@@ -8,7 +8,7 @@ class SearchBar extends Component {
 		return (
 			<div className="search">
 				<Search
-					placeholder="Search support by Edamam"
+					placeholder="Search supported by Edamam"
 					onSearch={val => this.props.onSearch(val.trim())}
 					enterButton
 				/>

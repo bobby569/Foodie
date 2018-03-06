@@ -5,9 +5,9 @@
 		"start": "meteor run --settings private/settings.json",
 		"test":
 			"TEST_BROWSER_DRIVER=chrome meteor test --once --driver-package meteortesting:mocha --settings private/settings.json",
-		"jest": "jest",
-		"jest:cover": "jest --coverage",
-		"jest:watch": "jest --watch"
+		"jest": "jest --updateSnapshot",
+		"jest:cover": "yarn jest --coverage",
+		"jest:watch": "yarn jest --watch"
 	},
 	"dependencies": {
 		"@babel/runtime": "7.0.0-beta.40",
@@ -48,6 +48,7 @@
 		"selenium-webdriver": "3.0.0-beta-2"
 	},
 	"jest": {
+		"testPathIgnorePatterns": ["<rootDir>/imports/components/template/"],
 		"coverageReporters": ["html", "text"],
 		"setupTestFrameworkScriptFile": "<rootDir>/imports/test/config_test.js",
 		"moduleNameMapper": {

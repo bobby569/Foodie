@@ -14,7 +14,8 @@ const columns = [
 		title: 'Calories',
 		dataIndex: 'calories',
 		key: 'calories',
-		render: text => ~~text
+		render: text => ~~text,
+		sorter: (a, b) => ~~b.calories - ~~a.calories
 	},
 	{
 		title: 'Health',

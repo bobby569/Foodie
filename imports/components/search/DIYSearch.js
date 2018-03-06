@@ -5,7 +5,6 @@ import { Button } from 'antd';
 import { API, URI_LEN } from '../util/constant';
 import ErrorBlock from '../util/ErrorBlock';
 import RecipeTable from './RecipeTable';
-import TagGroup from '../profile/TagGroup';
 
 class DIYSearch extends Component {
 	constructor(props) {
@@ -36,7 +35,10 @@ class DIYSearch extends Component {
 		const { recipes, index } = this.state;
 		let newRecipe = hits.map(item => item.recipe);
 		_.each(newRecipe, item => _.extend(item, { id: item.uri.substr(URI_LEN) }));
-		this.setState({ recipes: [...recipes, ...newRecipe], index: index + 5 });
+		this.setState({
+			recipes: Array.from(new Set([...recipes, ...newRecipe])),
+			index: index + 5
+		});
 	}
 
 	render() {
@@ -45,13 +47,13 @@ class DIYSearch extends Component {
 
 		return (
 			<div>
-				{/*<TagGroup />*/}
 				{err ? <ErrorBlock /> : <RecipeTable data={recipes} />}
-				{!err && (
-					<div className="div-center">
-						<Button onClick={() => this.getRecipe(index + 5)}>More</Button>
-					</div>
-				)}
+				{!err &&
+					recipes.length > 0 && (
+						<div className="div-center">
+							<Button onClick={() => this.getRecipe(index + 5)}>More</Button>
+						</div>
+					)}
 			</div>
 		);
 	}

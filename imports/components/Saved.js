@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Table, Tag } from 'antd';
 import RecipeTable from './search/RecipeTable.js';
 
 export default class Saved extends Component {
@@ -9,10 +8,9 @@ export default class Saved extends Component {
 		this.state = {
 			data: null
 		};
-		this.getRecipeData();
 	}
 
-	getRecipeData() {
+	componentDidMount() {
 		Meteor.callPromise('users.getSavedRecipe', Meteor.userId()).then(data => {
 			this.setState({ data });
 			this.forceUpdate();
@@ -22,6 +20,8 @@ export default class Saved extends Component {
 	render() {
 		const { data } = this.state;
 		if (!data) return <div> Loading </div>;
+
+		console.log(data);
 
 		return (
 			<div className="table">
