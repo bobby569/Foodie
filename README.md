@@ -72,7 +72,7 @@ $ yarn test
 ### Run test with jest
 
 ```bash
-$ yarn jest # Run pure jest without any tag
+$ yarn jest # Run pure jest without any flag
 $ yarn jest:cover # Run jest with generated coverage reports
 $ yarn jest:watch # Run jest in watch mode
 ```

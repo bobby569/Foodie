@@ -10,6 +10,7 @@ class Ingredient extends TrackerReact(Component) {
 
 		this.checkExist = this.checkExist.bind(this);
 	}
+
 	checkExist(owns, ingredient) {
 		if (!Array.isArray(owns)) return false;
 
@@ -19,6 +20,7 @@ class Ingredient extends TrackerReact(Component) {
 		});
 		return res;
 	}
+
 	render() {
 		const { ingredient, size, user } = this.props;
 

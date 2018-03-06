@@ -25,8 +25,14 @@ class LibrarySearch extends Component {
 	setRecipe(hits) {
 		const { recipes, index } = this.state;
 		let newRecipe = hits.map(item => item.recipe);
-		_.each(newRecipe, item => _.extend(item, { id: item.uri.substr(URI_LEN) }));
-		this.setState({ recipes: [...recipes, ...newRecipe], index: index + 5 });
+		_.each(newRecipe, item =>
+			_.extend(item, { api_id: item.uri.substr(URI_LEN) })
+		);
+		this.setState({
+			recipes: Array.from(new Set([...recipes, ...newRecipe])),
+			index: index + 5,
+			err: null
+		});
 	}
 
 	getRecipe(searchTerm, index = 0) {
@@ -35,6 +41,7 @@ class LibrarySearch extends Component {
 		if (diet.length > 5) url += `&diet=${diet}`;
 		if (health.length > 5) url += `&health=${health}`;
 		url += `&from=${index}&to=${index + 5}`;
+		console.log(url);
 		axios
 			.get(url)
 			.then(res => this.setRecipe(res.data.hits))
@@ -57,13 +64,14 @@ class LibrarySearch extends Component {
 					onHealthChange={health => this.setState({ health })}
 				/>
 				{err ? <ErrorBlock /> : <RecipeTable data={recipes} />}
-				{!err && (
-					<div className="div-center">
-						<Button onClick={() => this.getRecipe(searchTerm, index + 5)}>
-							More
-						</Button>
-					</div>
-				)}
+				{!err &&
+					recipes.length > 0 && (
+						<div className="div-center">
+							<Button onClick={() => this.getRecipe(searchTerm, index + 5)}>
+								More
+							</Button>
+						</div>
+					)}
 			</div>
 		);
 	}

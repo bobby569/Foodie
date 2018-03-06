@@ -10,10 +10,10 @@ Meteor.methods({
 		if (res.length === 0) {
 			const url = `${API}&r=${URI_BASE_RETR}${api_id}`;
 			const res = HTTP.get(url);
-			const tmp = JSON.stringify(res.data[0]);
+			const api_data = JSON.stringify(res.data[0]);
 			Recipes.insert({
 				api_id,
-				api_data: tmp
+				api_data
 			});
 
 			return Recipes.findOne({ api_id });

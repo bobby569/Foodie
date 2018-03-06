@@ -1,6 +1,21 @@
 import React, { Component } from 'react';
-import { Table, Tag } from 'antd';
-import RecipeTable from './search/RecipeTable.js';
+import RecipeTable, { columns } from './search/RecipeTable.js';
+
+const newColumn = [
+	...columns,
+	{
+		title: 'Likes',
+		dataIndex: 'likeCounts',
+		key: 'likeCounts',
+		sorter: (a, b) => ~~b.likeCounts - ~~a.likeCounts
+	},
+	{
+		title: 'Views',
+		dataIndex: 'viewCounts',
+		key: 'viewCounts',
+		sorter: (a, b) => ~~b.viewCounts - ~~a.viewCounts
+	}
+];
 
 export default class Saved extends Component {
 	constructor(props) {
@@ -9,10 +24,9 @@ export default class Saved extends Component {
 		this.state = {
 			data: null
 		};
-		this.getRecipeData();
 	}
 
-	getRecipeData() {
+	componentDidMount() {
 		Meteor.callPromise('users.getSavedRecipe', Meteor.userId()).then(data => {
 			this.setState({ data });
 			this.forceUpdate();
@@ -23,10 +37,6 @@ export default class Saved extends Component {
 		const { data } = this.state;
 		if (!data) return <div> Loading </div>;
 
-		return (
-			<div className="table">
-				<RecipeTable data={data} />
-			</div>
-		);
+		return <RecipeTable data={data} customColumns={newColumn} />;
 	}
 }
