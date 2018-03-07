@@ -13,8 +13,7 @@ class RecipeStatus extends Component {
 
 	likeRecipe() {
 		const recipeId = this.props.id;
-		Meteor.call('recipes.addLike', recipeId, (err, res) => {
-			console.log(res);
+		Meteor.call('recipes.addLike', Meteor.userId(), recipeId, (err, res) => {
 			if (err) return message.error(err);
 			message.success('Liked!');
 		});
@@ -22,20 +21,33 @@ class RecipeStatus extends Component {
 
 	cancelLike() {
 		const recipeId = this.props.id;
-		Meteor.call('recipes.cancelLike', recipeId, (err, res) => {
+		Meteor.call('recipes.cancelLike', Meteor.userId(), recipeId, (err, res) => {
 			if (err) return message.error(err);
 			message.success('Unliked!');
 		});
 	}
 
+	hasLike() {
+		const likes = this.props.likes;
+		return likes.includes(Meteor.userId());
+	}
+
 	render() {
 		return (
 			<div className="status">
-				<Icon
-					type="heart-o"
-					className="icon like"
-					onClick={this.likeRecipe.bind(this)}
-				/>
+				{this.hasLike() ? (
+					<Icon
+						type="heart"
+						className="icon like"
+						onClick={this.cancelLike.bind(this)}
+					/>
+				) : (
+					<Icon
+						type="heart-o"
+						className="icon like"
+						onClick={this.likeRecipe.bind(this)}
+					/>
+				)}
 				<Icon
 					type="save"
 					className="icon save"
@@ -50,7 +62,8 @@ class RecipeStatus extends Component {
 
 RecipeStatus.propTypes = {
 	id: PropTypes.string.isRequired,
-	views: PropTypes.number.isRequired
+	views: PropTypes.number.isRequired,
+	likes: PropTypes.array.isRequired
 };
 
 export default RecipeStatus;

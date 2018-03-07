@@ -11,6 +11,8 @@ class HeadLine extends Component {
 			data: { label, image, source, healthLabels, dietLabels, calories }
 		} = this.props;
 
+		const { likes } = this.props;
+
 		return (
 			<div className="upper">
 				<div className="label">{label}</div>
@@ -29,7 +31,7 @@ class HeadLine extends Component {
 					))}
 					<Tag color="gold">{~~calories} calories</Tag>
 				</div>
-				<RecipeStatus id={id} views={views} />
+				<RecipeStatus id={id} views={views} likes={likes} />
 			</div>
 		);
 	}
@@ -38,7 +40,8 @@ class HeadLine extends Component {
 HeadLine.propTypes = {
 	data: PropTypes.object.isRequired,
 	id: PropTypes.string.isRequired,
-	views: PropTypes.number.isRequired
+	views: PropTypes.number.isRequired,
+	likes: PropTypes.array.isRequired
 };
 
 export default HeadLine;

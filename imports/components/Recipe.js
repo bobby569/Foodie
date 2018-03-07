@@ -15,7 +15,8 @@ class Recipe extends TrackerReact(Component) {
 		this.state = {
 			id: 0,
 			data: null,
-			views: 0
+			views: 0,
+			likes: []
 		};
 	}
 
@@ -24,13 +25,17 @@ class Recipe extends TrackerReact(Component) {
 		this.setState({ id });
 		Meteor.callPromise('recipes.detailData', id).then(res => {
 			const data = JSON.parse(res.api_data);
-			this.setState({ data, views: res.viewCounts });
+			this.setState({
+				data,
+				views: res.viewCounts,
+				likes: res.likes
+			});
 			this.forceUpdate();
 		});
 	}
 
 	render() {
-		const { data, id, views } = this.state;
+		const { data, id, views, likes } = this.state;
 		if (!data) return <div>Loading</div>;
 
 		const rowSize = { xs: 10, lg: 5 };
