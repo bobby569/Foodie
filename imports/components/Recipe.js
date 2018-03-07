@@ -26,7 +26,7 @@ class Recipe extends TrackerReact(Component) {
 		this.setState({ id });
 		Meteor.callPromise('recipes.detailData', id).then(res => {
 			const data = JSON.parse(res.api_data);
-			this.setState({ data, views: res.viewCounts });
+			this.setState({ data, views: res.viewCounts, doc_id: res._id });
 			this.forceUpdate();
 		});
 	}

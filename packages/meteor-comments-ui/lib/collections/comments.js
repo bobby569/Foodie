@@ -80,6 +80,7 @@ function getCommonCommentSchema(additionalSchemaConfig = {}) {
 			},
 			optional: true
 		},
+		'replies.$': { type: Object },
 		likes: { ...likeableConfig },
 		'likes.$': { type: String },
 		dislikes: { ...likeableConfig },

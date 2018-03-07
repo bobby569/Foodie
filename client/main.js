@@ -10,7 +10,10 @@ import '../imports/startup/client';
 
 Meteor.startup(() => {
 	Comments.ui.config({
-		template: 'bootstrap' // or ionic, semantic-ui
+		template: 'bootstrap', // or ionic, semantic-ui
+		generateAvatar: (user, isAnonymous) => {
+			return user.profile.avatar;
+		}
 	});
 	Tracker.autorun(() => {
 		ReactDOM.render(<App />, document.getElementById('app'));
