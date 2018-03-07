@@ -67,6 +67,33 @@
 				text-align: right;
 			}
 		}
+
+		.comment-section {
+			font-size: 20px;
+			.btn-primary {
+				background-color: tomato;
+				border: none;
+			}
+			.media-left {
+				width: 50px;
+			}
+			.media-heading {
+				display: inline-block;
+				margin-left: 10px;
+				font-size: 15px;
+			}
+			.content {
+				margin-top: 5px;
+				margin-bottom: 0px;
+				font-size: 15px;
+			}
+			.comment-content {
+				margin: 0px;
+			}
+			.actions .btn-group .btn-group-xs {
+				font-size: 15px;
+			}
+		}
 	}
 
 	.url {

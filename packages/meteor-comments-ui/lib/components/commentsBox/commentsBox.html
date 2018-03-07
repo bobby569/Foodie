@@ -1,0 +1,78 @@
+<template name="commentsBox">
+  {{! We have not found any good way to include templates with the same context
+  even when using Template.dynamic }}
+
+  {{#if customBoxTemplate }}
+      {{> customBoxTemplate }}
+    {{else}}
+    <div class="comments-box">
+      {{#if templateIs 'bootstrap' }}
+        {{#if customHeaderTemplate}}
+          {{> customHeaderTemplate}}
+        {{else}}
+          <h3>{{commentsBoxTitle}}</h3>
+        {{/if}}
+
+        {{> commentsSubheader}}
+
+        {{#if sessionGet 'loginAction'}}
+          <div class="alert alert-warning" role="alert">{{youNeedToLogin}}</div>
+        {{/if}}
+
+        {{#if sessionGet 'commentError'}}
+          <div class="alert alert-error">{{commentErrorMessage}}</div>
+        {{/if}}
+
+        {{> textarea}}
+
+        {{> commentsList}}
+      {{/if}}
+
+      {{#if templateIs 'semantic-ui' }}
+        <div class="ui comments">
+          {{#if customHeaderTemplate}}
+            {{> customHeaderTemplate}}
+          {{else}}
+            <h3 class="ui header">{{commentsBoxTitle}}</h3>
+          {{/if}}
+
+          {{> commentsSubheader}}
+
+          {{#if sessionGet 'loginAction'}}
+            <div class="ui warning message">{{youNeedToLogin}}</div>
+          {{/if}}
+
+          {{#if sessionGet 'commentError'}}
+          <div class="ui error message">{{commentErrorMessage}}</div>
+          {{/if}}
+
+          {{> textarea }}
+
+          {{> commentsList}}
+        </div>
+      {{/if}}
+
+      {{#if templateIs 'ionic' }}
+        {{#if customHeaderTemplate}}
+          {{> customHeaderTemplate}}
+        {{else}}
+          <h3>{{commentsBoxTitle}}</h3>
+      {{/if}}
+
+      {{> commentsSubheader}}
+
+      {{#if sessionGet 'loginAction'}}
+        <div class="bar bar-header bar-assertive">{{youNeedToLogin}}</div>
+      {{/if}}
+
+      {{#if sessionGet 'commentError'}}
+        <div class="bar bar-header bar-assertive">{{commentErrorMessage}}</div>
+      {{/if}}
+
+      {{> textarea}}
+
+      {{> commentsList}}
+    {{/if}}
+  </div>
+  {{/if}}
+</template>
