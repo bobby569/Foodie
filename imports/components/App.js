@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Layout from './template/Layout';
 import Home from './Home';
-import Recipe from './Recipe';
-import Search from './Search';
 import Profile from './Profile';
+import Search from './Search';
 import Saved from './Saved';
+import Recipe from './Recipe';
 
 export default class App extends Component {
 	render() {
@@ -16,8 +16,8 @@ export default class App extends Component {
 						<Switch>
 							<Route exact path="/profile" component={Profile} />
 							<Route exact path="/search" component={Search} />
-							<Route exact path="/recipe/:id" component={Recipe} />
 							<Route exact path="/saved" component={Saved} />
+							<Route exact path="/recipe/:id" component={Recipe} />
 							<Redirect to="/search" />
 						</Switch>
 					</Layout>

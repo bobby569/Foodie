@@ -12,6 +12,10 @@ describe('Footer', () => {
 		expect(rendered.toJSON()).toMatchSnapshot();
 	});
 
+	it('Footer has class footer', () => {
+		expect(footer.hasClass('footer')).toBe(true);
+	});
+
 	it('Footer has correct content', () => {
 		const expectContent = 'Foodie © 2018 Created by Foodie Team';
 		const realOutput = footer.find('.footer').html();

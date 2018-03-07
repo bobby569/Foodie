@@ -1,10 +1,30 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Col, List } from 'antd';
+import { createContainer } from 'react-meteor-data';
+import TrackerReact from 'meteor/ultimatejs:tracker-react';
+import { Col, List, Icon } from 'antd';
 
-class Ingredient extends Component {
+class Ingredient extends TrackerReact(Component) {
+	constructor(props) {
+		super(props);
+
+		this.checkExist = this.checkExist.bind(this);
+	}
+
+	checkExist(owns, ingredient) {
+		if (!Array.isArray(owns)) return false;
+
+		let res = false;
+		owns.forEach(item => {
+			res = ingredient.includes(item);
+		});
+		return res;
+	}
+
 	render() {
-		const { ingredient, size } = this.props;
+		const { ingredient, size, user } = this.props;
+
+		if (!user) return <h2>Loading</h2>;
 
 		return (
 			<Col lg={size}>
@@ -14,8 +34,19 @@ class Ingredient extends Component {
 					header={<h6>Ingredients</h6>}
 					bordered
 					dataSource={ingredient}
-					renderItem={item => <List.Item>{item}</List.Item>}
+					renderItem={item => (
+						<List.Item>
+							<List.Item.Meta title={item} />
+							{this.checkExist(user.profile.ingredients, item) ? null : (
+								<Icon type="shopping-cart" />
+							)}
+						</List.Item>
+					)}
 				/>
+				<br />
+				<p>
+					<Icon type="shopping-cart" /> = Not in your ingredients list*
+				</p>
 			</Col>
 		);
 	}
@@ -26,4 +57,8 @@ Ingredient.propTypes = {
 	size: PropTypes.object.isRequired
 };
 
-export default Ingredient;
+export default createContainer(route => {
+	return {
+		user: Meteor.user()
+	};
+}, Ingredient);
