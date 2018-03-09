@@ -6,12 +6,10 @@ import Footer from './template/Footer';
 export default () => (
 	<Layout>
 		<Header />
-		<div>
-			<div className="home-page">
-				<div className="darkgrey" />
-				<div className="info">
-					<h3>Welcome to Foodie!</h3>
-				</div>
+		<div className="home-page">
+			<div className="darkgrey" />
+			<div className="info">
+				<h3>Welcome to Foodie!</h3>
 			</div>
 		</div>
 		<Footer />
