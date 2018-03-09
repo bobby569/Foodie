@@ -39,6 +39,9 @@ Meteor.methods({
 			{
 				$inc: {
 					likeCounts: 1
+				},
+				$addToSet: {
+					likes: userId
 				}
 			}
 		);
@@ -61,6 +64,9 @@ Meteor.methods({
 			{
 				$inc: {
 					likeCounts: -1
+				},
+				$pull: {
+					likes: userId
 				}
 			}
 		);

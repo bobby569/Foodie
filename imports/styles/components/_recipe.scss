@@ -70,28 +70,52 @@
 
 		.comment-section {
 			font-size: 20px;
-			.btn-primary {
-				background-color: tomato;
-				border: none;
+
+			form {
+				.btn-primary {
+					background-color: tomato;
+					border: none;
+				}
 			}
-			.media-left {
-				width: 50px;
-			}
-			.media-heading {
-				display: inline-block;
-				margin-left: 10px;
-				font-size: 15px;
-			}
-			.content {
-				margin-top: 5px;
-				margin-bottom: 0px;
-				font-size: 15px;
-			}
-			.comment-content {
-				margin: 0px;
+
+			.comments {
+				.comment-status-approved {
+					padding-left: 10px;
+					border-left: 2px solid lightgray;
+					margin-bottom: 15px;
+
+					.media-left {
+						img {
+							width: 50px;
+						}
+					}
+
+					.media-heading {
+						display: inline-block;
+						margin-left: 10px;
+						font-size: 15px;
+					}
+
+					.content {
+						margin: 10px 0px;
+						padding: 0px 0px;
+						font-size: 15px;
+						.comment-content {
+							margin: 0px;
+							padding: 0px 30px 10px 30px;
+						}
+					}
+				}
 			}
 			.actions .btn-group .btn-group-xs {
 				font-size: 15px;
+			}
+			.ant-btn {
+				height: inherit;
+				padding: 8px 16px;
+			}
+			.ant-btn-background-ghost {
+				color: rgba(0, 0, 0, 0.85) !important;
 			}
 		}
 	}

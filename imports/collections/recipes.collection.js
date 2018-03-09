@@ -10,6 +10,13 @@ const RecipeSchema = new SimpleSchema({
 		type: Number,
 		defaultValue: 0
 	},
+	likes: {
+		type: Array,
+		defaultValue: []
+	},
+	'likes.$': {
+		type: String
+	},
 	api_id: {
 		type: String
 	},
