@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import { Button, Icon, message } from 'antd';
 
 class RecipeStatus extends Component {
+	constructor(props) {
+		super(props);
+		this.state = { hasLike: this.hasLike() };
+	}
+
 	saveRecipe() {
 		const recipeId = this.props.id;
 		Meteor.call('users.saveRecipe', Meteor.userId(), recipeId, (err, res) => {
@@ -16,6 +21,7 @@ class RecipeStatus extends Component {
 		Meteor.call('recipes.addLike', Meteor.userId(), recipeId, (err, res) => {
 			if (err) return message.error(err);
 			message.success('Liked!');
+			this.setState({ hasLike: true });
 		});
 	}
 
@@ -24,6 +30,7 @@ class RecipeStatus extends Component {
 		Meteor.call('recipes.cancelLike', Meteor.userId(), recipeId, (err, res) => {
 			if (err) return message.error(err);
 			message.success('Unliked!');
+			this.setState({ hasLike: false });
 		});
 	}
 
@@ -33,9 +40,10 @@ class RecipeStatus extends Component {
 	}
 
 	render() {
+		const { hasLike } = this.state;
 		return (
 			<div className="status">
-				{this.hasLike() ? (
+				{hasLike ? (
 					<Icon
 						type="heart"
 						className="icon like"
