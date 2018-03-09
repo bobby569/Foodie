@@ -16,9 +16,16 @@ describe('DirectButton', () => {
 		<DirectButton name="diy" renderPage={renderPage} />
 	);
 
+	const mockEvent = { target: {} };
+
 	it('Renders correctly', () => {
 		expect(direct_button.exists()).toBe(true);
 		expect(rendered_lib.toJSON()).toMatchSnapshot();
 		expect(rendered_diy.toJSON()).toMatchSnapshot();
+	});
+
+	it('Click on tab', () => {
+		const diy = direct_button.find('.diy');
+		diy.simulate('click', mockEvent);
 	});
 });

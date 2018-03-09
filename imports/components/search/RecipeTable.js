@@ -48,7 +48,7 @@ export const columns = [
 class RecipeTable extends Component {
 	render() {
 		const { data, customColumns } = this.props;
-
+		console.log(data);
 		return (
 			<div className="table">
 				<Table

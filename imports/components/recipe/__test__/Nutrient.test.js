@@ -5,7 +5,7 @@ import Nutrient from '../Nutrient';
 
 describe('Nutrient', () => {
 	const data = {
-		nutrient: [],
+		nutrient: ['vitamin C', 'potassium'],
 		size: {}
 	};
 	const nutrient = shallow(<Nutrient {...data} />);

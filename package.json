@@ -53,6 +53,16 @@
 			"html",
 			"text"
 		],
+		"globals": {
+			"Package": {
+				"meteor": {
+					"Meteor": {}
+				},
+				"tracker": {
+					"Tracker": {}
+				}
+			}
+		},
 		"setupTestFrameworkScriptFile": "<rootDir>/imports/test/config_test.js",
 		"modulePaths": [
 			"<rootDir>/node_modules/",
