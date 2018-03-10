@@ -15,7 +15,7 @@ describe('SearchBar', () => {
 	});
 
 	// it('Calls onSearch when click button', () => {
-	// 	search_bar.find('button#test').simulate('click');
-	// 	expect(mockSearch.mock.calls.length).toBe(1);
+	// 	search_bar.find('Search').simulate('click');
+	// 	expect(mockSearch).toBeCalledWith('click');
 	// });
 });

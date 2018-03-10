@@ -4,12 +4,17 @@ import { Input } from 'antd';
 const { Search } = Input;
 
 class SearchBar extends Component {
+	onSearch(val) {
+		if (!val || !val.trim()) return;
+		this.props.onSearch(val.trim());
+	}
+
 	render() {
 		return (
 			<div className="search">
 				<Search
 					placeholder="Search supported by Edamam"
-					onSearch={val => this.props.onSearch(val.trim())}
+					onSearch={val => this.onSearch(val)}
 					enterButton
 				/>
 			</div>
