@@ -13,12 +13,12 @@ if (Meteor.isClient) {
   Meteor.subscribe('allComments')
 
   var id = Comments._collection.insert({
-    'referenceId' : 'rawInsertDocId',
-    'content' : 'oldContent',
-    'userId' : 'works',
-    isAnonymous:  false,
+    'referenceId': 'rawInsertDocId',
+    'content': 'oldContent',
+    'userId': 'works',
+    isAnonymous: false,
   })
-  Comments._collection.update(id, { $set: { 'content' : 'newContent'} })
+  Comments._collection.update(id, { $set: { 'content': 'newContent' } })
 
   Comments._collection.remove('shoudldNotBeRemovable')
 
@@ -30,14 +30,14 @@ if (Meteor.isClient) {
 } else if (Meteor.isServer) {
   Comments._collection.remove({})
   Comments._collection.insert({
-    'referenceId' : 'othersDoc',
-    'userId' : 'someBodyElse',
-    'content' : 'nice',
+    'referenceId': 'othersDoc',
+    'userId': 'someBodyElse',
+    'content': 'nice',
     isAnonymous: false,
   })
 
   Meteor.methods({
-    'getDoc' : function (referenceId) {
+    'getDoc': function (referenceId) {
       check(referenceId, String)
       return Comments._collection.findOne({ referenceId: referenceId })
     }
@@ -51,8 +51,8 @@ if (Meteor.isClient) {
 /**
  * Run tests
  */
-
- /*
+//The one with bugs
+/*
 Tinytest.add('Comments - config', function (test) {
   const defaultConfig = Comments.config()
   test.isFalse(defaultConfig.anonymous)
@@ -67,8 +67,8 @@ Tinytest.add('Comments - config', function (test) {
 
   const newConfig = Comments.config()
   test.equal(newConfig.something, 'wow')
-})
-*/
+})*/
+
 
 if (Meteor.isClient) {
   Tinytest.addAsync('Comments - add', function (test, done) {
@@ -196,9 +196,8 @@ if (Meteor.isClient) {
     comments = Comments.get('likesDoc').fetch()
     test.equal(comments[0].likes.length, 1)
   })
-
-  /*
-  Tinytest.add('Comments - dislike', function (test) {
+  /*The ones with bugs*/
+  /*Tinytest.add('Comments - dislike', function (test) {
     Meteor.call('removeGeneratedDocs', Meteor.userId())
 
     Comments.add('likesDoc', 'Please give me likes')
@@ -218,39 +217,39 @@ if (Meteor.isClient) {
     Comments.dislike(comments[0]._id)
     comments = Comments.get('likesDoc').fetch()
     test.equal(comments[0].dislikes.length, 1)
-  })
+  })*/
 
-  Tinytest.addAsync('Comments - Reply', function (test, done) {
-    Meteor.call('removeGeneratedDocs', Meteor.userId())
+  /* Tinytest.addAsync('Comments - Reply', function (test, done) {
+     Meteor.call('removeGeneratedDocs', Meteor.userId())
+ 
+     Comments.add('fakeDoc1', 'I liked this')
+     .then(function ({ _id: docId }) {
+       Comments
+         .reply(docId, null, 'Stfu WOW')
+         .then(function () {
+           return Comments.reply(docId, null, 'Stfu please!!!')
+         })
+         .then(function ({ replyId }) {
+           return Comments.reply(docId, replyId, 'nested reply')
+             .then(() => Comments.likeReply(docId, replyId))
+             .then(() => Comments.dislikeReply(docId, replyId))
+         })
+         .then(function ({ }) {
+           const comment = Comments.getOne(docId)
+ 
+           test.equal(comment.content, 'I liked this')
+           test.equal(comment.userId, Meteor.userId())
+           test.equal(comment.replies[0].likes.length, 1)
+           test.equal(comment.replies[0].dislikes.length, 1)
+           test.equal(comment.replies[0].content, 'Stfu please!!!')
+           test.equal(comment.replies[0].userId, Meteor.userId())
+           test.equal(comment.replies[0].replies[0].content, 'nested reply')
+           test.equal(comment.replies[0].replies[0].userId, Meteor.userId())
+           done()
+         })
+     })
+   })*/
 
-    Comments.add('fakeDoc1', 'I liked this')
-      .then(function ({ _id: docId }) {
-        Comments
-          .reply(docId, null, 'Stfu WOW')
-          .then(function () {
-            return Comments.reply(docId, null, 'Stfu please!!!')
-          })
-          .then(function ({ replyId }) {
-            return Comments.reply(docId, replyId, 'nested reply')
-              .then(() => Comments.likeReply(docId, replyId))
-              .then(() => Comments.dislikeReply(docId, replyId))
-          })
-          .then(function () {
-            const comment = Comments.getOne(docId)
-
-            test.equal(comment.content, 'I liked this')
-            test.equal(comment.userId, Meteor.userId())
-            test.equal(comment.replies[0].likes.length, 1)
-            test.equal(comment.replies[0].dislikes.length, 1)
-            test.equal(comment.replies[0].content, 'Stfu please!!!')
-            test.equal(comment.replies[0].userId, Meteor.userId())
-            test.equal(comment.replies[0].replies[0].content, 'nested reply')
-            test.equal(comment.replies[0].replies[0].userId, Meteor.userId())
-            done()
-          })
-      })
-  })
-  */
 
   Tinytest.add('Comments - changeSchema', function (test) {
     Comments.changeSchema(function (currentSchema) {
