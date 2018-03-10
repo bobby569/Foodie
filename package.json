@@ -3,7 +3,8 @@
 	"private": true,
 	"scripts": {
 		"start": "meteor run --settings private/settings.json",
-		"test": "TEST_BROWSER_DRIVER=chrome meteor test --once --driver-package meteortesting:mocha --settings private/settings.json",
+		"test":
+			"meteor test-packages ./packages/meteor-comments-ui ./packages/accounts-base --port 8888",
 		"jest": "jest --updateSnapshot",
 		"jest:cover": "yarn jest --coverage",
 		"jest:watch": "yarn jest --watch"
@@ -45,13 +46,8 @@
 		"selenium-webdriver": "3.0.0-beta-2"
 	},
 	"jest": {
-		"testPathIgnorePatterns": [
-			"<rootDir>/imports/components/template/"
-		],
-		"coverageReporters": [
-			"html",
-			"text"
-		],
+		"testPathIgnorePatterns": ["<rootDir>/imports/components/template/"],
+		"coverageReporters": ["html", "text"],
 		"setupTestFrameworkScriptFile": "<rootDir>/imports/test/config_test.js",
 		"modulePaths": [
 			"<rootDir>/node_modules/",
@@ -60,8 +56,6 @@
 		"moduleNameMapper": {
 			"^meteor/(.*)": "<rootDir>/.meteorMocks/index.js"
 		},
-		"unmockedModulePathPatterns": [
-			"/^node_modules/"
-		]
+		"unmockedModulePathPatterns": ["/^node_modules/"]
 	}
 }
