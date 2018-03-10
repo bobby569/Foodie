@@ -28,6 +28,7 @@ class DirectButton extends Component {
 						<Icon type="bulb" />Recipe Library
 					</Button>
 					<Button
+						className="diy"
 						name="diy"
 						type="primary"
 						ghost={name !== 'diy'}

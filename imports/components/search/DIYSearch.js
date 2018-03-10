@@ -5,6 +5,7 @@ import { Button } from 'antd';
 import { API, URI_LEN } from '../util/constant';
 import ErrorBlock from '../util/ErrorBlock';
 import RecipeTable from './RecipeTable';
+import { Meteor } from 'meteor/meteor';
 
 class DIYSearch extends Component {
 	constructor(props) {
