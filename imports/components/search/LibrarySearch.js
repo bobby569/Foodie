@@ -7,6 +7,7 @@ import ErrorBlock from '../util/ErrorBlock';
 import FilterGroup from './FilterGroup';
 import RecipeTable from './RecipeTable';
 import SearchBar from './SearchBar';
+import { Meteor } from 'meteor/meteor';
 
 class LibrarySearch extends Component {
 	constructor(props) {

@@ -3,16 +3,16 @@ import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 import Ingredient from '../Ingredient';
 
+jest.mock('react-meteor-data');
+
 describe('Ingredient', () => {
 	const data = {
-		ingredient: [],
+		ingredient: ['tomato'],
 		size: {}
 	};
 	const ingredient = shallow(<Ingredient {...data} />);
-	const rendered = renderer.create(<Ingredient {...data} />);
 
 	it('Renders correctly', () => {
 		expect(ingredient.exists()).toBe(true);
-		expect(rendered.toJSON()).toMatchSnapshot();
 	});
 });
