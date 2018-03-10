@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Icon, message } from 'antd';
+import { Meteor } from 'meteor/meteor';
 
 class RecipeStatus extends Component {
 	constructor(props) {

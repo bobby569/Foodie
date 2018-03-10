@@ -1,17 +1,31 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { createContainer } from 'react-meteor-data';
-import TrackerReact from 'meteor/ultimatejs:tracker-react';
+//import { createContainer } from 'react-meteor-data';
+//import { TrackerReact } from 'meteor/ultimatejs:tracker-react';
 import { Col, List, Icon } from 'antd';
+import { Meteor } from 'meteor/meteor';
 
-class Ingredient extends TrackerReact(Component) {
-	checkExist(owns, line) {
+export default class Ingredient extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			user: Meteor.user()
+		};
+
+		this.checkExist = this.checkExist.bind(this);
+	}
+
+	checkExist(owns, ingredient) {
 		if (!Array.isArray(owns)) return false;
 		return owns.reduce((a, c) => a || line.includes(c), false);
 	}
 
 	render() {
-		const { ingredient, size, user } = this.props;
+		const { ingredient, size } = this.props;
+
+		const { user } = this.state;
+
 		if (!user) return <h2>Loading</h2>;
 		const { ingredients } = user.profile;
 
@@ -46,5 +60,3 @@ Ingredient.propTypes = {
 	size: PropTypes.object.isRequired,
 	user: PropTypes.object
 };
-
-export default createContainer(route => ({ user: Meteor.user() }), Ingredient);
