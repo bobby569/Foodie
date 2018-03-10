@@ -9,12 +9,13 @@ describe('HeadLine', () => {
 			label: '',
 			image: '',
 			source: '',
-			healthLabels: [],
-			dietLabels: [],
+			healthLabels: ['Alcohol free'],
+			dietLabels: ['Fat free'],
 			calories: 0
 		},
 		id: '',
-		views: 0
+		views: 0,
+		likes: []
 	};
 	const headline = shallow(<HeadLine {...data} />);
 	// const rendered = renderer.create(<HeadLine {...data} />);

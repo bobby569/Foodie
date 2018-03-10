@@ -50,7 +50,6 @@ if (Meteor.isClient) {
 /**
  * Run tests
  */
-
 /*
 Tinytest.add('Comments - config', function (test) {
   const defaultConfig = Comments.config()
@@ -66,8 +65,8 @@ Tinytest.add('Comments - config', function (test) {
 
   const newConfig = Comments.config()
   test.equal(newConfig.something, 'wow')
-})
-*/
+})*/
+
 
 if (Meteor.isClient) {
 	Tinytest.addAsync('Comments - add', function(test, done) {
