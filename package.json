@@ -3,7 +3,8 @@
 	"private": true,
 	"scripts": {
 		"start": "meteor run --settings private/settings.json",
-		"test": "TEST_BROWSER_DRIVER=chrome meteor test --once --driver-package meteortesting:mocha --settings private/settings.json",
+		"test":
+			"meteor test-packages ./packages/meteor-comments-ui ./packages/accounts-base --port 8888",
 		"jest": "jest --updateSnapshot",
 		"jest:cover": "yarn jest --coverage",
 		"jest:watch": "yarn jest --watch"
@@ -68,8 +69,6 @@
 		"moduleNameMapper": {
 			"^meteor/(.*)": "<rootDir>/.meteorMocks/index.js"
 		},
-		"unmockedModulePathPatterns": [
-			"/^node_modules/"
-		]
+		"unmockedModulePathPatterns": ["/^node_modules/"]
 	}
 }
