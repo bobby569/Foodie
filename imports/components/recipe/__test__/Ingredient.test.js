@@ -7,8 +7,13 @@ jest.mock('react-meteor-data');
 
 describe('Ingredient', () => {
 	const data = {
-		ingredient: ['tomato'],
-		size: {}
+		ingredient: ['tomato', 'potato'],
+		size: {},
+		user: {
+			profile: {
+				ingredients: ['tomato', 'potato']
+			}
+		}
 	};
 	const ingredient = shallow(<Ingredient {...data} />);
 

@@ -30,7 +30,12 @@ class EmailAction extends Component {
 				<Card title="Email" className="email" bordered={false}>
 					<p>{email}</p>
 				</Card>
-				<Button type="submit" bsStyle="danger" onClick={this.showConfirm}>
+				<Button
+					className="delete"
+					type="submit"
+					bsStyle="danger"
+					onClick={this.showConfirm}
+				>
 					Delete Account
 				</Button>
 			</div>

@@ -6,7 +6,7 @@ import { shallowToJson } from 'enzyme-to-json';
 const handleRemove = jest.fn();
 
 describe('TagGroup', () => {
-	const fake = new Array();
+	const fake = ['tomato'];
 	const taggroup = shallow(
 		<TagGroup tags={fake} onDismiss={fake => handleRemove} />
 	);

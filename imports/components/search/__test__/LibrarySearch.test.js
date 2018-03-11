@@ -12,4 +12,10 @@ describe('LibrarySearch', () => {
 		expect(librarysearch.exists()).toBe(true);
 		expect(shallowToJson(librarysearch)).toMatchSnapshot();
 	});
+
+	it('Click on getrecipe', () => {
+		librarysearch.setState({ recipes: [{}] });
+		const more = librarysearch.find('.more');
+		more.simulate('click');
+	});
 });

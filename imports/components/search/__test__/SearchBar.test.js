@@ -1,25 +1,19 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 import SearchBar from '../SearchBar';
 
-const mockSearch = jest.fn();
-const val = new Object();
-mockSearch(val);
-
 describe('SearchBar', () => {
-	const search_bar = shallow(<SearchBar onSearch={mockSearch} />);
-	// const rendered = renderer.create(
-	// 	<SearchBar onSearch={val => mockSearch(val)} />
-	// );
+	const mockSearch = jest.fn();
+	const search_bar = mount(<SearchBar onSearch={mockSearch} />);
 
 	it('Renders correctly', () => {
 		expect(search_bar.exists()).toBe(true);
 		//expect(rendered.toJSON()).toMatchSnapshot();
 	});
 
-	// it('Calls onSearch when click button', () => {
-	// 	search_bar.find('Search').simulate('click');
-	// 	expect(mockSearch).toBeCalledWith('click');
+	// it('Test search functionality', () => {
+	// 	search_bar.find('input').simulate('change', { target: { value: 'egg' } });
+	// 	expect(mockSearch).toHaveBeenCalledTimes(1);
 	// });
 });

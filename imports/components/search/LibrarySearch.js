@@ -67,7 +67,10 @@ class LibrarySearch extends Component {
 				{!err &&
 					recipes.length > 0 && (
 						<div className="div-center">
-							<Button onClick={() => this.getRecipe(searchTerm, index + 5)}>
+							<Button
+								className="more"
+								onClick={() => this.getRecipe(searchTerm, index + 5)}
+							>
 								More
 							</Button>
 						</div>
