@@ -3,8 +3,7 @@
 	"private": true,
 	"scripts": {
 		"start": "meteor run --settings private/settings.json",
-		"test":
-			"TEST_BROWSER_DRIVER=chrome meteor test --once --driver-package meteortesting:mocha --settings private/settings.json",
+		"test": "TEST_BROWSER_DRIVER=chrome meteor test --once --driver-package meteortesting:mocha --settings private/settings.json",
 		"jest": "jest --updateSnapshot",
 		"jest:cover": "yarn jest --coverage",
 		"jest:watch": "yarn jest --watch"
@@ -14,7 +13,7 @@
 		"antd": "3.2.3",
 		"axios": "0.18.0",
 		"bcrypt": "^1.0.3",
-		"enzyme-to-json": "^3.3.2",
+		"enzyme-to-json": "^3.3.1",
 		"gm": "^1.23.1",
 		"indexof": "0.0.1",
 		"lodash": "4.17.5",
@@ -47,12 +46,6 @@
 		"selenium-webdriver": "3.0.0-beta-2"
 	},
 	"jest": {
-<<<<<<< HEAD
-		"coverageReporters": ["html", "text"],
-=======
-		"testPathIgnorePatterns": [
-			"<rootDir>/imports/components/template/"
-		],
 		"coverageReporters": [
 			"html",
 			"text"
@@ -67,7 +60,6 @@
 				}
 			}
 		},
->>>>>>> 10b03a137c31a836788e58d9df6936b3c8876bec
 		"setupTestFrameworkScriptFile": "<rootDir>/imports/test/config_test.js",
 		"modulePaths": [
 			"<rootDir>/node_modules/",
@@ -76,6 +68,8 @@
 		"moduleNameMapper": {
 			"^meteor/(.*)": "<rootDir>/.meteorMocks/index.js"
 		},
-		"unmockedModulePathPatterns": ["/^node_modules/"]
+		"unmockedModulePathPatterns": [
+			"/^node_modules/"
+		]
 	}
 }
