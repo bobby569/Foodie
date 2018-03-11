@@ -54,7 +54,12 @@ class DIYSearch extends Component {
 				{!err &&
 					recipes.length > 0 && (
 						<div className="div-center">
-							<Button onClick={() => this.getRecipe(index + 5)}>More</Button>
+							<Button
+								className="more"
+								onClick={() => this.getRecipe(index + 5)}
+							>
+								More
+							</Button>
 						</div>
 					)}
 			</div>

@@ -18,4 +18,15 @@ describe('RecipeStatus', () => {
 		expect(status.exists()).toBe(true);
 		expect(rendered.toJSON()).toMatchSnapshot();
 	});
+
+	it('Click like', () => {
+		const like = status.find('.like');
+		like.simulate('click');
+		//like.simulate('click');
+	});
+
+	it('Click save', () => {
+		const save = status.find('.save');
+		save.simulate('click');
+	});
 });

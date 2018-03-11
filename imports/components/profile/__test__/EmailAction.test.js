@@ -8,7 +8,6 @@ const showConfirm = jest.fn();
 describe('EmailAction', () => {
 	const fake = 'abc@abc.com';
 	const emailaction = shallow(<EmailAction email={fake} />);
-	//const deleteButton = shallow(<Button />);
 
 	it('EmailAction should render', () => {
 		expect(emailaction.exists()).toBe(true);
@@ -21,9 +20,8 @@ describe('EmailAction', () => {
 		expect(email.includes(expected)).toBe(true);
 	});
 
-	// it('Delete Button', () => {
-	// 	output.simulate('click');
-	// 	expect(showConfirm).toHaveBeenCalledWith(deleteButton);
-	// 	expect(showConfirm).toHaveBeenCalledTimes(1);
-	// });
+	it('Delete Button', () => {
+		const deleteButton = emailaction.find('.delete');
+		deleteButton.simulate('click');
+	});
 });

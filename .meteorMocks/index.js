@@ -1,12 +1,12 @@
 jest.mock('meteor/gadicc:blaze-react-component');
 
 export const Meteor = {
-	user: jest.fn().mockReturnValueOnce({
+	user: jest.fn().mockReturnValue({
 		profile: {
-			ingredients: []
+			ingredients: ['tomato']
 		}
 	}),
-	userId: jest.fn(),
+	userId: jest.fn().mockReturnValue('id'),
 	settings: {
 		public: {
 			edamam: {
@@ -15,5 +15,6 @@ export const Meteor = {
 				url: 'https://api.edamam.com/search'
 			}
 		}
-	}
+	},
+	call: jest.fn()
 };

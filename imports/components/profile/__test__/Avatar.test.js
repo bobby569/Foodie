@@ -11,4 +11,9 @@ describe('Avatar', () => {
 		expect(avatar.exists()).toBe(true);
 		expect(shallowToJson(avatar)).toMatchSnapshot();
 	});
+
+	it('Click on avatar', () => {
+		const click = avatar.find('.avatar');
+		click.simulate('click');
+	});
 });

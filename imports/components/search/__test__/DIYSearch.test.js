@@ -13,4 +13,10 @@ describe('DIYSearch', () => {
 		expect(diysearch.exists()).toBe(true);
 		expect(shallowToJson(diysearch)).toMatchSnapshot();
 	});
+
+	it('Click on getrecipe', () => {
+		diysearch.setState({ recipes: [{}] });
+		const more = diysearch.find('.more');
+		more.simulate('click');
+	});
 });
