@@ -18,7 +18,7 @@ export default class Ingredient extends Component {
 
 	checkExist(owns, ingredient) {
 		if (!Array.isArray(owns)) return false;
-		return owns.reduce((a, c) => a || line.includes(c), false);
+		return owns.reduce((a, c) => a || owns.includes(c), false);
 	}
 
 	render() {
