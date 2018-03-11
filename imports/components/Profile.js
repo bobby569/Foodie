@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import { createContainer } from 'react-meteor-data';
 import { message, Card, Row, Col } from 'antd';
+import AddTags from './profile/AddTags';
 import Avatar from './profile/Avatar';
 import EmailAction from './profile/EmailAction';
-import AddTags from './profile/AddTags';
 import TagGroup from './profile/TagGroup';
 
 class Profile extends TrackerReact(Component) {
@@ -35,7 +35,7 @@ class Profile extends TrackerReact(Component) {
 	}
 
 	handleAdd() {
-		let { tags, inputValue } = this.state;
+		const { tags, inputValue } = this.state;
 		const val = inputValue.trim().toLowerCase();
 		if (val === '') return message.error("Ingredient can't be empty!");
 		if (tags.includes(val)) return message.error('Ingredient already exist!');
@@ -81,12 +81,12 @@ class Profile extends TrackerReact(Component) {
 					<Col xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 18 }}>
 						<Card className="ingredients">
 							<h5>Start adding ingredients to your list!</h5>
-							{tags ? (
+							{tags && (
 								<TagGroup
 									tags={tags}
 									onDismiss={tag => this.handleRemove(tag)}
 								/>
-							) : null}
+							)}
 							<AddTags
 								value={inputValue}
 								onEnter={this.handleEnter}
@@ -100,8 +100,4 @@ class Profile extends TrackerReact(Component) {
 	}
 }
 
-export default createContainer(route => {
-	return {
-		user: Meteor.user()
-	};
-}, Profile);
+export default createContainer(route => ({ user: Meteor.user() }), Profile);

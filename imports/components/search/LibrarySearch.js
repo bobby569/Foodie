@@ -42,7 +42,6 @@ class LibrarySearch extends Component {
 		if (diet.length > 5) url += `&diet=${diet}`;
 		if (health.length > 5) url += `&health=${health}`;
 		url += `&from=${index}&to=${index + 5}`;
-		console.log(url);
 		axios
 			.get(url)
 			.then(res => this.setRecipe(res.data.hits))

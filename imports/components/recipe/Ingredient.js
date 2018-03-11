@@ -9,20 +9,16 @@ export default class Ingredient extends Component {
 	constructor(props) {
 		super(props);
 
-		this.checkExist = this.checkExist.bind(this);
 		this.state = {
 			user: Meteor.user()
 		};
+
+		this.checkExist = this.checkExist.bind(this);
 	}
 
 	checkExist(owns, ingredient) {
 		if (!Array.isArray(owns)) return false;
-
-		let res = false;
-		owns.forEach(item => {
-			res = ingredient.includes(item);
-		});
-		return res;
+		return owns.reduce((a, c) => a || line.includes(c), false);
 	}
 
 	render() {
@@ -31,6 +27,7 @@ export default class Ingredient extends Component {
 		const { user } = this.state;
 
 		if (!user) return <h2>Loading</h2>;
+		const { ingredients } = user.profile;
 
 		return (
 			<Col lg={size}>
@@ -40,10 +37,10 @@ export default class Ingredient extends Component {
 					header={<h6>Ingredients</h6>}
 					bordered
 					dataSource={ingredient}
-					renderItem={item => (
+					renderItem={line => (
 						<List.Item>
-							<List.Item.Meta title={item} />
-							{this.checkExist(user.profile.ingredients, item) ? null : (
+							<List.Item.Meta title={line} />
+							{!this.checkExist(ingredients, line) && (
 								<Icon type="shopping-cart" />
 							)}
 						</List.Item>
@@ -60,5 +57,6 @@ export default class Ingredient extends Component {
 
 Ingredient.propTypes = {
 	ingredient: PropTypes.array.isRequired,
-	size: PropTypes.object.isRequired
+	size: PropTypes.object.isRequired,
+	user: PropTypes.object
 };

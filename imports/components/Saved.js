@@ -35,7 +35,7 @@ export default class Saved extends Component {
 
 	render() {
 		const { data } = this.state;
-		if (!data) return <div> Loading </div>;
+		if (!data) return <div>Loading</div>;
 
 		return <RecipeTable data={data} customColumns={newColumn} />;
 	}

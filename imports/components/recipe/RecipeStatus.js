@@ -6,20 +6,29 @@ import { Meteor } from 'meteor/meteor';
 class RecipeStatus extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { hasLike: this.hasLike() };
+
+		this.state = {
+			hasLike: false
+		};
+	}
+
+	componentDidMount() {
+		const { likes } = this.props;
+		const hasLike = likes.includes(Meteor.userId());
+		this.setState({ hasLike });
 	}
 
 	saveRecipe() {
-		const recipeId = this.props.id;
-		Meteor.call('users.saveRecipe', Meteor.userId(), recipeId, (err, res) => {
+		const { id } = this.props;
+		Meteor.call('users.saveRecipe', Meteor.userId(), id, (err, res) => {
 			if (err) return message.error(err);
 			message.success('Recipe saved successfully!');
 		});
 	}
 
 	likeRecipe() {
-		const recipeId = this.props.id;
-		Meteor.call('recipes.addLike', Meteor.userId(), recipeId, (err, res) => {
+		const { id } = this.props;
+		Meteor.call('recipes.addLike', Meteor.userId(), id, (err, res) => {
 			if (err) return message.error(err);
 			message.success('Liked!');
 			this.setState({ hasLike: true });
@@ -27,21 +36,16 @@ class RecipeStatus extends Component {
 	}
 
 	cancelLike() {
-		const recipeId = this.props.id;
-		Meteor.call('recipes.cancelLike', Meteor.userId(), recipeId, (err, res) => {
+		const { id } = this.props;
+		Meteor.call('recipes.cancelLike', Meteor.userId(), id, (err, res) => {
 			if (err) return message.error(err);
 			message.success('Unliked!');
 			this.setState({ hasLike: false });
 		});
 	}
 
-	hasLike() {
-		const likes = this.props.likes;
-		return likes.includes(Meteor.userId());
-	}
-
 	render() {
-		const { hasLike } = this.state;
+		const { state: { hasLike }, props: { views } } = this;
 		return (
 			<div className="status">
 				{hasLike ? (
@@ -63,7 +67,7 @@ class RecipeStatus extends Component {
 					onClick={this.saveRecipe.bind(this)}
 				/>
 				<Icon type="eye" className="view" />
-				{this.props.views} views
+				{views} views
 			</div>
 		);
 	}
