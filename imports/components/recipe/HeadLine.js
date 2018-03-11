@@ -8,10 +8,9 @@ class HeadLine extends Component {
 		const {
 			id,
 			views,
+			likes,
 			data: { label, image, source, healthLabels, dietLabels, calories }
 		} = this.props;
-
-		const { likes } = this.props;
 
 		return (
 			<div className="upper">

@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import axios from 'axios';
+import Blaze from 'meteor/gadicc:blaze-react-component';
+import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import { Divider, Row } from 'antd';
-import { API, URI_BASE_RETR } from './util/constant.js';
 import HeadLine from './recipe/HeadLine';
 import Ingredient from './recipe/Ingredient';
 import Nutrient from './recipe/Nutrient';
 import Direction from './recipe/Direction';
-import Blaze from 'meteor/gadicc:blaze-react-component';
 
 class Recipe extends TrackerReact(Component) {
 	constructor(props) {
@@ -16,9 +15,9 @@ class Recipe extends TrackerReact(Component) {
 		this.state = {
 			id: 0,
 			data: null,
-			views: 0,
+			doc_id: null,
 			likes: [],
-			doc_id: null
+			views: 0
 		};
 	}
 
