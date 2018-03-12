@@ -19,4 +19,9 @@ describe('DIYSearch', () => {
 		const more = diysearch.find('.more');
 		more.simulate('click');
 	});
+
+	it('getRecipe', () => {
+		diysearch.instance().getRecipe();
+		expect(diysearch.state().err).toBe(null);
+	});
 });

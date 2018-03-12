@@ -47,10 +47,7 @@
 		"selenium-webdriver": "3.0.0-beta-2"
 	},
 	"jest": {
-		"coverageReporters": [
-			"html",
-			"text"
-		],
+		"coverageReporters": ["html", "text"],
 		"globals": {
 			"Package": {
 				"meteor": {
