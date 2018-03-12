@@ -18,4 +18,9 @@ describe('LibrarySearch', () => {
 		const more = librarysearch.find('.more');
 		more.simulate('click');
 	});
+
+	it('Call onSearchSubmit', () => {
+		librarysearch.instance().onSearchSubmit('egg');
+		expect(librarysearch.state().err).toEqual(null);
+	});
 });

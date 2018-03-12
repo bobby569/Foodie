@@ -20,4 +20,11 @@ describe('Ingredient', () => {
 	it('Renders correctly', () => {
 		expect(ingredient.exists()).toBe(true);
 	});
+
+	it('CheckExist', () => {
+		const owns = data.user.profile.ingredients;
+		expect(ingredient.instance().checkExist('', '')).toBe(false);
+		expect(ingredient.instance().checkExist(owns, 'apple')).toBe(false);
+		expect(ingredient.instance().checkExist(owns, 'tomato')).toBe(true);
+	});
 });

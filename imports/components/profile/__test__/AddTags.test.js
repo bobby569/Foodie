@@ -11,16 +11,9 @@ describe('AddTags', () => {
 	const addtags = shallow(
 		<AddTags value={fake} onEnter={onEnter} onAdd={onAdd} />
 	);
-	//const addbutton = shallow(addtags.find('.tag'));
 
 	it('AddTags should render', () => {
 		expect(addtags.exists()).toBe(true);
 		expect(shallowToJson(addtags)).toMatchSnapshot();
 	});
-
-	// it('Add Button', () => {
-	// 	output.simulate('click');
-	// 	expect(onAdd).toHaveBeenCalledWith(addbutton);
-	// 	expect(onAdd).toHaveBeenCalledTimes(1);
-	// });
 });

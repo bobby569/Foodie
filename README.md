@@ -8,13 +8,17 @@
 
 [Here](https://github.com/bobby569/Foodie/tree/sprint1) is the code by sprint 1
 
+#### Sprint 2 code
+
+[Here](https://github.com/bobby569/Foodie/tree/sprint2) is the code by sprint 2
+
 ### Library Reference Links
 
 <details>
 <summary>Package Management</summary>
 <ul>
-<li><a href="https://nodejs.org/en/">Node & npm</a></li>
-<li><a href="https://yarnpkg.com/en/">yarn</a></li>
+<li><a href="https://yarnpkg.com/en/">yarn (recommended)</a></li>
+<li><a href="https://www.npmjs.com/">npm</a></li>
 </ul>
 </details>
 
@@ -37,15 +41,7 @@
 
 ### Setup
 
-#### If you are using yarn
-
-Run the following command first
-
-```
-$ npm i -g yarn
-```
-
-Then install the package. **Make Sure do this after git pull master**
+Install the package. **Make Sure do this after git pull master**
 
 ```
 $ npm i
