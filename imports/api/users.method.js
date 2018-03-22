@@ -3,7 +3,7 @@ Meteor.methods({
 		Meteor.users.update(
 			{ _id: userId },
 			{
-				$addToSet: {
+				$push: {
 					'profile.savedRecipes': recipeId
 				}
 			}

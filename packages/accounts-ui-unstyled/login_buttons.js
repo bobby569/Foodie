@@ -85,7 +85,7 @@ validateEmail = function(email) {
 	if (passwordSignupFields() === 'USERNAME_AND_OPTIONAL_EMAIL' && email === '')
 		return true;
 
-	if (email.indexOf('@') !== -1) {
+	if (email.indexOf('@') !== 1) {
 		return true;
 	} else {
 		loginButtonsSession.errorMessage('Invalid email');
@@ -94,17 +94,18 @@ validateEmail = function(email) {
 };
 validatePassword = function(password) {
 	var passRegex = new RegExp(
-		'^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})'
+		'^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{1,})'
 	);
 	if (passRegex.test(password)) {
 		return true;
 	} else {
 		loginButtonsSession.errorMessage(
 			`
-      * Must be at least 6 characters long<br>
-      * At least one lowercase and one uppercase alphabetical character<br>
-      * At least one lowercase and one numeric character<br>
-      * At least one uppercase and one numeric character
+	  * Must be at least 6 characters long<br>
+	  * Must satisfy two of the following:
+      * At least one lowercase letter<br>
+      * At least one uppercase letter<br>
+      * At least one numeric character
       `
 		);
 		return false;

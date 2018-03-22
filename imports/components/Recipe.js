@@ -55,7 +55,7 @@ class Recipe extends TrackerReact(Component) {
 						<Ingredient ingredient={ingredientLines} size={colSize} />
 						<Nutrient nutrient={nutrientsdata} size={colSize} />
 					</Row>
-					<Direction url={url} />
+					<Direction url={'https://' + url} />
 					<div className="comment-section">
 						<Blaze template="commentsBox" id={doc_id} />
 					</div>

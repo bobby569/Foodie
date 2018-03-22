@@ -22,7 +22,7 @@ Meteor.methods({
 				{ api_id },
 				{
 					$inc: {
-						viewCounts: 1
+						viewCounts: 5
 					}
 				}
 			);

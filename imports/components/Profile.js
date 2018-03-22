@@ -20,11 +20,11 @@ class Profile extends TrackerReact(Component) {
 		this.handleRemove = this.handleRemove.bind(this);
 	}
 
-	componentDidMount() {
-		const { user } = this.props;
-		if (!user) return;
-		this.setState({ tags: user.profile.ingredients });
-	}
+	// componentDidMount() {
+	// 	const { user } = this.props;
+	// 	if (!user) return;
+	// 	this.setState({ tags: user.profile.ingredients });
+	// }
 
 	componentWillReceiveProps(nextProps) {
 		this.setState({ tags: nextProps.user.profile.ingredients });
@@ -37,8 +37,8 @@ class Profile extends TrackerReact(Component) {
 	handleAdd() {
 		const { tags, inputValue } = this.state;
 		const val = inputValue.trim().toLowerCase();
-		if (val === '') return message.error("Ingredient can't be empty!");
-		if (tags.includes(val)) return message.error('Ingredient already exist!');
+		//if (val === '') return message.error("Ingredient can't be empty!");
+		//if (tags.includes(val)) return message.error('Ingredient already exist!');
 
 		tags.push(val);
 		this.setState({ inputValue: '', tags });
@@ -55,11 +55,11 @@ class Profile extends TrackerReact(Component) {
 		const newTags = tags.filter(item => item !== tag);
 		this.setState({ tags: newTags });
 
-		Meteor.users.update(Meteor.userId(), {
-			$set: {
-				'profile.ingredients': newTags
-			}
-		});
+		// Meteor.users.update(Meteor.userId(), {
+		// 	$set: {
+		// 		'profile.ingredients': newTags
+		// 	}
+		// });
 	}
 
 	render() {

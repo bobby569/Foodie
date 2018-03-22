@@ -49,11 +49,7 @@ class RecipeStatus extends Component {
 		return (
 			<div className="status">
 				{hasLike ? (
-					<Icon
-						type="heart"
-						className="icon like"
-						onClick={this.cancelLike.bind(this)}
-					/>
+					<Icon type="heart" className="icon like" />
 				) : (
 					<Icon
 						type="heart-o"

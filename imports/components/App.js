@@ -23,8 +23,8 @@ export default class App extends Component {
 					</Layout>
 				) : (
 					<Switch>
+						<Route exact path="/search" component={Search} />
 						<Route exact path="/" component={Home} />
-						<Redirect to="/" />
 					</Switch>
 				)}
 			</BrowserRouter>
