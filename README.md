@@ -12,6 +12,10 @@
 
 [Here](https://github.com/bobby569/Foodie/tree/sprint2) is the code by sprint 2
 
+#### Code with bugs
+
+[Here](https://github.com/bobby569/Foodie/tree/bugs) is the version with 25 bugs
+
 ### Library Reference Links
 
 <details>
