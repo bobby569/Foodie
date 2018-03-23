@@ -40,9 +40,6 @@ export default class Ingredient extends Component {
 					renderItem={line => (
 						<List.Item>
 							<List.Item.Meta title={line} />
-							{!this.checkExist(ingredients, line) && (
-								<Icon type="shopping-cart" />
-							)}
 						</List.Item>
 					)}
 				/>

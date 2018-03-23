@@ -39,8 +39,8 @@ class DIYSearch extends Component {
 			_.extend(item, { api_id: item.uri.substr(URI_LEN) })
 		);
 		this.setState({
-			recipes: Array.from(new Set([...recipes, ...newRecipe])),
-			index: index + 5
+			recipes: [...recipes, ...newRecipe],
+			index: index
 		});
 	}
 
@@ -54,10 +54,7 @@ class DIYSearch extends Component {
 				{!err &&
 					recipes.length > 0 && (
 						<div className="div-center">
-							<Button
-								className="more"
-								onClick={() => this.getRecipe(index + 5)}
-							>
+							<Button className="more" onClick={() => this.getRecipe(index)}>
 								More
 							</Button>
 						</div>

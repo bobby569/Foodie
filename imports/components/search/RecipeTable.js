@@ -48,6 +48,13 @@ export const columns = [
 class RecipeTable extends Component {
 	render() {
 		const { data, customColumns } = this.props;
+		console.log(data);
+		const modifiedData = data.map(item => {
+			if (item.likeCounts) {
+				item.likeCounts = 0;
+			}
+			return item;
+		});
 		return (
 			<div className="table">
 				<Table

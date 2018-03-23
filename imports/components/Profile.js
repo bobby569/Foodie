@@ -20,11 +20,11 @@ class Profile extends TrackerReact(Component) {
 		this.handleRemove = this.handleRemove.bind(this);
 	}
 
-	componentDidMount() {
-		const { user } = this.props;
-		if (!user) return;
-		this.setState({ tags: user.profile.ingredients });
-	}
+	// componentDidMount() {
+	// 	const { user } = this.props;
+	// 	if (!user) return;
+	// 	this.setState({ tags: user.profile.ingredients });
+	// }
 
 	componentWillReceiveProps(nextProps) {
 		this.setState({ tags: nextProps.user.profile.ingredients });
@@ -38,7 +38,7 @@ class Profile extends TrackerReact(Component) {
 		const { tags, inputValue } = this.state;
 		const val = inputValue.trim().toLowerCase();
 		if (val === '') return message.error("Ingredient can't be empty!");
-		if (tags.includes(val)) return message.error('Ingredient already exist!');
+		//if (tags.includes(val)) return message.error('Ingredient already exist!');
 
 		tags.push(val);
 		this.setState({ inputValue: '', tags });
@@ -55,11 +55,11 @@ class Profile extends TrackerReact(Component) {
 		const newTags = tags.filter(item => item !== tag);
 		this.setState({ tags: newTags });
 
-		Meteor.users.update(Meteor.userId(), {
-			$set: {
-				'profile.ingredients': newTags
-			}
-		});
+		// Meteor.users.update(Meteor.userId(), {
+		// 	$set: {
+		// 		'profile.ingredients': newTags
+		// 	}
+		// });
 	}
 
 	render() {
@@ -67,7 +67,9 @@ class Profile extends TrackerReact(Component) {
 		if (!user) return <h2>Loading</h2>;
 
 		const email = user.emails[0].address;
-		const { tags, inputValue } = this.state;
+		let { tags, inputValue } = this.state;
+		if (!tags) tags = [];
+		let modifytag = [...tags, 'chocolate'];
 
 		return (
 			<div className="user-profile">
@@ -83,7 +85,7 @@ class Profile extends TrackerReact(Component) {
 							<h5>Start adding ingredients to your list!</h5>
 							{tags && (
 								<TagGroup
-									tags={tags}
+									tags={modifytag}
 									onDismiss={tag => this.handleRemove(tag)}
 								/>
 							)}

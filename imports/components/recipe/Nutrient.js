@@ -14,15 +14,16 @@ class Nutrient extends Component {
 					header={<h6>Nutrients</h6>}
 					bordered
 					dataSource={nutrient}
-					renderItem={item =>
-						item && (
-							<List.Item>
-								<List.Item.Meta title={item.label} />
-								<div className="quantity">
-									{`${~~item.quantity} ${item.unit}`}
-								</div>
-							</List.Item>
-						)
+					renderItem={item => (
+						//item && (
+						<List.Item>
+							<List.Item.Meta title={item.label} />
+							<div className="quantity">
+								{`${~~item.quantity} ${item.unit}`}
+							</div>
+						</List.Item>
+					)
+					//)
 					}
 				/>
 			</Col>
