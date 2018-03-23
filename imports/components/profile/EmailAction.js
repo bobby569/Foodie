@@ -28,7 +28,7 @@ class EmailAction extends Component {
 		return (
 			<div>
 				<Card title="Email" className="email" bordered={false}>
-					<p>{email}</p>
+					<p>{email.replace('@', '')}</p>
 				</Card>
 				<Button
 					className="delete"

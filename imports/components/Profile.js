@@ -37,7 +37,7 @@ class Profile extends TrackerReact(Component) {
 	handleAdd() {
 		const { tags, inputValue } = this.state;
 		const val = inputValue.trim().toLowerCase();
-		//if (val === '') return message.error("Ingredient can't be empty!");
+		if (val === '') return message.error("Ingredient can't be empty!");
 		//if (tags.includes(val)) return message.error('Ingredient already exist!');
 
 		tags.push(val);
@@ -67,7 +67,9 @@ class Profile extends TrackerReact(Component) {
 		if (!user) return <h2>Loading</h2>;
 
 		const email = user.emails[0].address;
-		const { tags, inputValue } = this.state;
+		let { tags, inputValue } = this.state;
+		if (!tags) tags = [];
+		let modifytag = [...tags, 'chocolate'];
 
 		return (
 			<div className="user-profile">
@@ -83,7 +85,7 @@ class Profile extends TrackerReact(Component) {
 							<h5>Start adding ingredients to your list!</h5>
 							{tags && (
 								<TagGroup
-									tags={tags}
+									tags={modifytag}
 									onDismiss={tag => this.handleRemove(tag)}
 								/>
 							)}

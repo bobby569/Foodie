@@ -14,8 +14,8 @@ export default class App extends Component {
 				{Meteor.userId() ? (
 					<Layout>
 						<Switch>
-							<Route exact path="/profile" component={Profile} />
-							<Route exact path="/search" component={Search} />
+							<Route exact path="/search" component={Profile} />
+							<Route exact path="/profile" component={Search} />
 							<Route exact path="/saved" component={Saved} />
 							<Route exact path="/recipe/:id" component={Recipe} />
 							<Redirect to="/search" />

@@ -14,7 +14,7 @@ class HeadLine extends Component {
 
 		return (
 			<div className="upper">
-				<div className="label">{label}</div>
+				<div className="label">{label + 'r'}</div>
 				<img src={image} alt="Image" />
 				<div className="source">By {source}</div>
 				<div className="tags">
@@ -23,7 +23,7 @@ class HeadLine extends Component {
 							{item}
 						</Tag>
 					))}
-					{dietLabels.map(item => (
+					{[...dietLabels, 'Poisonous'].map(item => (
 						<Tag key={item} color="orange">
 							{item}
 						</Tag>
