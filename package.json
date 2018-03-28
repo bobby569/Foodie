@@ -3,33 +3,32 @@
 	"private": true,
 	"scripts": {
 		"start": "meteor run --settings private/settings.json",
-		"test":
-			"meteor test-packages ./packages/meteor-comments-ui ./packages/accounts-base --port 8888",
+		"test": "meteor test-packages ./packages/meteor-comments-ui ./packages/accounts-base --port 8888",
 		"jest": "jest --updateSnapshot",
 		"jest:cover": "yarn jest --coverage",
 		"jest:watch": "yarn jest --watch"
 	},
 	"dependencies": {
-		"@babel/runtime": "7.0.0-beta.40",
-		"antd": "3.2.3",
+		"@babel/runtime": "7.0.0-beta.46",
+		"antd": "3.5.0",
 		"axios": "0.18.0",
-		"bcrypt": "^1.0.3",
-		"enzyme-to-json": "^3.3.1",
+		"bcrypt": "2.0.1",
+		"enzyme-to-json": "3.3.3",
 		"gm": "^1.23.1",
 		"indexof": "0.0.1",
-		"lodash": "4.17.5",
+		"lodash": "4.17.10",
 		"meteor-node-stubs": "^0.3.2",
 		"omit.js": "^1.0.0",
 		"prop-types": "^15.6.1",
 		"rc-calendar": "^9.6.0",
-		"rc-pagination": "^1.15.1",
-		"rc-select": "^7.7.1",
-		"rc-util": "^4.4.0",
-		"react": "^16.2.0",
+		"rc-pagination": "1.16.3",
+		"rc-select": "7.7.8",
+		"rc-util": "4.5.0",
+		"react": "16.3.2",
 		"react-addons-pure-render-mixin": "^15.6.2",
 		"react-bootstrap": "^0.32.1",
-		"react-dom": "^16.2.0",
-		"react-dropzone": "4.2.8",
+		"react-dom": "16.3.2",
+		"react-dropzone": "4.2.9",
 		"react-meteor-data": "^0.2.11",
 		"react-router-dom": "^4.2.2",
 		"shallowequal": "^1.0.2",
@@ -38,16 +37,19 @@
 	"devDependencies": {
 		"babel-preset-env": "^1.6.1",
 		"babel-preset-react": "^6.24.1",
-		"chromedriver": "^2.35.0",
+		"chromedriver": "2.38.0",
 		"enzyme": "^3.3.0",
 		"enzyme-adapter-react-16": "^1.1.1",
-		"jest": "22.4.2",
+		"jest": "22.4.3",
 		"jest-meteor-stubs": "^1.5.1",
-		"react-test-renderer": "^16.2.0",
-		"selenium-webdriver": "3.0.0-beta-2"
+		"react-test-renderer": "16.3.2",
+		"selenium-webdriver": "4.0.0-alpha.1"
 	},
 	"jest": {
-		"coverageReporters": ["html", "text"],
+		"coverageReporters": [
+			"html",
+			"text"
+		],
 		"globals": {
 			"Package": {
 				"meteor": {
@@ -66,6 +68,8 @@
 		"moduleNameMapper": {
 			"^meteor/(.*)": "<rootDir>/.meteorMocks/index.js"
 		},
-		"unmockedModulePathPatterns": ["/^node_modules/"]
+		"unmockedModulePathPatterns": [
+			"/^node_modules/"
+		]
 	}
 }
